@@ -9,7 +9,7 @@ Please go under edit and edit this file as needed for your project
 ### Member 5 - 
 ### Member 6 - 
 ### Member 7 - 
-### Member 8 - 
+### Member 8 - IT21292422 - Akmal Alavi
 
 #### Brief Description of Project - 
 #### Technologies used - 
