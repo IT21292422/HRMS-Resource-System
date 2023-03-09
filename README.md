@@ -6,8 +6,8 @@ Please go under edit and edit this file as needed for your project
 ### Member 2 - 
 ### Member 3 - 
 ### Member 4 - IT21204302 - Sajeevan Sivapalan
-### Member 5 - 
-### Member 6 - 
+### Member 5 - IT21305900 - Hettiarachchige H.I.A
+### Member 6 - IT21354724 - Mayuran G
 ### Member 7 - 
 ### Member 8 - IT21292422 - Akmal Alavi
 
