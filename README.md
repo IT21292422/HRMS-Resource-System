@@ -3,7 +3,7 @@ Please go under edit and edit this file as needed for your project
 # Project Name - 
 # Batch - 
 ### Group Leader - IT21190698 - Arudchayan Pirabaharan
-### Member 2 - 
+### Member 2 - IT21331022 - Abdul Azeez Irfan
 ### Member 3 - IT21252518 - Zaqwan Zulficar
 ### Member 4 - IT21204302 - Sajeevan Sivapalan
 ### Member 5 - IT21305900 - Hettiarachchige H.I.A
