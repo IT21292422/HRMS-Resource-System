@@ -1,2 +1,21 @@
 20230411	13:55:45	08183d8f-bf94-47cc-8560-2613b6085ec7	SyntaxError: Unexpected token } in JSON at position 66	GET	/auth	undefined
 20230411	17:08:50	e47818e5-788f-4402-bc1c-3a4967c59a78	MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://docs.atlas.mongodb.com/security-whitelist/	POST	/auth	http://localhost:3000
+20230412	09:40:07	b9b64124-40ea-4b57-9d35-1c58b3effff4	CastError: Cast to Number failed for value "NaN" (type number) at path "epf"	PUT	/api/payrolls/643509a3f7580ebf5e85e591	undefined
+20230412	09:40:25	a60650d5-ae09-4494-aeaf-c99ee8f9ff89	CastError: Cast to Number failed for value "NaN" (type number) at path "epf"	PUT	/api/payrolls/643509a3f7580ebf5e85e591	undefined
+20230412	09:40:54	13e54cf7-a64a-498e-ab0b-4c03b9a307bf	CastError: Cast to Number failed for value "NaN" (type number) at path "epf"	PUT	/api/payrolls/64350722f7580ebf5e81b5e0	undefined
+20230412	09:42:05	ec7f1f79-3f24-4189-8ea6-b55137d371bf	CastError: Cast to Number failed for value "NaN" (type number) at path "epf"	PUT	/api/payrolls/64350722f7580ebf5e81b5e0	undefined
+20230412	09:42:21	678e2e49-461f-4cfd-8661-6de16920633a	CastError: Cast to Number failed for value "NaN" (type number) at path "epf"	PUT	/api/payrolls/64350722f7580ebf5e81b5e0	undefined
+20230412	09:42:38	4a0c70ff-5dc3-4b95-aa6b-d0cd6995d893	CastError: Cast to Number failed for value "NaN" (type number) at path "epf"	PUT	/api/payrolls/64350722f7580ebf5e81b5e0	undefined
+20230412	09:43:23	80763b66-e7ac-4ee5-8a0d-09d8d847c831	SyntaxError: Unexpected token , in JSON at position 431	PUT	/api/payrolls/64350722f7580ebf5e81b5e0	undefined
+20230412	09:44:42	1b7e3786-0116-440c-9a40-df4225a2a69b	Error: Please add a text field	POST	/api/payrolls/	undefined
+20230412	09:45:09	62ed7336-af0b-497c-a1f7-9a7fcc2bbd36	Error: Please add a text field	POST	/api/payrolls/	undefined
+20230412	09:45:58	f7f48f99-b292-43c4-ba35-627f78435af2	Error: Please add a text field	POST	/api/payrolls/	undefined
+20230412	09:46:24	15f625ca-58ba-4e13-ae40-89c218e254fa	Error: Please add a text field	POST	/api/payrolls/	undefined
+20230412	09:46:38	983c9f98-1e30-456b-ab22-2c027893ba64	MongoServerError: E11000 duplicate key error collection: HRM.payrolls index: Name_1 dup key: { Name: "Nimal" }	POST	/api/payrolls/	undefined
+20230412	13:08:49	8821678b-0f18-4ca9-9f92-bb344d4092d4	CastError: Cast to Number failed for value "NaN" (type number) at path "epf"	PUT	/api/payrolls/64350722f7580ebf5e81b5e0	http://localhost:3000
+20230412	13:08:55	b9055669-008c-4b91-bb64-e5473df5219c	CastError: Cast to Number failed for value "NaN" (type number) at path "epf"	PUT	/api/payrolls/64350722f7580ebf5e81b5e0	http://localhost:3000
+20230412	13:08:55	0bf4bb4e-64ff-4704-bf33-65e9801c8f8f	CastError: Cast to Number failed for value "NaN" (type number) at path "epf"	PUT	/api/payrolls/64350722f7580ebf5e81b5e0	http://localhost:3000
+20230412	13:08:56	e0ca101d-b46f-4e0c-b228-c03aafc30cf7	CastError: Cast to Number failed for value "NaN" (type number) at path "epf"	PUT	/api/payrolls/64350722f7580ebf5e81b5e0	http://localhost:3000
+20230412	13:08:58	78776306-016b-4d15-801a-1a63733bfda0	CastError: Cast to Number failed for value "NaN" (type number) at path "epf"	PUT	/api/payrolls/64350722f7580ebf5e81b5e0	http://localhost:3000
+20230412	14:07:39	13badfa0-e06a-40e7-a1e5-b1d96eac52a5	MongoServerError: E11000 duplicate key error collection: HRM.payrolls index: Name_1 dup key: { Name: "Sampath" }	POST	/api/payrolls/	http://localhost:3000
+20230412	14:09:19	4d3e29dd-9ea9-4b4a-8c4b-7e2d02a59881	MongoServerError: E11000 duplicate key error collection: HRM.payrolls index: Name_1 dup key: { Name: "Sampath" }	POST	/api/payrolls/	http://localhost:3000

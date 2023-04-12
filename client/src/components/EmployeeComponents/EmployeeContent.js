@@ -7,7 +7,7 @@ function EmployeeContent() {
         <div class="content">
             <Routes>
                 <Route>
-                    <Route path="/EmployeeReqLeave" element={<EmployeeReqLeave />} />
+                    <Route path="EmployeeReqLeave" element={<EmployeeReqLeave />} />
                 </Route>
             </Routes>
         </div>

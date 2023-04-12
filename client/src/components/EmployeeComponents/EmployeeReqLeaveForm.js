@@ -150,7 +150,7 @@ class EmployeeReqLeaveForm extends Component {
         // create a employee leave request 
         axios.post('http://localhost:5000/EmployeeReqLeave/reqEmpLeave', leaveObj).then(res => {
             console.log(res.data);
-            window.location.replace("http://localhost:3000/emp/EmployeeReqLeave");
+            window.location.replace("http://localhost:3000/dash/emp/EmployeeReqLeave");
         })
         .catch((err) => {
             console.log(err);

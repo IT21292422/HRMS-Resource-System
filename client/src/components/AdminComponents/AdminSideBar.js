@@ -7,6 +7,8 @@ function AdminSideBar() {
             <Link class="nav-link" to="/readQR">Entry</Link>
             <Link class="nav-link" to="/dash/admin/Attendance">Attendance</Link>
             <Link class="nav-link" to="/dash/admin/AdminReqLeave">Leave Request</Link>
+            <Link class="nav-link" to="/dash/admin/AllPayRolls">PayRolls</Link>
+            <Link class="nav-link" to="/dash/admin/AllPaySlips">Payslips</Link>
         </div>
     );
 }

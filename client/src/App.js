@@ -8,6 +8,13 @@ import EntranceQR from "./components/QRComponents/EntranceQR";
 import EmployeeReqLeave from "./components/EmployeeComponents/EmployeeReqLeave";
 import ViewDisplay from "./components/ViewComponent/ViewDisplay";
 
+//payroll management
+import AllPayrolls from "./components/AllPayrolls";
+import AllPaySlips from "./components/AllPaySlips";
+import UpdatePayroll from "./components/UpdatePayroll";
+import AddPayRoll from "./components/AddPayRoll"; 
+
+import IndividualPayroll from "./components/IndividualPayroll";
 //zaqwan
 import Login from './features/auth/Login';
 import DashLayout from './components/DashLayout'
@@ -53,8 +60,17 @@ function App() {
 
               <Route element={<RequireAuth allowedRoles={[ROLES.Manager, ROLES.Admin]} />}>
                 <Route path="admin" element={<AdminPanel />}>
+                  {/* leave and attendance management */}
                   <Route exact path="AdminReqLeave" element={<AdminReqLeave />} />
                   <Route exact path="Attendance" element={<Attendance />} />
+                  
+                  {/* payroll management */}
+                  <Route path='AllPayrolls' element={<AllPayrolls />} />
+                  <Route path='AddPayRoll' element={<AddPayRoll />} />
+                  <Route path='UpdatePayroll/:id' element={<UpdatePayroll />} />
+                  <Route path='AllPaySlips' element={<AllPaySlips />} />
+                  <Route path='IndividualPayroll/:id' element={<IndividualPayroll />} />
+                
                 </Route>
               </Route>
               <Route path="emp" element={<EmployeePanel />}>

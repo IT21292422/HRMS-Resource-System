@@ -5,7 +5,7 @@ class EmployeeLeaveList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            reason: ''
+            reason: this.props.obj.reason
         }
     }
 
@@ -20,7 +20,7 @@ class EmployeeLeaveList extends Component {
         if(result == true) {
             // delete employee leave record
             axios.delete(`http://localhost:5000/EmployeeReqLeave/deleteEmpLeave/${id}`).then(() => {
-                window.location.replace("http://localhost:3000/emp/EmployeeReqLeave");
+                window.location.replace("http://localhost:3000/dash/emp/EmployeeReqLeave");
             })
         }
     }
@@ -33,7 +33,7 @@ class EmployeeLeaveList extends Component {
         
          // update employee leave record
         axios.put(`http://localhost:5000/AdminReqLeave/updateEmpLeave/${id}`, leaveObj).then(() => {
-            window.location.replace("http://localhost:3000/emp/EmployeeReqLeave");
+            window.location.replace("http://localhost:3000/dash/emp/EmployeeReqLeave");
         })
         .catch((err) => {
             console.log(err);
