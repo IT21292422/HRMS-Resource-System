@@ -51,25 +51,15 @@ function App() {
 
               <Route index element={<Welcome />} />
 
-              {/* <Route element={<RequireAuth allowedRoles={[ROLES.Manager, ROLES.Admin]} />}>
-                <Route path="admin" element={<AdminPanel />}>
-                  <Route path="AdminReqLeave" element={<AdminReqLeave />} />
-                  <Route path="Attendance" element={<Attendance />} />
-                </Route>
-              </Route> */}
-              {/* <Route path="dash/*"> */}
               <Route element={<RequireAuth allowedRoles={[ROLES.Manager, ROLES.Admin]} />}>
                 <Route path="admin" element={<AdminPanel />}>
                   <Route exact path="AdminReqLeave" element={<AdminReqLeave />} />
                   <Route exact path="Attendance" element={<Attendance />} />
                 </Route>
               </Route>
-
-
-
-
-
-
+              <Route path="emp" element={<EmployeePanel />}>
+                <Route path="EmployeeReqLeave" element={<EmployeeReqLeave />} />
+              </Route>
             </Route>{/* End Dash */}
           </Route>
         </Route>
