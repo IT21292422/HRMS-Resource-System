@@ -1,5 +1,3 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPenToSquare } from "@fortawesome/free-solid-svg-icons"
 import { useNavigate } from 'react-router-dom'
 
 import { useSelector } from 'react-redux'
@@ -20,26 +18,21 @@ const User = ({ userId }) => {
         const cellStatus = user.active ? '' : 'table__cell--inactive'
 
         return (
-
-        
-
-
-
             <tr className="table__row user">
 
-                <td className={`table__cell ${cellStatus}`}>{user.empID}</td>
-                <td className={`table__cell ${cellStatus}`}>{user.fullname}</td>  
-                <td className={`table__cell ${cellStatus}`}>{user.username}</td>
-                <td className={`table__cell ${cellStatus}`}>{user.employee_type}</td>
-                <td className={`table__cell ${cellStatus}`}>{user.department}</td>    
-                <td className={`table__cell ${cellStatus}`}>{userRolesString}</td>
+                <td>{user.empID}</td>
+                <td>{user.fullname}</td>  
+                <td>{user.username}</td>
+                <td>{user.employee_type}</td>
+                <td>{user.department}</td>    
+                <td>{userRolesString}</td>
                           
-                <td className={`table__cell ${cellStatus}`}>
+                <td>
                     <button
-                        className="icon-button table__button"
+                        class="btn btn-primary"
                         onClick={handleEdit}
                     >
-                        <FontAwesomeIcon icon={faPenToSquare} />
+                        Edit
                     </button>
                 </td>
             </tr>

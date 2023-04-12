@@ -13,19 +13,25 @@ import AllPayrolls from "./components/AllPayrolls";
 import AllPaySlips from "./components/AllPaySlips";
 import UpdatePayroll from "./components/UpdatePayroll";
 import AddPayRoll from "./components/AddPayRoll"; 
-
 import IndividualPayroll from "./components/IndividualPayroll";
 //zaqwan
 import Login from './features/auth/Login';
 import DashLayout from './components/DashLayout'
 import Welcome from './features/auth/Welcome'
-// import UsersList from './features/users/UsersList'
+import UsersList from "./features/users/UsersList";
 // import EditUser from './features/users/EditUser'
 // import NewUserForm from './features/users/NewUserForm'
 import Prefetch from './features/auth/Prefetch';
 import PersistLogin from './features/auth/PersistLogin';
 import RequireAuth from './features/auth/RequireAuth';
 import { ROLES } from './config/roles';
+
+//akaml
+import AddResource from "./components/AddResource"
+import EditResource from "./components/EditResource"
+import ResourceDetails from "./components/ResourceDetails"
+import ResourcesList from "./components/ResourcesList"
+import AssignEmployee from "./components/AssignEmployee"
 
 function App() {
   return (
@@ -71,6 +77,15 @@ function App() {
                   <Route path='AllPaySlips' element={<AllPaySlips />} />
                   <Route path='IndividualPayroll/:id' element={<IndividualPayroll />} />
                 
+                  {/* resource management */}
+                  <Route path='resourcesList' element={<ResourcesList />} />
+                  <Route path='addResource' element={<AddResource />} />
+                  <Route path='assignEmployee/:id' element={<AssignEmployee />} />
+                  <Route path='editResource/:id' element={<EditResource />} />
+                  <Route path='resource/:id' element={<ResourceDetails />} />
+
+                  {/* user management */}
+                  <Route path='users' element={<UsersList />} />
                 </Route>
               </Route>
               <Route path="emp" element={<EmployeePanel />}>

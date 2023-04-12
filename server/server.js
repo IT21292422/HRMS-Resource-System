@@ -6,6 +6,7 @@ const cors = require("cors");
 const corsOptions = require ('./config/corsOptions')
 require("dotenv").config({ path: "./.env" });
 const port = process.env.PORT || 5000;
+const resourceRoutes = require('./routes/resourceRoutes')
 
 //payroll
 
@@ -62,6 +63,8 @@ app.use('/users', require('./routes/userRoutes'))
 //payroll management
 app.use('/api/payrolls', require('./routes/payrollRoutes'))
 
+//resource management
+app.use("/api/resources",resourceRoutes)
 
 //Leave and attendance management system
 

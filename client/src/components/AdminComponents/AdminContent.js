@@ -7,19 +7,32 @@ import AllPaySlips from "../AllPaySlips";
 import UpdatePayroll from "../UpdatePayroll";
 import IndividualPayroll from "../IndividualPayroll";
 import AddPayRoll from "../AddPayRoll";
+import ResourcesList from "../ResourcesList";
+import AddResource from "../AddResource";
+import AssignEmployee from "../AssignEmployee";
+import EditResource from "../EditResource";
+import ResourceDetails from "../ResourceDetails";
+import UsersList from "../../features/users/UsersList";
 
 function AdminContent() {
-    return(
+    return (
         <div class="content">
             <Routes>
                 <Route>
                     <Route path="/AdminReqLeave" element={<AdminReqLeave />} />
                     <Route path="/Attendance" element={<Attendance />} />
-                    <Route path='/AllPayrolls' element={<AllPayrolls/>} />
-                    <Route path='/AllPaySlips' element={<AllPaySlips/>} />
+                    <Route path='/AllPayrolls' element={<AllPayrolls />} />
+                    <Route path='/AllPaySlips' element={<AllPaySlips />} />
                     <Route path='UpdatePayroll/:id' element={<UpdatePayroll />} />
                     <Route path='IndividualPayroll/:id' element={<IndividualPayroll />} />
                     <Route path='AddPayRoll' element={<AddPayRoll />} />
+                    <Route path='resourcesList' element={<ResourcesList />} />
+                    <Route path='addResource' element={<AddResource />} />
+                    <Route path='assignEmployee/:id' element={<AssignEmployee />} />
+                    <Route path='editResource/:id' element={<EditResource />} />
+                    <Route path='resource/:id' element={<ResourceDetails />} />
+                    <Route path='users' element={<UsersList />} />
+
                 </Route>
             </Routes>
         </div>
