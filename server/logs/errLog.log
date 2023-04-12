@@ -19,3 +19,5 @@
 20230412	13:08:58	78776306-016b-4d15-801a-1a63733bfda0	CastError: Cast to Number failed for value "NaN" (type number) at path "epf"	PUT	/api/payrolls/64350722f7580ebf5e81b5e0	http://localhost:3000
 20230412	14:07:39	13badfa0-e06a-40e7-a1e5-b1d96eac52a5	MongoServerError: E11000 duplicate key error collection: HRM.payrolls index: Name_1 dup key: { Name: "Sampath" }	POST	/api/payrolls/	http://localhost:3000
 20230412	14:09:19	4d3e29dd-9ea9-4b4a-8c4b-7e2d02a59881	MongoServerError: E11000 duplicate key error collection: HRM.payrolls index: Name_1 dup key: { Name: "Sampath" }	POST	/api/payrolls/	http://localhost:3000
+20230412	14:39:47	9e00f014-596b-404d-b21f-6490ec181115	Error: data and salt arguments required	POST	/users	undefined
+20230412	14:40:17	3f6975bc-31b4-4250-a208-8406fe01b562	MongoServerError: E11000 duplicate key error collection: HRM.users index: email_1 dup key: { email: "mzmzaqwan@gmail.com" }	POST	/users	undefined

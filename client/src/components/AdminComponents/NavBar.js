@@ -2,9 +2,12 @@ import React from "react";
 import { useEffect } from 'react'
 import { useSendLogoutMutation } from "../../features/auth/authApiSlice";
 import { useNavigate } from 'react-router-dom'
+import useAuth from "../../hooks/useAuth";
 
 function NavBar() {
     const navigate = useNavigate()
+
+    const { username, status } = useAuth()
 
     const [sendLogout, {
         isLoading,
@@ -14,17 +17,15 @@ function NavBar() {
     }] = useSendLogoutMutation()
 
     useEffect(() => {
-        if (isSuccess) 
-        navigate('/')
-    }, [isSuccess,navigate])
+        if (isSuccess)
+            navigate('/')
+    }, [isSuccess, navigate])
 
-    return(
+    return (
         <nav class="navbar fixed-top bg-light">
             <div class="container-fluid">
-                <a class="navbar-brand">HR system</a>
-                <form class="d-flex" role="search">
+                {username} : {status}
                 <button class="btn btn-outline-success" type="submit" onClick={sendLogout}>Logout</button>
-                </form>
             </div>
         </nav>
     );
