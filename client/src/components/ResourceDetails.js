@@ -61,7 +61,9 @@ const ResourceDetails = (props) => {
 
   return (
     <>  
-    <table class="table table-primary table-borderless">        
+        <div class="leave-list">
+          <div class="row justify-content-center">
+          <table class="table table-primary table-borderless">        
         <tbody> 
         <tr>
           <th>Name</th>   
@@ -109,7 +111,8 @@ const ResourceDetails = (props) => {
       {renderAssignedEmployees}
       </tbody>
     </table>
-
+          </div>
+        </div>
     </> 
   )
 }

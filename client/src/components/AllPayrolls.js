@@ -81,7 +81,7 @@ function AllPayrolls() {
         </div>
       </div>
       <div>
-        <div class="attendance-list">
+        <div class="leave-list">
           <div class="row justify-content-center">
             <table class="table table-striped table-hover">
               <thead>
@@ -116,7 +116,7 @@ function AllPayrolls() {
                         </button>
                       </td>
                       <td>
-                        <button class="btn btn-primary" onClick={() => navigate(`/dash/admin/IndividualPayroll/${payroll._id}`)}>
+                        <button class="btn btn-success" onClick={() => navigate(`/dash/admin/IndividualPayroll/${payroll._id}`)}>
                           View
                         </button>
                       </td>

@@ -24,7 +24,8 @@ function NavBar() {
     return (
         <nav class="navbar fixed-top bg-light">
             <div class="container-fluid">
-                {username} : {status}
+                <div> </div>
+                <h6>{username} : {status}</h6>
                 <button class="btn btn-outline-success" type="submit" onClick={sendLogout}>Logout</button>
             </div>
         </nav>

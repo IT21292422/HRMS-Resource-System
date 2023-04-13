@@ -21,9 +21,8 @@ const ResourceCard = (props) => {
   return (
     <>  
     <tr>
-      <Link to={{pathname:`/dash/admin/resource/${id}`}}  style={{ textDecoration: 'none' }}>
-    <td>    {name}    </td>
-      </Link>
+    <td>  <Link to={{pathname:`/dash/admin/resource/${id}`}} class="btn btn-outline-primary">{name}  </Link>  </td>
+  
     <td>    {type}    </td> 
     <td>    {quantity}    </td>
     <td>    {invoiceNo}   </td>

@@ -33,7 +33,7 @@ function IndividualPayroll() {
     return (
         <>
         
-            <div class="attendance-list">
+            <div class="leave-list">
                 <div class="row justify-content-center">
                     <table class='table table-striped table-hover' style={{ margin: "auto", width: "100%" }}>
                         <tbody>

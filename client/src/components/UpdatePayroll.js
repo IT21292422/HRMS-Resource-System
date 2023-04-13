@@ -70,7 +70,7 @@ function UpdatePayroll() {
 
     return (
         <>
-            <div class="attendance-list">
+            <div style={{marginTop:'90px'}} class="leave-list">
                 <div class="row justify-content-center">
                     <form onSubmit={handleSubmit}>
                         <div class="form-group">

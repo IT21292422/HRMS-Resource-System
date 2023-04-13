@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import ResourceCard from './ResourceCard'
 import { Link } from 'react-router-dom'
 import axios from "axios"
+import AddResource from './AddResource'
 
 const ResourcesList = () => {
 
@@ -55,9 +56,10 @@ const ResourcesList = () => {
         )
     })
     return (
-        <div>
+        <>
             <div class="request">
                 <div class="row justify-content-end">
+                    {/* <AddResource></AddResource> */}
                     <Link to="/dash/admin/addResource">
                         <button class="btn btn-primary">Add Resources</button>
                     </Link>
@@ -70,14 +72,15 @@ const ResourcesList = () => {
                 {/* <button class="btn btn-primary" onclick={renderFilterResourceTypeDevice}>Devices</button> */}
                 {/* <button class="btn btn-primary" onclick={renderFilterResourceTypeStationary}>Stationaries</button> */}
             </div>
-            <br />
-            <div class="row justify-content-center">
-                <input type="text" style={{ width: '50%', display: 'inline-block', textAlign: 'center' }} class="form-control" id="searchResource" placeholder="Enter Search Keyword" value={Keyword} onChange={(e) => setKeyword(e.target.value)} />
+            <div class="search">
+                <div class="row justify-content-center">
+                    <input type="text" class="form-control search-bar" id="searchResource" placeholder="Enter Search Keyword" value={Keyword} onChange={(e) => setKeyword(e.target.value)} />
+                </div>
             </div>
             <br />
-            <div class="container">
-                <table class="table table-borderless">
-                    <thead class="table-primary">
+            <div class="leave-list">
+                <table class="table table-striped table-hover">
+                    <thead>
                         <tr>
                             <th>Name</th>
                             <th>Type</th>
@@ -90,12 +93,12 @@ const ResourcesList = () => {
                             <th></th>
                         </tr>
                     </thead>
-                    <tbody class="table-group-divider">
+                    <tbody>
                         {renderResourcesList}
                     </tbody>
                 </table>
             </div>
-        </div>
+        </>
     )
 
 }

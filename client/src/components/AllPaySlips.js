@@ -65,10 +65,12 @@ function AllPaySlips() {
         </div>
       </div>
         {payrolls.length > 0 ? (
-          <div class="row justify-content-center">
-            {filteredPayrolls.map((payroll) => (
-              <PaySlipCard key={payroll._id} payroll={payroll} />
-            ))}
+          <div class="leave-list">
+            <div class="row justify-content-center">
+              {filteredPayrolls.map((payroll) => (
+                <PaySlipCard key={payroll._id} payroll={payroll} />
+              ))}
+            </div>
           </div>) : (<h3>No payslips</h3>)}
     </>
   )

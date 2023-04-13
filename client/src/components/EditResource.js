@@ -73,48 +73,50 @@ const EditResource = (props) => {
     }
 
         return (
-            <div class="container">
-            <form onSubmit={update}>
-                <div>
-                    <label for="name" class="form-label">Name</label>
-                    <input type="text" class="form-control" id="name" placeholder="Enter Resource Name"  value={name} onChange={(e) => setName(e.target.value)}/> {/*e is event*/}
-                <br/>
+            <div style={{marginTop:'100px'}} class="leave-list">
+                <div class="row justify-content-center">
+                    <form onSubmit={update}>
+                        <div class="form-group">
+                            <div class="row justify-content-center">
+                                <div class="col-6">
+                                    <label for="name" class="form-label">Name</label>
+                                    <input type="text" class="form-control" id="name" placeholder="Enter Resource Name"  value={name} onChange={(e) => setName(e.target.value)}/> {/*e is event*/}
+                                </div>
+                                <div class="col-6">
+                                    <label for="name" class="form-label">Resource Type</label>
+                                    <select class="form-select" aria-label="Default select example" name="type" value={type} onChange={(e) => setType(e.target.value)}>
+                                    <option selected>Select Resource Type</option>
+                                    <option value="Device">Device</option>
+                                    <option value="Stationary">Stationary</option>      
+                                </select>    
+                                </div>
+                                <div class="col-6">
+                                    <label for="quantity" class="form-label">Quantity</label>
+                                    <input type="text" class="form-control" id="quantity" placeholder="Enter the quantity" value={quantity} onChange={(e) => setQuantity(e.target.value)}/>
+                                </div>
+                                <div class="col-6">
+                                    <label for="invoiceNo" class="form-label">Invoice No</label>
+                                    <input type="text" class="form-control" id="invoiceNo" placeholder="Enter the Invoice Number" value={invoiceNo} onChange={(e) => setInvoiceNo(e.target.value)}/>
+                                </div>
+                                <div class="col-6">
+                                    <label for="supplierName" class="form-label">Supplier Name</label>
+                                    <input type="text" class="form-control" id="supplierName" placeholder="Enter the Supplier Name" value={supplierName} onChange={(e) => setSupplierName(e.target.value)}/>
+                                </div>
+                                <div class="col-6">
+                                    <label for="orderDate" class="form-label">Ordered Date</label>
+                                    <input type="date" class="form-control" id="orderDate" value={orderedDate} onChange={(e) => setOrderDate(e.target.value)}/>
+                                </div>
+                                <div class="col-6">
+                                    <label for="imageURL" class="form-label">Image URL</label>
+                                    <input type="text" class="form-control" id="imageURL" value={imageURL} onChange={(e) => setImageURL(e.target.value)}/>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <button type="submit" style={{marginTop:'10px'}} class="col-3 btn btn-primary">Update</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                <div>
-                    <select class="form-select" aria-label="Default select example" name="type" value={type} onChange={(e) => setType(e.target.value)}>
-                    <option selected>Select Resource Type</option>
-                    <option value="Device">Device</option>
-                    <option value="Stationary">Stationary</option>      
-                </select>
-                <br/>    
-                </div>
-                <div>
-                    <label for="quantity" class="form-label">Quantity</label>
-                    <input type="text" class="form-control" id="quantity" placeholder="Enter the quantity" value={quantity} onChange={(e) => setQuantity(e.target.value)}/>
-                <br/>
-                </div>
-                <div>
-                    <label for="invoiceNo" class="form-label">Invoice No</label>
-                    <input type="text" class="form-control" id="invoiceNo" placeholder="Enter the Invoice Number" value={invoiceNo} onChange={(e) => setInvoiceNo(e.target.value)}/>
-                <br/>
-                </div>
-                <div>
-                    <label for="supplierName" class="form-label">Supplier Name</label>
-                    <input type="text" class="form-control" id="supplierName" placeholder="Enter the Supplier Name" value={supplierName} onChange={(e) => setSupplierName(e.target.value)}/>
-                <br/>
-                </div>
-                <div>
-                    <label for="orderDate" class="form-label">Ordered Date</label>
-                    <input type="date" class="form-control" id="orderDate" value={orderedDate} onChange={(e) => setOrderDate(e.target.value)}/>
-                <br/>
-                </div>
-                <div>
-                    <label for="imageURL" class="form-label">Image URL</label>
-                    <input type="text" class="form-control" id="imageURL" value={imageURL} onChange={(e) => setImageURL(e.target.value)}/>
-                <br/>
-                </div>
-                <button type="submit" class="btn btn-primary">Update</button>
-            </form>
             </div>
         )
     
