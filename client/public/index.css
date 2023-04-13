@@ -3,6 +3,39 @@
     min-height: 100vh;
 }
 
+.login {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.r-login {
+    width: 60%;
+    height: 97vh;
+    padding: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: blue;
+    color: white;
+}
+
+.l-login {
+    width: 40%;
+    height: 97vh;
+    padding: 50px;
+}
+
+.login-title {
+    color: blue;
+    font-family: 'Inter'
+}
+
+.form-check {
+    margin-top: 30px;
+    margin-left: 25px;
+}
+
 .sidebar {
     width: 15%;
     height: 90vh;

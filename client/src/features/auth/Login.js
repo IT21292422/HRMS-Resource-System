@@ -60,53 +60,66 @@ const Login = () => {
     if (isLoading) return <p>Loading...</p>
 
     const content = (
-        <section >
-            <header>
-                <h1>Employee Login</h1>
-            </header>
-            <main >
-                <p ref={errRef} aria-live="assertive">{errMsg}</p>
-
-                <form  onSubmit={handleSubmit}>
-                    <label htmlFor="username">Username:</label>
-                    <input
-                        
-                        type="text"
-                        id="username"
-                        ref={userRef}
-                        value={username}
-                        onChange={handleUserInput}
-                        autoComplete="off"
-                        required
-                    />
-
-                    <label htmlFor="password">Password:</label>
-                    <input
-                        
-                        type="password"
-                        id="password"
-                        onChange={handlePwdInput}
-                        value={password}
-                        required
-                    />
-                    <button>Sign In</button>
-
-                    <label htmlFor="persist">
+        <>
+        <form  onSubmit={handleSubmit}>
+            <div class="login-page">
+                <div class="row">
+                    <div class="r-login col-8">
+                        CV uploads and description
+                    </div>
+                    <div class="l-login col-4">
+                    <div>
+                        <div class="row justify-content-center">
+                            <h2 class="login-title">Login</h2>
+                        </div>
+                        <div class="row justify-content-center">
+                        <div style={{marginTop:'30px'}} class="col-12">
+                            <label class="form-label">Username</label>
+                            <input
+                                class="form-control"
+                                type="text"
+                                id="username"
+                                ref={userRef}
+                                value={username}
+                                onChange={handleUserInput}
+                                autoComplete="off"
+                                required
+                            />
+                        </div>
+                        <div style={{marginTop:'30px'}} class="col-12">
+                        <label class="form-label">Password</label>
                         <input
+                            class="form-control"
+                            type="password"
+                            id="password"
+                            onChange={handlePwdInput}
+                            value={password}
+                            required
+                        />
+                        </div>
+                        <div class="form-check">
+                        <input
+                            class="form-check-input"
                             type="checkbox"
-                            
                             id="persist"
                             onChange={handleToggle}
                             checked={persist}
                         />
-                        Trust This Device
-                    </label>
-                </form>
-            </main>
-            <footer>
-                <Link to="/">Back to Home</Link>
-            </footer>
-        </section>
+                            <label class="form-label" for="flexCheckChecked">
+                            Trust This Device
+                            </label>
+                        </div>
+                        <button style={{marginTop:'30px'}} class="btn btn-primary col-4">Sign In</button>
+                        </div>
+                        <div style={{marginTop:'30px'}} class="row justify-content-center">
+                            <h5 ref={errRef} class="form-label text-danger" aria-live="assertive">{errMsg}</h5>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        </>
     )
 
     return content
