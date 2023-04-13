@@ -59,10 +59,7 @@ const ResourcesList = () => {
         <>
             <div class="request">
                 <div class="row justify-content-end">
-                    {/* <AddResource></AddResource> */}
-                    <Link to="/dash/admin/addResource">
-                        <button class="btn btn-primary">Add Resources</button>
-                    </Link>
+                    <AddResource></AddResource> 
                 </div>
             </div>
             <div>

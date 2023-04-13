@@ -10,7 +10,7 @@ const ResourceCard = (props) => {
 
   const deleteResource = (_id) =>{
     axios.delete(`http://localhost:5000/api/resources/deleteResource/${id}`).then(() =>{
-     alert("Resource Deleted")
+     //alert("Resource Deleted")
      window.location.replace('/dash/admin/resourcesList')
   })
   .catch((error) => {

@@ -54,7 +54,7 @@ const EditResource = (props) => {
         //the props addResourceHandler is passed from App.js
         //this.props.addResourceHandler(this.state)
             axios.put(`http://localhost:5000/api/resources/updateResource/${id}`,resources).then(() =>{
-            alert("Inventory Updated Successfully")
+            //alert("Inventory Updated Successfully")
             //To clear the input text box once the submit button isclicked
             /*setName("")
             setQuantity("")
