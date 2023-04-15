@@ -22,6 +22,13 @@
 20230412	14:39:47	9e00f014-596b-404d-b21f-6490ec181115	Error: data and salt arguments required	POST	/users	undefined
 20230412	14:40:17	3f6975bc-31b4-4250-a208-8406fe01b562	MongoServerError: E11000 duplicate key error collection: HRM.users index: email_1 dup key: { email: "mzmzaqwan@gmail.com" }	POST	/users	undefined
 20230412	15:37:38	f0277aa5-585f-4b64-822e-9d977f320ae4	SyntaxError: Unexpected token } in JSON at position 93	GET	/api/resources/getResource	undefined
+20230415	11:47:50	9c8331bd-842e-477c-bebd-baceecba14c4	MongoServerError: E11000 duplicate key error collection: HRM.users index: email_1 dup key: { email: "Helllo@hi.com" }	POST	/users	http://localhost:3000
+20230415	11:47:56	dae320a0-9c50-4439-a88b-0233abc7c189	MongoServerError: E11000 duplicate key error collection: HRM.users index: email_1 dup key: { email: "Helllo@hi.com" }	POST	/users	http://localhost:3000
+20230415	11:47:56	da473b7c-c130-4fa7-a872-6e5f13046303	MongoServerError: E11000 duplicate key error collection: HRM.users index: email_1 dup key: { email: "Helllo@hi.com" }	POST	/users	http://localhost:3000
+20230415	11:58:36	77707072-0869-4a2f-91a0-0c7703a4956a	MongoServerError: E11000 duplicate key error collection: HRM.users index: email_1 dup key: { email: "Helllo@hi.com" }	POST	/users	http://localhost:3000
+20230415	14:41:39	b70da507-aa6b-432a-9547-20692c99c37f	Error: Please add a text field	POST	/api/payrolls/	http://localhost:3000
+20230415	14:47:06	ce7f68b0-8d60-48a2-a849-713550bd91dd	Error: Please add a text field	POST	/api/payrolls/	http://localhost:3000
+20230415	14:48:43	c1b19ed5-85e7-4329-aef3-b6cbd8ba89e7	MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://docs.atlas.mongodb.com/security-whitelist/	GET	/api/payrolls/	http://localhost:3000
 20230413	12:02:16	33fec6ca-47ed-43ed-b837-3499a3f0a4b6	Too Many Requests: Too many login attempts from this IP, please try again after a 60 second pause	POST	/	http://localhost:3000
 20230415	10:08:51	5fad11c6-60e6-4764-b83c-3c7f9b0d252c	TypeError: Cannot read properties of undefined (reading 'join')	POST	/run-python-script	undefined
 20230415	11:11:43	56232c02-7435-41a1-b5d8-f640ddbff8dc	Error: Command failed: python script.py "https://firebasestorage.googleapis.com/v0/b/hrms-itp-sliit-y2s2-2023-feb.appspot.com/o/resumes%2FPS%20Answers.pdf49c8e60c-d66e-4dc5-b4b8-fc479874483e?alt=media&token=bb67bd2e-3344-45cb-9c3d-711e88f6408d" "byoutou"

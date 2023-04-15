@@ -34,7 +34,7 @@ const resourceSchema = new Schema({
     },
     imageURL:{
         type: String,
-        required:true
+        
     },
 
     employeesAssigned:[{

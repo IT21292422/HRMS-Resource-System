@@ -6,6 +6,7 @@ import AssignEmployee from './AssignEmployee';
 const ResourceDetails = (props) => {
   
   const [resource, setResource] = useState([])
+  const [newQty,setNewQty] = useState("")
 
   //To get the id from URL
   const {id} = useParams()
@@ -13,6 +14,7 @@ const ResourceDetails = (props) => {
   const retrieveResource = () => {
       axios.get(`http://localhost:5000/api/resources/getResource/${id}`).then((res) =>{
         setResource(res.data)
+        setNewQty(res.data.quantity)
       })
      .catch((error) => {
         console.log(error.res.data)
@@ -48,15 +50,27 @@ const ResourceDetails = (props) => {
       //const employee = {
         //employeeName
       //}
-
+      var updatedQuantity = newQty + 1
+      const newQuantity = {
+        updatedQuantity
+      }
+      console.log(newQuantity)
+      axios.put(`http://localhost:5000/api/resources/updateQuantity/${id}`,newQuantity).then(() =>{
+      
+      })
+      .catch((error) => {
+        console.log(error.response.data)
+      })
       axios.put(`http://localhost:5000/api/resources/revokeEmployee/${id}`,employee).then(() =>{
        alert("Resource revoked from Employee")
        window.location.replace(`/dash/admin/resource/${id}`)
-    })
-    .catch((error) => {
+      })
+      .catch((error) => {
         console.log(error.response.data)
     })
+   
   }
+
 
 
   return (

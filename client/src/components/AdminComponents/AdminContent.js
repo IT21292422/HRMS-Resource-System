@@ -7,11 +7,11 @@ import AllPaySlips from "../AllPaySlips";
 import UpdatePayroll from "../UpdatePayroll";
 import IndividualPayroll from "../IndividualPayroll";
 import AddPayRoll from "../AddPayRoll";
-import ResourcesList from "../ResourcesList";
-import AddResource from "../AddResource";
-import AssignEmployee from "../AssignEmployee";
-import EditResource from "../EditResource";
-import ResourceDetails from "../ResourceDetails";
+import ResourcesList from "../resource/ResourcesList";
+import AddResource from "../resource/AddResource";
+import AssignEmployee from "../resource/AssignEmployee";
+import EditResource from "../resource/EditResource";
+import ResourceDetails from "../resource/ResourceDetails";
 import UsersList from "../../features/users/UsersList";
 import ResumeList from "../../features/resume/ResumeList";
 import EditResume from "../../features/resume/EditResume";
@@ -22,6 +22,7 @@ import NewVacancyForm from "../../features/vacancy/NewVacancyForm";
 import ResumeSearch from "../../features/resume/ResumeSearch";
 import VacancySearch from "../../features/vacancy/VacancySearch";
 import Reporting from "../../features/resume/Reporting";
+import EditUser from "../../features/users/EditUser";
 
 function AdminContent() {
     return (
@@ -41,7 +42,8 @@ function AdminContent() {
                     <Route path='editResource/:id' element={<EditResource />} />
                     <Route path='resource/:id' element={<ResourceDetails />} />
                     <Route path='users' element={<UsersList />} />
-                    
+                                        <Route path='users/:id' element={<EditUser/>}/>
+
                     <Route path="resume">
                         <Route index element={<ResumeList />} />
                         <Route path=":id" element={<EditResume />} />
