@@ -2,7 +2,8 @@ import { useState, useEffect } from "react"
 import { useAddNewUserMutation } from "./usersApiSlice"
 import { useNavigate } from "react-router-dom"
 import { ROLES } from "../../config/roles"
-
+import { useDispatch } from "react-redux"
+import { createPayRoll } from "../payroll/payrollSlice"
 const USER_REGEX = /^[A-z]{3,20}$/
 const PWD_REGEX = /^[A-z0-9!@#$%]{4,12}$/
 
@@ -16,6 +17,7 @@ const NewUserForm = () => {
     }] = useAddNewUserMutation()
 
     const navigate = useNavigate()
+    const dispatch  = useDispatch()
 
     const [username, setUsername] = useState('')
     const [validUsername, setValidUsername] = useState(false)
@@ -115,16 +117,63 @@ const NewUserForm = () => {
 
     const canSave = [roles.length, validUsername, validPassword].every(Boolean) && !isLoading
 
-    const onSaveUserClicked = async (e) => {
-        e.preventDefault()
+    // const onSaveUserClicked = async (e) => {
+    //     e.preventDefault()
+    //     if (canSave) {
+    //         await addNewUser({
+    //             username, password, roles, firstname, lastname, fullname,
+    //             gender, NIC, date_of_birth, place_of_birth, age, nationality, religion, department,
+    //             date_joined, employee_type, empID, contact, email, address
+    //         })
+    //     }
+    // }
+
+    const onSaveUserClicked = async (m) => {
+        m.preventDefault()
         if (canSave) {
+          try {
+            let otHours = 0
+            let position = "Executive"
+            let department = "HR"
+            const payRollData = {
+              fullname,
+              empID,
+              department,
+              position,
+              otHours
+            }
+      
             await addNewUser({
-                username, password, roles, firstname, lastname, fullname,
-                gender, NIC, date_of_birth, place_of_birth, age, nationality, religion, department,
-                date_joined, employee_type, empID, contact, email, address
+              username,
+              password,
+              roles,
+              firstname,
+              lastname,
+              fullname,
+              gender,
+              NIC,
+              date_of_birth,
+              place_of_birth,
+              age,
+              nationality,
+              religion,
+              department,
+              date_joined,
+              employee_type,
+              empID,
+              contact,
+              email,
+              address
             })
+      
+            console.log(payRollData)
+            dispatch(createPayRoll(payRollData))
+          } catch (error) {
+            console.log(error)
+          }
         }
-    }
+      }
+      
 
     const options = Object.values(ROLES).map(role => {
         return (

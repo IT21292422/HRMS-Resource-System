@@ -14,9 +14,9 @@ const getPayrolls = asyncHandler(async(req,res)=>{
 //@route POST/ api/payrolls
 //@access Private
 const setPayroll = asyncHandler(async(req,res)=>{
-    const {name,empId,department,position,otHours}=req.body
+    const {fullname,empID,department,position,otHours}=req.body
 
-      if(!name || !empId || !department || !position){
+      if(!fullname || !empID || !department || !position){
         res.status(400)
         throw new Error('Please add a text field')
     }
@@ -25,8 +25,8 @@ const setPayroll = asyncHandler(async(req,res)=>{
     const{epfCalculated,FinalSalary,taxes,deductions} = calculateDeductions(SalaryPaid)
     
     const payroll = await Payroll.create({
-        Name: name,
-        eid : empId,
+        Name: fullname,
+        eid : empID,
         department:department,
         position:position,
         mealAllowance:mealAllow,
