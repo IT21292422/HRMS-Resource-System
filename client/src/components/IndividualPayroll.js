@@ -95,7 +95,7 @@ function IndividualPayroll() {
                             </tr>
                         </tbody>
                     </table>
-                    <button class="btn btn-primary col-3" onClick={() => navigate('/dash/admin/AllPayRolls')}>Back</button>
+                    <button style={{marginTop:'10px'}} class="btn btn-primary col-3" onClick={() => navigate('/dash/admin/AllPayRolls')}>Back</button>
                 </div>
             </div>
         </>

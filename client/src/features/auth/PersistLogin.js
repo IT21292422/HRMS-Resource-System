@@ -4,6 +4,7 @@ import { useRefreshMutation } from "./authApiSlice"
 import usePersist from "../../hooks/usePersist"
 import { useSelector } from 'react-redux'
 import { selectCurrentToken } from "./authSlice"
+import Spinner from "../../components/Spinner"
 
 const PersistLogin = () => {
 
@@ -54,13 +55,14 @@ const PersistLogin = () => {
         content = <Outlet />
     } else if (isLoading) { //persist: yes, token: no
         console.log('loading')
-        content = <p>Loading...</p>
+        content = <Spinner />
     } else if (isError) { //persist: yes, token: no
         console.log('error')
         content = (
             <p>
-                {`${error?.data?.message} - `}
-                <Link to="/">Please login again</Link>.
+                <div class="error-login-page">
+                    <Link to="/" class="btn btn-outline-danger">{`${error?.data?.message} - `}Please login again</Link>.
+                </div>
             </p>
         )
     } else if (isSuccess && trueSuccess) { //persist: yes, token: yes

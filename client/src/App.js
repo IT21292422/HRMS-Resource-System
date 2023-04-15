@@ -27,11 +27,11 @@ import RequireAuth from './features/auth/RequireAuth';
 import { ROLES } from './config/roles';
 
 //akaml
-import AddResource from "./components/AddResource"
-import EditResource from "./components/EditResource"
-import ResourceDetails from "./components/ResourceDetails"
-import ResourcesList from "./components/ResourcesList"
-import AssignEmployee from "./components/AssignEmployee"
+import AddResource from "./components/resource/AddResource";
+import EditResource from "./components/resource/EditResource"
+import ResourceDetails from "./components/resource/ResourceDetails"
+import ResourcesList from "./components/resource/ResourcesList"
+import AssignEmployee from "./components/resource/AssignEmployee"
 
 function App() {
   return (

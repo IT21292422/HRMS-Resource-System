@@ -19,6 +19,12 @@ const AssignEmployee = () => {
         .catch((error) => {
             console.log(error.response.data)
         })
+        axios.get(`http://localhost:5000/api/resources/getResource/${id}`).then((res) =>{
+            setQuantity(res.data.quantity)
+        })
+        .catch((error) => {
+            console.log(error.response.data)
+        })
     }
   
     useEffect(() => {
@@ -40,8 +46,9 @@ const AssignEmployee = () => {
 
     const assign = (e) => {
         e.preventDefault() //Like preventing page to refresh
-
+        var updatedQuantity = quantity - 1
         const employee = {
+            updatedQuantity,
             employeeName
         }
 

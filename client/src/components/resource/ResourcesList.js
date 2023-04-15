@@ -3,6 +3,7 @@ import ResourceCard from './ResourceCard'
 import { Link } from 'react-router-dom'
 import axios from "axios"
 import AddResource from './AddResource'
+import ResourceReport from './ResourceReport'
 
 const ResourcesList = () => {
 
@@ -55,11 +56,34 @@ const ResourcesList = () => {
             <ResourceCard resources={resources} />
         )
     })
+
+    const filterDevice = () => {
+        const device = resources.filter((resource) => {
+            return resource.type === "Device"
+        })
+        setResources(device)
+    }
+
+    const filterStationaries = () => {
+        const stationary = resources.filter((resource) => {
+            return resource.type === "Stationary"
+        })
+        setResources(stationary)
+    }
+
     return (
         <>
             <div class="request">
                 <div class="row justify-content-end">
-                    <AddResource></AddResource> 
+                    <AddResource></AddResource>
+                    <ResourceReport></ResourceReport>
+                </div>
+            </div>
+            <div>
+                <div style={{marginTop:'10px'}} class="row justify-content-center">
+                    <button class="btn btn-outline-success col-2" onClick={() => retrieveResources()}>All Resources</button>
+                    <button class="btn btn-outline-success col-2" onClick={() => filterDevice()}>Devices</button>
+                    <button class="btn btn-outline-success col-2" onClick={() => filterStationaries()}>Stationaries</button>
                 </div>
             </div>
             <div>

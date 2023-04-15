@@ -6,6 +6,8 @@ import useAuth from "../../hooks/useAuth";
 
 function NavBar() {
     const navigate = useNavigate()
+    const date = new Date();
+    const today = new Intl.DateTimeFormat('en-US', {dateStyle: 'full'}, {timeStyle: 'long'}).format(date);
 
     const { username, status } = useAuth()
 
@@ -24,7 +26,7 @@ function NavBar() {
     return (
         <nav class="navbar fixed-top bg-light">
             <div class="container-fluid">
-                <div> </div>
+                <div><span class="time-view">{today}</span></div>
                 <h6>{username} : {status}</h6>
                 <button class="btn btn-outline-success" type="submit" onClick={sendLogout}>Logout</button>
             </div>

@@ -55,10 +55,10 @@ const updateResource = async (req,res) => {
 
 const assignEmployee = async (req,res) => {
     const id = req.params.id
-    const {employeeName} = req.body
+    const {employeeName,updatedQuantity} = req.body
     console.log(employeeName)
     try{
-        const updatedResource = await resourceModel.findByIdAndUpdate(id, { $push: {employeesAssigned: employeeName } })
+        const updatedResource = await resourceModel.findByIdAndUpdate(id, { $push: {employeesAssigned: employeeName } , quantity: updatedQuantity})
         if(updatedResource){
             res.status(200).send(updatedResource)
         }
@@ -80,6 +80,7 @@ const revokeEmployee = async (req,res) => {
         res.status(500).send(error)
     }
 }
+
 
 const deleteResource = async (req,res) => {
     const id = req.params.id

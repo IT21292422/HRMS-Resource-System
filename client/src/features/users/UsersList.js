@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useGetUsersQuery } from './usersApiSlice'
 import User from './User'
 import Plot from 'react-plotly.js';
+import Spinner from '../../components/Spinner';
 
 const UsersList = () => {
 
@@ -25,7 +26,7 @@ const UsersList = () => {
   let content;
 
   if (isLoading) {
-    content = <p>Loading...</p>
+    content = <Spinner />
   }
 
   if (isError) {

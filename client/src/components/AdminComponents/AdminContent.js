@@ -7,11 +7,11 @@ import AllPaySlips from "../AllPaySlips";
 import UpdatePayroll from "../UpdatePayroll";
 import IndividualPayroll from "../IndividualPayroll";
 import AddPayRoll from "../AddPayRoll";
-import ResourcesList from "../ResourcesList";
-import AddResource from "../AddResource";
-import AssignEmployee from "../AssignEmployee";
-import EditResource from "../EditResource";
-import ResourceDetails from "../ResourceDetails";
+import ResourcesList from "../resource/ResourcesList";
+import AddResource from "../resource/AddResource";
+import AssignEmployee from "../resource/AssignEmployee";
+import EditResource from "../resource/EditResource";
+import ResourceDetails from "../resource/ResourceDetails";
 import UsersList from "../../features/users/UsersList";
 
 function AdminContent() {
