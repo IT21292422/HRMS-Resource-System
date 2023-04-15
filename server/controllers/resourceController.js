@@ -81,6 +81,20 @@ const revokeEmployee = async (req,res) => {
     }
 }
 
+const updateQuantity = async (req,res) => {
+    const id = req.params.id
+    const {updatedQuantity} = req.body
+    console.log(req.body)
+    try{
+        const updatedQty = await resourceModel.findByIdAndUpdate(id, {quantity: updatedQuantity })
+        if(updatedQty){
+            res.status(200).send(updatedQty)
+        }
+    }catch(error){
+        res.status(500).send(error)
+    }
+}
+
 
 const deleteResource = async (req,res) => {
     const id = req.params.id
@@ -101,5 +115,6 @@ module.exports = {
     updateResource,
     assignEmployee,
     revokeEmployee,
+    updateQuantity, 
     deleteResource
 }
