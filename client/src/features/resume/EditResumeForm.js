@@ -46,7 +46,7 @@ const EditResumeForm = ({ resume }) => {
             setResumename('')
             setPost('')
             setResume('')
-            navigate('/dash/admin/resume')
+            navigate('/dash/admin/resume/search')
         }
 
     }, [isSuccess, isDelSuccess, navigate])
@@ -217,6 +217,9 @@ const EditResumeForm = ({ resume }) => {
                         </div>
                     </form>
                 </div>
+            </div>
+            <div id="loading">
+           <img src="loading.gif" alt="Loading.." />
             </div>
         </>
     )

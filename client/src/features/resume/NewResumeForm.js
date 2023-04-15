@@ -110,7 +110,7 @@ const NewResumeForm = () => {
         }
         const fileRef = ref(storage, `resumes/${fileUpload.name + v4()}`)
         uploadBytes(fileRef, fileUpload).then((snapshot) => {
-            document.getElementById("loading").style.display = "flex";
+            //document.getElementById("loading").style.display = "flex";
             getDownloadURL(snapshot.ref).then((url) => {
                 setResume(url)
                 alert("Resume Uploaded")
@@ -125,7 +125,6 @@ const NewResumeForm = () => {
                             alert('Resume did not match requirements. You can still submit if you want to, else update your resume and try again.');
                             setMatch("no")
                         }
-                        document.getElementById("loading").style.display = "none";
                         // TODO: Handle response data as required
                     })
                     .catch((error) => {
@@ -360,6 +359,9 @@ const NewResumeForm = () => {
                         </div>
                     </div>
                 </div>
+            </div>
+            <div id="loading">
+          <img src="loading.gif" alt="Loading.." />
             </div>
         </>
     )
