@@ -2,8 +2,8 @@ import React from 'react'
 import { useState, useEffect } from "react"
 import { useUpdateUserMutation, useDeleteUserMutation } from "./usersApiSlice"
 import { useNavigate } from "react-router-dom"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSave, faTrashCan } from "@fortawesome/free-solid-svg-icons"
+//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+//import { faSave, faTrashCan } from "@fortawesome/free-solid-svg-icons"
 import { ROLES } from "../../config/roles"
 
 
@@ -51,9 +51,9 @@ const EditUserForm = ({ user }) => {
     const [employee_type, setEmptype] = useState(user.employee_type)
     const [empID, setEmpid] = useState(user.empID)
     const [contact, setContact] = useState(user.contact)
-    const[email, setEmail]= useState(user.email)
+    const [email, setEmail] = useState(user.email)
     const [address, setAddress] = useState(user.address)
-   
+
 
     useEffect(() => {
         setValidUsername(USER_REGEX.test(username))
@@ -63,14 +63,14 @@ const EditUserForm = ({ user }) => {
         setValidPassword(PWD_REGEX.test(password))
     }, [password])
 
-   
+
     useEffect(() => {
         console.log(isSuccess)
         if (isSuccess || isDelSuccess) {
             setUsername('')
             setPassword('')
             setRoles([])
-            
+
             setFirstname('')
             setLastname('')
             setFullname('')
@@ -88,8 +88,8 @@ const EditUserForm = ({ user }) => {
             setContact('')
             setEmail('')
             setAddress('')
-           
-            navigate('/dash/users')
+
+            window.location.replace('http://localhost:3000/dash/admin/users')
         }
 
     }, [isSuccess, isDelSuccess, navigate])
@@ -125,49 +125,51 @@ const EditUserForm = ({ user }) => {
     const onContactChanged = e => setContact(e.target.value)
     const onEmailChanged = e => setEmail(e.target.value)
     const onAddressChanged = e => setAddress(e.target.value)
-    
 
-    
+
+
 
     const onSaveUserClicked = async (e) => {
         if (password) {
-            await updateUser({ id: user.id, username, password,active, roles,firstname,
+            await updateUser({
+                id: user.id, username, password, active, roles, firstname,
                 lastname,
                 fullname,
-                 gender,
+                gender,
                 NIC,
                 date_of_birth,
                 place_of_birth,
                 age,
-                 nationality,
-                 religion,
+                nationality,
+                religion,
                 department,
-                 date_joined,
+                date_joined,
                 employee_type,
                 empID,
                 contact,
                 email,
-                 address
-                  })
+                address
+            })
         } else {
-            await updateUser({ id: user.id, username, roles, active,firstname,
+            await updateUser({
+                id: user.id, username, roles, active, firstname,
                 lastname,
                 fullname,
-                 gender,
+                gender,
                 NIC,
                 date_of_birth,
                 place_of_birth,
                 age,
-                 nationality,
-                 religion,
+                nationality,
+                religion,
                 department,
-                 date_joined,
+                date_joined,
                 employee_type,
                 empID,
                 contact,
                 email,
-                 address
-                })
+                address
+            })
         }
     }
 
@@ -184,7 +186,7 @@ const EditUserForm = ({ user }) => {
     const onDeleteUserClicked = async () => {
         await deleteUser({ id: user.id })
     }
-    
+
     let canSave
     if (password) {
         canSave = [roles.length, validUsername, validPassword].every(Boolean) && !isLoading
@@ -201,287 +203,337 @@ const EditUserForm = ({ user }) => {
 
     const content = (
         <>
-            <p className={errClass}>{errContent}</p>
+            <div style={{ marginTop: '40px' }} class="leave-list">
+                <div class="row justify-content-center">
+                    <form onSubmit={e => e.preventDefault()}>
+                        <div class="form-group">
+                            <div class="row justify-content-center">
+                                <div class="col-4">
 
-            <form className="form" onSubmit={e => e.preventDefault()}>
-                <div className="form__title-row">
-                    <h2>Edit User</h2>
-                    <div className="form__action-buttons">
-                        <button
-                            className="icon-button"
-                            title="Save"
-                            onClick={onSaveUserClicked}
-                            disabled={!canSave}
-                        >
-                            <FontAwesomeIcon icon={faSave} />
-                        </button>
-                        <button
-                            className="icon-button"
-                            title="Delete"
-                            onClick={onDeleteUserClicked}
-                        >
-                            <FontAwesomeIcon icon={faTrashCan} />
-                        </button>
-                    </div>
+                                    <label class="form-label" htmlFor="username">
+                                        Username: [3-20 letters]</label>
+                                    <input
+                                        class="form-control"
+                                        id="username"
+                                        name="username"
+                                        type="text"
+                                        autoComplete="off"
+                                        value={username}
+                                        onChange={onUsernameChanged}
+                                    />
+                                </div>
+
+                                <div class="col-4">
+
+
+                                    <label class="form-label" htmlFor="password">
+                                        Password: </label>
+                                    <input
+                                        class="form-control"
+                                        id="password"
+                                        name="password"
+                                        type="password"
+                                        value={password}
+                                        onChange={onPasswordChanged}
+                                    />
+                                </div>
+
+                                <div class="col-4">
+
+                                    <label class="form-label" htmlFor="user-active">
+                                        ACTIVE:
+                                        <input
+                                            class="form-checkbox"
+                                            id="user-active"
+                                            name="user-active"
+                                            type="checkbox"
+                                            checked={active}
+                                            onChange={onActiveChanged}
+                                        />
+                                    </label> </div>
+
+                                <div class="col-4">
+
+
+                                    <label class="form-label" htmlFor="firstname">
+                                        First Name: </label>
+                                    <input
+                                        class="form-control"
+                                        id="firstname"
+                                        name="firstname"
+                                        type="text"
+                                        autoComplete="off"
+                                        value={firstname}
+                                        onChange={onFirstnameChanged}
+                                    /> </div>
+
+                                <div class="col-4">
+
+                                    <label class="form-label" htmlFor="lastname">
+                                        Last Name: </label>
+                                    <input
+                                        class="form-control"
+                                        id="lastname"
+                                        name="lastname"
+                                        type="text"
+                                        autoComplete="off"
+                                        value={lastname}
+                                        onChange={onLasttnameChanged}
+                                    /> </div>
+
+                                <div class="col-4">
+
+                                    <label class="form-label" htmlFor="fullname">
+                                        Full Name: </label>
+                                    <input
+                                        class="form-control"
+                                        id="fullname"
+                                        name="fullname"
+                                        type="text"
+                                        autoComplete="off"
+                                        value={fullname}
+                                        onChange={onFullnameChanged}
+                                    /> </div>
+
+                                <div class="col-4">
+
+                                    <label class="form-label" htmlFor="gender">
+                                        Gender: </label>
+                                    <input
+                                        class="form-control"
+                                        id="gender"
+                                        name="gender"
+                                        type="text"
+                                        autoComplete="off"
+                                        value={gender}
+                                        onChange={onGenderChanged}
+                                    /> </div>
+
+                                <div class="col-4">
+
+                                    <label class="form-label" htmlFor="NIC">
+                                        NIC: </label>
+                                    <input
+                                        class="form-control"
+                                        id="NIC"
+                                        name="NIC"
+                                        type="text"
+                                        autoComplete="off"
+                                        value={NIC}
+                                        onChange={onNicChanged}
+                                    /> </div>
+
+                                <div class="col-4">
+
+                                    <label class="form-label" htmlFor="date_of_birth">
+                                        Date of birth: </label>
+                                    <input
+                                        class="form-control"
+                                        id="date_of_birth"
+                                        name="date_of_birth"
+                                        type="text"
+                                        autoComplete="off"
+                                        value={date_of_birth}
+                                        onChange={onDobChanged}
+                                    /> </div>
+
+                                <div class="col-4">
+
+                                    <label class="form-label" htmlFor="place_of_birth">
+                                        Place of birth: </label>
+                                    <input
+                                        class="form-control"
+                                        id="place_of_birth"
+                                        name="place_of_birth"
+                                        type="text"
+                                        autoComplete="off"
+                                        value={place_of_birth}
+                                        onChange={onPobChanged}
+                                    /> </div>
+
+                                <div class="col-4">
+
+                                    <label class="form-label" htmlFor="age">
+                                        Age: </label>
+                                    <input
+                                        class="form-control"
+                                        id="age"
+                                        name="age"
+                                        type="text"
+                                        autoComplete="off"
+                                        value={age}
+                                        onChange={onAgeChanged}
+                                    /> </div>
+
+                                <div class="col-4">
+
+                                    <label class="form-label" htmlFor="nationality">
+                                        Nationality: </label>
+                                    <input
+                                        class="form-control"
+                                        id="nationality"
+                                        name="nationality"
+                                        type="text"
+                                        autoComplete="off"
+                                        value={nationality}
+                                        onChange={onNationalityChanged}
+                                    /> </div>
+
+
+                                <div class="col-4">
+
+                                    <label class="form-label" htmlFor="religion">
+                                        Religion: </label>
+                                    <input
+                                        class="form-control"
+                                        id="religion"
+                                        name="religion"
+                                        type="text"
+                                        autoComplete="off"
+                                        value={religion}
+                                        onChange={onReligionChanged}
+                                    /> </div>
+
+                                <div class="col-4">
+
+                                    <label class="form-label" htmlFor="department">
+                                        Department: </label>
+                                    <input
+                                        class="form-control"
+                                        id="department"
+                                        name="department"
+                                        type="text"
+                                        autoComplete="off"
+                                        value={department}
+                                        onChange={onDepartmentChanged}
+                                    /> </div>
+
+                                <div class="col-4">
+
+                                    <label class="form-label" htmlFor="date_joined">
+                                        Date Joined: </label>
+                                    <input
+                                        class="form-control"
+                                        id="date_joined"
+                                        name="date_joined"
+                                        type="text"
+                                        autoComplete="off"
+                                        value={date_joined}
+                                        onChange={onDatejoinChanged}
+                                    /> </div>
+
+
+                                <div class="col-4">
+
+                                    <label class="form-label" htmlFor="employee_type">
+                                        Employee type: </label>
+                                    <input
+                                        class="form-control"
+                                        id="employee_type"
+                                        name="employee_type"
+                                        type="text"
+                                        autoComplete="off"
+                                        value={employee_type}
+                                        onChange={onEmptypeChanged}
+                                    /> </div>
+
+                                <div class="col-4">
+
+                                    <label class="form-label" htmlFor="empID">
+                                        Employee ID: </label>
+                                    <input
+                                        class="form-control"
+                                        id="empID"
+                                        name="empID"
+                                        type="text"
+                                        autoComplete="off"
+                                        value={empID}
+                                        onChange={onEmpidChanged}
+                                    /> </div>
+
+                                <div class="col-4">
+
+                                    <label class="form-label" htmlFor="contact">
+                                        Contact: </label>
+                                    <input
+                                        class="form-control"
+                                        id="contact"
+                                        name="contact"
+                                        type="text"
+                                        autoComplete="off"
+                                        value={contact}
+                                        onChange={onContactChanged}
+                                    /> </div>
+
+                                <div class="col-4">
+
+
+                                    <label class="form-label" htmlFor="email">
+                                        Email: </label>
+                                    <input
+                                        class="form-control"
+                                        id="email"
+                                        name="email"
+                                        type="text"
+                                        autoComplete="off"
+                                        value={email}
+                                        onChange={onEmailChanged}
+                                    />
+
+                                </div>
+
+                                <div class="col-4">
+
+
+                                    <label class="form-label" htmlFor="address">
+                                        Address: </label>
+                                    <input
+                                        class="form-control"
+                                        id="address"
+                                        name="address"
+                                        type="text"
+                                        autoComplete="off"
+                                        value={address}
+                                        onChange={onAddressChanged}
+                                    />
+                                </div>
+                                    <div class="col-4">
+
+                                        <label class="form-label" htmlFor="roles">
+                                            ASSIGNED ROLES:</label><br />
+                                        <select
+                                            id="roles"
+                                            name="roles"
+                                            class={`form__select `}
+                                            multiple={true}
+                                            size="3"
+                                            value={roles}
+                                            onChange={onRolesChanged}
+                                        >
+                                            {options}
+                                        </select> </div>
+                                <div class="row justify-content-center">
+                                    <button style={{ marginTop: '10px' }}
+                                        class="btn btn-primary col-3"
+                                        title="Save"
+                                        onClick={onSaveUserClicked}
+                                        disabled={!canSave}
+                                    >
+                                        Update
+                                    </button>
+                                    <button style={{ marginTop: '10px' }}
+                                        class="btn btn-danger col-3"
+                                        title="Delete"
+                                        onClick={onDeleteUserClicked}
+                                    >
+                                        Delete
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                <label className="form__label" htmlFor="username">
-                    Username: <span className="nowrap">[3-20 letters]</span></label>
-                <input
-                    className={`form__input ${validUserClass}`}
-                    id="username"
-                    name="username"
-                    type="text"
-                    autoComplete="off"
-                    value={username}
-                    onChange={onUsernameChanged}
-                />
-
-                <label className="form__label" htmlFor="password">
-                    Password: <span className="nowrap">[empty = no change]</span> <span className="nowrap">[4-12 chars incl. !@#$%]</span></label>
-                <input
-                    className={`form__input ${validPwdClass}`}
-                    id="password"
-                    name="password"
-                    type="password"
-                    value={password}
-                    onChange={onPasswordChanged}
-                />
-
-                    <label className="form__label form__checkbox-container" htmlFor="user-active">
-                    ACTIVE:
-                    <input
-                        className="form__checkbox"
-                        id="user-active"
-                        name="user-active"
-                        type="checkbox"
-                        checked={active}
-                        onChange={onActiveChanged}
-                    />
-                </label>
-
-                <label className="form__label" htmlFor="roles">
-                    ASSIGNED ROLES:</label>
-                <select
-                    id="roles"
-                    name="roles"
-                    className={`form__select ${validRolesClass}`}
-                    multiple={true}
-                    size="3"
-                    value={roles}
-                    onChange={onRolesChanged}
-                >
-                    {options}
-                </select>
-
-                <label className="form__label" htmlFor="firstname">
-                    First Name: <span className="nowrap"></span></label>
-                <input
-                    className="form__select"
-                    id="firstname"
-                    name="firstname"
-                    type="text"
-                    autoComplete="off"
-                    value={firstname}
-                    onChange={onFirstnameChanged}
-                />
-
-                <label className="form__label" htmlFor="lastname">
-                    Last Name: <span className="nowrap"></span></label>
-                <input
-                    className="form__select"
-                    id="lastname"
-                    name="lastname"
-                    type="text"
-                    autoComplete="off"
-                    value={lastname}
-                    onChange={onLasttnameChanged}
-                />
-
-                <label className="form__label" htmlFor="fullname">
-                    Full Name: <span className="nowrap"></span></label>
-                <input
-                    className="form__select"
-                    id="fullname"
-                    name="fullname"
-                    type="text"
-                    autoComplete="off"
-                    value={fullname}
-                    onChange={onFullnameChanged}
-                />
-
-                <label className="form__label" htmlFor="gender">
-                    Gender: <span className="nowrap"></span></label>
-                <input
-                    className="form__select"
-                    id="gender"
-                    name="gender"
-                    type="text"
-                    autoComplete="off"
-                    value={gender}
-                    onChange={onGenderChanged}
-                />
-
-                <label className="form__label" htmlFor="NIC">
-                    NIC: <span className="nowrap"></span></label>
-                <input
-                    className="form__select"
-                    id="NIC"
-                    name="NIC"
-                    type="text"
-                    autoComplete="off"
-                    value={NIC}
-                    onChange={onNicChanged}
-                />
-
-                <label className="form__label" htmlFor="date_of_birth">
-                    Date of birth: <span className="nowrap"></span></label>
-                <input
-                    className="form__select"
-                    id="date_of_birth"
-                    name="date_of_birth"
-                    type="text"
-                    autoComplete="off"
-                    value={date_of_birth}
-                    onChange={onDobChanged}
-                />
-
-                <label className="form__label" htmlFor="place_of_birth">
-                    Place of birth: <span className="nowrap"></span></label>
-                <input
-                    className="form__select"
-                    id="place_of_birth"
-                    name="place_of_birth"
-                    type="text"
-                    autoComplete="off"
-                    value={place_of_birth}
-                    onChange={onPobChanged}
-                />
-
-                <label className="form__label" htmlFor="age">
-                   Age: <span className="nowrap"></span></label>
-                <input
-                    className="form__select"
-                    id="age"
-                    name="age"
-                    type="text"
-                    autoComplete="off"
-                    value={age}
-                    onChange={onAgeChanged}
-                />
-
-                <label className="form__label" htmlFor="nationality">
-                Nationality: <span className="nowrap"></span></label>
-                <input
-                    className="form__select"
-                    id="nationality"
-                    name="nationality"
-                    type="text"
-                    autoComplete="off"
-                    value={nationality}
-                    onChange={onNationalityChanged}
-                />
-
-                <label className="form__label" htmlFor="religion">
-                Religion: <span className="nowrap"></span></label>
-                <input
-                    className="form__select"
-                    id="religion"
-                    name="religion"
-                    type="text"
-                    autoComplete="off"
-                    value={religion}
-                    onChange={onReligionChanged}
-                />
-
-                <label className="form__label" htmlFor="department">
-                Department: <span className="nowrap"></span></label>
-                <input
-                    className="form__select"
-                    id="department"
-                    name="department"
-                    type="text"
-                    autoComplete="off"
-                    value={department}
-                    onChange={onDepartmentChanged}
-                />
-
-                <label className="form__label" htmlFor="date_joined">
-                Date Joined: <span className="nowrap"></span></label>
-                <input
-                    className="form__select"
-                    id="date_joined"
-                    name="date_joined"
-                    type="text"
-                    autoComplete="off"
-                    value={date_joined}
-                    onChange={onDatejoinChanged}
-                />
-
-                <label className="form__label" htmlFor="employee_type">
-                Employee type: <span className="nowrap"></span></label>
-                <input
-                    className="form__select"
-                    id="employee_type"
-                    name="employee_type"
-                    type="text"
-                    autoComplete="off"
-                    value={employee_type}
-                    onChange={onEmptypeChanged}
-                />
-
-                <label className="form__label" htmlFor="empID">
-                Employee ID: <span className="nowrap"></span></label>
-                <input
-                    className="form__select"
-                    id="empID"
-                    name="empID"
-                    type="text"
-                    autoComplete="off"
-                    value={empID}
-                    onChange={onEmpidChanged}
-                />
-
-                <label className="form__label" htmlFor="contact">
-                Contact: <span className="nowrap"></span></label>
-                <input
-                    className="form__select"
-                    id="contact"
-                    name="contact"
-                    type="text"
-                    autoComplete="off"
-                    value={contact}
-                    onChange={onContactChanged}
-                />
-
-                <label className="form__label" htmlFor="email">
-                Email: <span className="nowrap"></span></label>
-                <input
-                    className="form__select"
-                    id="email"
-                    name="email"
-                    type="text"
-                    autoComplete="off"
-                    value={email}
-                    onChange={onEmailChanged}
-                />
-
-                <label className="form__label" htmlFor="address">
-                Address: <span className="nowrap"></span></label>
-                <input
-                    className="form__select"
-                    id="address"
-                    name="address"
-                    type="text"
-                    autoComplete="off"
-                    value={address}
-                    onChange={onAddressChanged}
-                />
-
-              
-
-
-
-            </form>
+            </div>
         </>
     )
 

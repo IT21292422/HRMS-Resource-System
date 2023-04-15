@@ -13,6 +13,7 @@ import AssignEmployee from "../resource/AssignEmployee";
 import EditResource from "../resource/EditResource";
 import ResourceDetails from "../resource/ResourceDetails";
 import UsersList from "../../features/users/UsersList";
+import EditUser from "../../features/users/EditUser";
 
 function AdminContent() {
     return (
@@ -32,6 +33,7 @@ function AdminContent() {
                     <Route path='editResource/:id' element={<EditResource />} />
                     <Route path='resource/:id' element={<ResourceDetails />} />
                     <Route path='users' element={<UsersList />} />
+                    <Route path='users/:id' element={<EditUser/>}/>
 
                 </Route>
             </Routes>

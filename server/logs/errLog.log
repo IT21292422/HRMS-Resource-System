@@ -22,3 +22,7 @@
 20230412	14:39:47	9e00f014-596b-404d-b21f-6490ec181115	Error: data and salt arguments required	POST	/users	undefined
 20230412	14:40:17	3f6975bc-31b4-4250-a208-8406fe01b562	MongoServerError: E11000 duplicate key error collection: HRM.users index: email_1 dup key: { email: "mzmzaqwan@gmail.com" }	POST	/users	undefined
 20230412	15:37:38	f0277aa5-585f-4b64-822e-9d977f320ae4	SyntaxError: Unexpected token } in JSON at position 93	GET	/api/resources/getResource	undefined
+20230415	11:47:50	9c8331bd-842e-477c-bebd-baceecba14c4	MongoServerError: E11000 duplicate key error collection: HRM.users index: email_1 dup key: { email: "Helllo@hi.com" }	POST	/users	http://localhost:3000
+20230415	11:47:56	dae320a0-9c50-4439-a88b-0233abc7c189	MongoServerError: E11000 duplicate key error collection: HRM.users index: email_1 dup key: { email: "Helllo@hi.com" }	POST	/users	http://localhost:3000
+20230415	11:47:56	da473b7c-c130-4fa7-a872-6e5f13046303	MongoServerError: E11000 duplicate key error collection: HRM.users index: email_1 dup key: { email: "Helllo@hi.com" }	POST	/users	http://localhost:3000
+20230415	11:58:36	77707072-0869-4a2f-91a0-0c7703a4956a	MongoServerError: E11000 duplicate key error collection: HRM.users index: email_1 dup key: { email: "Helllo@hi.com" }	POST	/users	http://localhost:3000

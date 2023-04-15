@@ -32,6 +32,8 @@ import EditResource from "./components/resource/EditResource"
 import ResourceDetails from "./components/resource/ResourceDetails"
 import ResourcesList from "./components/resource/ResourcesList"
 import AssignEmployee from "./components/resource/AssignEmployee"
+import EditUser from "./features/users/EditUser";
+
 
 function App() {
   return (
@@ -86,6 +88,7 @@ function App() {
 
                   {/* user management */}
                   <Route path='users' element={<UsersList />} />
+                  <Route path='users/:id' element={<EditUser/>}/>
                 </Route>
               </Route>
               <Route path="emp" element={<EmployeePanel />}>
