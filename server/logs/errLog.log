@@ -22,3 +22,15 @@
 20230412	14:39:47	9e00f014-596b-404d-b21f-6490ec181115	Error: data and salt arguments required	POST	/users	undefined
 20230412	14:40:17	3f6975bc-31b4-4250-a208-8406fe01b562	MongoServerError: E11000 duplicate key error collection: HRM.users index: email_1 dup key: { email: "mzmzaqwan@gmail.com" }	POST	/users	undefined
 20230412	15:37:38	f0277aa5-585f-4b64-822e-9d977f320ae4	SyntaxError: Unexpected token } in JSON at position 93	GET	/api/resources/getResource	undefined
+20230413	12:02:16	33fec6ca-47ed-43ed-b837-3499a3f0a4b6	Too Many Requests: Too many login attempts from this IP, please try again after a 60 second pause	POST	/	http://localhost:3000
+20230415	10:08:51	5fad11c6-60e6-4764-b83c-3c7f9b0d252c	TypeError: Cannot read properties of undefined (reading 'join')	POST	/run-python-script	undefined
+20230415	11:11:43	56232c02-7435-41a1-b5d8-f640ddbff8dc	Error: Command failed: python script.py "https://firebasestorage.googleapis.com/v0/b/hrms-itp-sliit-y2s2-2023-feb.appspot.com/o/resumes%2FPS%20Answers.pdf49c8e60c-d66e-4dc5-b4b8-fc479874483e?alt=media&token=bb67bd2e-3344-45cb-9c3d-711e88f6408d" "byoutou"
+Traceback (most recent call last):
+  File "C:\Users\DELL\Desktop\Final project\HR system - Sajeevan\server\script.py", line 26, in <module>
+    nlp = spacy.load('en_core_web_sm')
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python310\lib\site-packages\spacy\__init__.py", line 54, in load
+    return util.load_model(
+  File "C:\Users\DELL\AppData\Local\Programs\Python\Python310\lib\site-packages\spacy\util.py", line 449, in load_model
+    raise IOError(Errors.E050.format(name=name))
+OSError: [E050] Can't find model 'en_core_web_sm'. It doesn't seem to be a Python package or a valid path to a data directory.
+	POST	/run-python-script	http://localhost:3000

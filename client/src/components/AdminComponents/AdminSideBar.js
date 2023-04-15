@@ -11,7 +11,8 @@ function AdminSideBar() {
             <Link class="nav-link" to="/dash/admin/AllPayRolls">PayRolls</Link>
             <Link class="nav-link" to="/dash/admin/AllPaySlips">Payslips</Link>
             <Link class="nav-link" to="/dash/admin/resourcesList">Resources</Link>
-
+            <Link class="nav-link" to="/dash/admin/resume/search">Resume</Link>
+            <Link class="nav-link" to="/dash/admin/vacancy/search">Vacancy</Link>
         </div>
     );
 }

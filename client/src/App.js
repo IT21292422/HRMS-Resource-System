@@ -12,7 +12,7 @@ import ViewDisplay from "./components/ViewComponent/ViewDisplay";
 import AllPayrolls from "./components/AllPayrolls";
 import AllPaySlips from "./components/AllPaySlips";
 import UpdatePayroll from "./components/UpdatePayroll";
-import AddPayRoll from "./components/AddPayRoll"; 
+import AddPayRoll from "./components/AddPayRoll";
 import IndividualPayroll from "./components/IndividualPayroll";
 //zaqwan
 import Login from './features/auth/Login';
@@ -32,6 +32,17 @@ import EditResource from "./components/EditResource"
 import ResourceDetails from "./components/ResourceDetails"
 import ResourcesList from "./components/ResourcesList"
 import AssignEmployee from "./components/AssignEmployee"
+
+//arudchyans
+import ResumeList from './features/resume/ResumeList'
+import EditResume from './features/resume/EditResume'
+import NewResumeForm from './features/resume/NewResumeForm'
+import VacancyList from './features/vacancy/VacancyList'
+import EditVacancy from './features/vacancy/EditVacancy'
+import NewVacancyForm from './features/vacancy/NewVacancyForm'
+import ResumeSearch from './features/resume/ResumeSearch'
+import VacancySearch from './features/vacancy/VacancySearch'
+import Reporting from './features/resume/Reporting'
 
 function App() {
   return (
@@ -69,14 +80,14 @@ function App() {
                   {/* leave and attendance management */}
                   <Route exact path="AdminReqLeave" element={<AdminReqLeave />} />
                   <Route exact path="Attendance" element={<Attendance />} />
-                  
+
                   {/* payroll management */}
                   <Route path='AllPayrolls' element={<AllPayrolls />} />
                   <Route path='AddPayRoll' element={<AddPayRoll />} />
                   <Route path='UpdatePayroll/:id' element={<UpdatePayroll />} />
                   <Route path='AllPaySlips' element={<AllPaySlips />} />
                   <Route path='IndividualPayroll/:id' element={<IndividualPayroll />} />
-                
+
                   {/* resource management */}
                   <Route path='resourcesList' element={<ResourcesList />} />
                   <Route path='addResource' element={<AddResource />} />
@@ -86,6 +97,23 @@ function App() {
 
                   {/* user management */}
                   <Route path='users' element={<UsersList />} />
+
+                  {/* vacancy and jobs */}
+                  <Route path="resume">
+                    <Route index element={<ResumeSearch />} />
+                    <Route path=":id" element={<EditResume />} />
+                    <Route path="new" element={<NewResumeForm />} />
+                    {/* <Route path="search" element={<ResumeSearch />} /> */}
+                    <Route path="reporting" element={<Reporting />} />
+                  </Route>
+
+                  <Route path="vacancy">
+                    <Route index element={<VacancySearch />} />
+                    <Route path=":id" element={<EditVacancy />} />
+                    <Route path="new" element={<NewVacancyForm />} />
+                    {/* <Route path="search" element={<VacancySearch />} /> */}
+                  </Route>
+
                 </Route>
               </Route>
               <Route path="emp" element={<EmployeePanel />}>

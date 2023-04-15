@@ -13,6 +13,15 @@ import AssignEmployee from "../AssignEmployee";
 import EditResource from "../EditResource";
 import ResourceDetails from "../ResourceDetails";
 import UsersList from "../../features/users/UsersList";
+import ResumeList from "../../features/resume/ResumeList";
+import EditResume from "../../features/resume/EditResume";
+import NewResumeForm from "../../features/resume/NewResumeForm";
+import VacancyList from "../../features/vacancy/VacancyList";
+import EditVacancy from "../../features/vacancy/EditVacancy";
+import NewVacancyForm from "../../features/vacancy/NewVacancyForm";
+import ResumeSearch from "../../features/resume/ResumeSearch";
+import VacancySearch from "../../features/vacancy/VacancySearch";
+import Reporting from "../../features/resume/Reporting";
 
 function AdminContent() {
     return (
@@ -32,7 +41,22 @@ function AdminContent() {
                     <Route path='editResource/:id' element={<EditResource />} />
                     <Route path='resource/:id' element={<ResourceDetails />} />
                     <Route path='users' element={<UsersList />} />
+                    
+                    <Route path="resume">
+                        <Route index element={<ResumeList />} />
+                        <Route path=":id" element={<EditResume />} />
+                        <Route path="new" element={<NewResumeForm />} />
+                        <Route path="search" element={<ResumeSearch />} />
+                        <Route path="reporting" element={<Reporting />} />
 
+                    </Route>
+
+                    <Route path="vacancy">
+                        <Route index element={<VacancyList />} />
+                        <Route path=":id" element={<EditVacancy />} />
+                        <Route path="new" element={<NewVacancyForm />} />
+                        <Route path="search" element={<VacancySearch />} />
+                    </Route>
                 </Route>
             </Routes>
         </div>

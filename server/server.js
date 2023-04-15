@@ -1,6 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
+const { spawn,execSync } = require('child_process');
 const app = express();
 const cors = require("cors");
 const corsOptions = require ('./config/corsOptions')
@@ -65,6 +66,35 @@ app.use('/api/payrolls', require('./routes/payrollRoutes'))
 
 //resource management
 app.use("/api/resources",resourceRoutes)
+
+//job and vacancy management
+
+app.use('/resume', require('./routes/resumeRoutes'))
+app.use('/jobopenings', require('./routes/vacancyRoutes'))
+app.post('/run-python-script', (req, res) => {
+  const { resume, requirements } = req.body;
+  resume_path = "D:\\AYU\\tutorialexcercises\\django\\mern_stack_course-main\\lesson_13-backend\\resumepython\\RESUMESPDF\\AdamLechockiResume.pdf";
+  //requirements2 = ["P,Healthcare Business Analyst,Healthcare Business Analyst,FL Lessard,Junior Healthcare Business Analyst,TX Bolt,TX,Assisted,Business Analysis,Data Science,Healthcare Industry,eCornell,Coursera,SQL Power BI,EDUCATION,M.S. Business Analytics University of Houston,Dallas,TX,B.S. Business Administration University at Buffalo Buﬀalo,NY,Data Visualization Able,eHealthcare Business Analyst,linkedin.com/in/carolinemadden,Miami,MADDEN"];
+  //const python = spawn('python', ['script.py', resume_path, requirements]);
+  let requirements2=requirements.join(" ").replace(/ /g, "_");
+  const output = execSync(`python script.py "${resume}" "${requirements2}"`).toString();
+  last_line = output.split('\n');
+  res.send(last_line[last_line.length - 2]);
+  console.log(last_line[last_line.length - 2]);
+
+  /*python.stdout.on('data', (data) => {
+    const output = data.toString();
+    res.send(output);
+  });
+
+  python.stderr.on('data', (data) => {
+    console.error(`stderr: ${data}`);
+  });
+
+  python.on('close', (code) => {
+    console.log(`child process exited with code ${code}`);
+  });*/
+});
 
 //Leave and attendance management system
 
