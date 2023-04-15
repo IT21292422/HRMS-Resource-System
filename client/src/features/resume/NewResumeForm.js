@@ -276,13 +276,10 @@ const NewResumeForm = () => {
         //         </>
 
         <>
-            <div class="request">
-                <div class="row justify-content-end">
-                    <button type="button" class="btn btn-primary col-2 " data-bs-toggle="modal" data-bs-target="#addresume">
-                        New Resume
-                    </button>
-                </div>
-            </div>
+
+            <button type="button" class="btn btn-primary col-2 " data-bs-toggle="modal" data-bs-target="#addresume">
+                New Resume
+            </button>
             <div class="modal fade" id="addresume" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="ReqLeaveFormLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
