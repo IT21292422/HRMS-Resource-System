@@ -46,6 +46,15 @@ import ResumeSearch from './features/resume/ResumeSearch'
 import VacancySearch from './features/vacancy/VacancySearch'
 import Reporting from './features/resume/Reporting'
 
+//transport management
+import VehicleList from "./components/Transport/VehicleList";
+import UpdateVehicle from "./components/Transport/UpdateVehicle";
+import RouteList from "./components/Transport/RouteList";
+import UpdateRoute from "./components/Transport/UpdateRoute";
+import TransportPaymentList from "./components/Transport/TransportPaymentList";
+import UpdateTransportPayment from "./components/Transport/UpdateTransportPayment";
+import ViewRouteDetails from "./components/Transport/ViewRouteDetails";
+
 function App() {
   return (
     //<AdminPanel></AdminPanel>
@@ -115,6 +124,15 @@ function App() {
                     <Route path="new" element={<NewVacancyForm />} />
                     {/* <Route path="search" element={<VacancySearch />} /> */}
                   </Route>
+
+                  {/* transport management */}
+                  <Route path ='VehicleList' element={<VehicleList />} />
+                  <Route path ='UpdateVehicle/:id' element={<UpdateVehicle />} />
+                  <Route path ='RouteList' element={<RouteList />} />
+                  <Route path ='UpdateRoute/:id' element={<UpdateRoute />} />
+                  <Route path ='TransportPaymentList' element={<TransportPaymentList />} />
+                  <Route path ='UpdateTransportPayment/:id' element={<UpdateTransportPayment />} />
+                  <Route path ='ViewRouteDetails' element={<ViewRouteDetails />} />
 
                   <Route path='users/:id' element={<EditUser/>}/>
                 </Route>

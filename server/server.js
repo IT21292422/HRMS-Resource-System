@@ -9,6 +9,13 @@ require("dotenv").config({ path: "./.env" });
 const port = process.env.PORT || 5000;
 const resourceRoutes = require('./routes/resourceRoutes')
 
+//transport management
+
+const VehicleRoutes = require("./routes/Vehicle.routes"); 
+const RouteRoutes = require("./routes/Route.routes");
+const TransportPaymentRoutes = require("./routes/TransportPayment.routes");
+const ApplyTransportRoutes = require("./routes/ApplyTransport.routes");
+
 //payroll
 
 const {errorHandlerAbdul } = require('./middleware/errorMiddleware.js')
@@ -66,6 +73,12 @@ app.use('/api/payrolls', require('./routes/payrollRoutes'))
 
 //resource management
 app.use("/api/resources",resourceRoutes)
+
+//transport management
+app.use("/api/Vehicle", VehicleRoutes);
+app.use("/api/Route",RouteRoutes);
+app.use("/api/TransportPayment",TransportPaymentRoutes);
+app.use("/api/ApplyTransport",ApplyTransportRoutes);
 
 //job and vacancy management
 

@@ -23,6 +23,12 @@ import ResumeSearch from "../../features/resume/ResumeSearch";
 import VacancySearch from "../../features/vacancy/VacancySearch";
 import Reporting from "../../features/resume/Reporting";
 import EditUser from "../../features/users/EditUser";
+import VehicleList from "../Transport/VehicleList";
+import UpdateVehicle from "../Transport/UpdateVehicle";
+import RouteList from "../Transport/RouteList";
+import UpdateRoute from "../Transport/UpdateRoute";
+import UpdateTransportPayment from "../Transport/UpdateTransportPayment";
+import TransportPaymentList from "../Transport/TransportPaymentList";
 
 function AdminContent() {
     return (
@@ -59,6 +65,13 @@ function AdminContent() {
                         <Route path="new" element={<NewVacancyForm />} />
                         <Route path="search" element={<VacancySearch />} />
                     </Route>
+
+                    <Route path='VehicleList' element={<VehicleList />} />
+                    <Route path='UpdateVehicle/:id' element={<UpdateVehicle />} />
+                    <Route path='RouteList' element={<RouteList />} />
+                    <Route path='UpdateRoute/:id' element={<UpdateRoute />} />
+                    <Route path='UpdateTransportPayment/:id' element={<UpdateTransportPayment />} />
+                    <Route path='TransportPaymentList' element={<TransportPaymentList />} />
                 </Route>
             </Routes>
         </div>
