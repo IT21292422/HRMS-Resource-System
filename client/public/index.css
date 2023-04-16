@@ -60,6 +60,11 @@ body{
 .nav-link {
     margin-top: 5px;
     text-align: justify;
+    color: rgba(255, 255, 255, 0.695) !important;
+}
+
+.nav-link:hover {
+    color: white !important;
 }
 
 .navbar {

@@ -2,7 +2,7 @@ import React from "react";
 import {Link} from "react-router-dom";
 function AdminSideBar() {
     return(
-        <div class="nav flex-column nav-pills bg-light sidebar" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+        <div class="nav flex-column nav-pills bg-primary sidebar" id="v-pills-tab" role="tablist" aria-orientation="vertical">
             <Link class="nav-link" to="/dash/admin/users">Users</Link>
             <Link class="nav-link" to="/dash/admin/Attendance">Attendance</Link>
             <Link class="nav-link" to="/dash/admin/AdminReqLeave">Leave Request</Link>

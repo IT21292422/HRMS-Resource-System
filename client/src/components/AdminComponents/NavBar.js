@@ -24,11 +24,11 @@ function NavBar() {
     }, [isSuccess, navigate])
 
     return (
-        <nav class="navbar fixed-top bg-light">
+        <nav class="navbar fixed-top bg-primary">
             <div class="container-fluid">
-                <div><span class="time-view">{today}</span></div>
-                <h6>{username} : {status}</h6>
-                <button class="btn btn-outline-success" type="submit" onClick={sendLogout}>Logout</button>
+                <div><h6 class="text-light">{today}</h6></div>
+                <h6 class="text-light">{username} : {status}</h6>
+                <button class="btn btn-outline-light" type="submit" onClick={sendLogout}>Logout</button>
             </div>
         </nav>
     );
