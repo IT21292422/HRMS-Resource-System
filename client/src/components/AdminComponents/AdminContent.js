@@ -48,7 +48,7 @@ function AdminContent() {
                     <Route path='editResource/:id' element={<EditResource />} />
                     <Route path='resource/:id' element={<ResourceDetails />} />
                     <Route path='users' element={<UsersList />} />
-                                        <Route path='users/:id' element={<EditUser/>}/>
+                    <Route path='users/:id' element={<EditUser />} />
 
                     <Route path="resume">
                         <Route index element={<ResumeList />} />
