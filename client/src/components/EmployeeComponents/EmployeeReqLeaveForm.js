@@ -7,7 +7,7 @@ class EmployeeReqLeaveForm extends Component {
         super(props);
         this.state = {
             empID: '',
-            fName: '',
+            username: '',
             leaveType:'',
             sDate: '',
             eDate: '',
@@ -37,11 +37,11 @@ class EmployeeReqLeaveForm extends Component {
     }
 
     onChangeFName = (event) => {
-        this.setState({fName:event.target.value});
+        this.setState({username:event.target.value});
 
         var errorMessage = document.getElementById("errMsgFName");
-        if(this.state.fName.length < 2){
-            errorMessage.innerHTML = "The minimum length of name should be 3";
+        if(this.state.username.length < 2){
+            errorMessage.innerHTML = "The minimum length of user name should be 3";
             this.setState({errorFName: false});
         }
         else {
@@ -139,7 +139,7 @@ class EmployeeReqLeaveForm extends Component {
         event.preventDefault();
         const leaveObj = {
             empID: this.state.empID,
-            fName: this.state.fName,
+            username: this.state.username,
             leaveType: this.state.leaveType,
             sDate: this.state.sDate,
             eDate: this.state.eDate,
@@ -158,7 +158,7 @@ class EmployeeReqLeaveForm extends Component {
 
         this.state({
             empID: '',
-            fName: '',
+            username: '',
             leaveType: '',
             sDate: '',
             eDate: '',
@@ -195,8 +195,8 @@ class EmployeeReqLeaveForm extends Component {
                                     </div>
                                 </div>
                                 <div class="col-6">
-                                    <label class="form-label">First Name</label>
-                                    <Form.Control type="text" class="form-control" value={this.state.fName} onChange={this.onChangeFName} />
+                                    <label class="form-label">User Name</label>
+                                    <Form.Control type="text" class="form-control" value={this.state.username} onChange={this.onChangeFName} />
                                     <div class="form-feedback">
                                         <span id="errMsgFName"></span>
                                     </div>

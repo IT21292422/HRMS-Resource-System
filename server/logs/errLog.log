@@ -47,3 +47,9 @@ Traceback (most recent call last):
     with open(r'C:\\Users\\DELL\\Desktop\\Final project\\HR system - Sajeevan\\Server\\tokenizer.pickle', 'rb') as handle:
 FileNotFoundError: [Errno 2] No such file or directory: 'C:\\\\Users\\\\DELL\\\\Desktop\\\\Final project\\\\HR system - Sajeevan\\\\Server\\\\tokenizer.pickle'
 	POST	/run-python-script	http://localhost:3000
+20230416	06:20:12	76df0908-2a74-4e14-aca2-c9147593026b	Error: Command failed: python script.py "https://firebasestorage.googleapis.com/v0/b/hrms-itp-sliit-y2s2-2023-feb.appspot.com/o/resumes%2FReport%20page.pdf44c916c2-43dc-4863-be4a-b3540db53676?alt=media&token=30eebc3d-a8c1-4239-bc66-9e4f9f148b7e" ""
+Traceback (most recent call last):
+  File "D:\New folder (4)\server\script.py", line 2, in <module>
+    import pandas as pd
+ModuleNotFoundError: No module named 'pandas'
+	POST	/run-python-script	http://localhost:3000
