@@ -14,7 +14,7 @@ const getPayrolls = asyncHandler(async (req, res) => {
 //@route POST/ api/payrolls
 //@access Private
 const setPayroll = asyncHandler(async (req, res) => {
-    const { fullname, empID, department, position} = req.body
+    const {username,fullname, empID, department, position} = req.body
 
     if (!fullname || !empID || !department || !position) {
         res.status(400)
@@ -25,6 +25,7 @@ const setPayroll = asyncHandler(async (req, res) => {
     const { epfCalculated, FinalSalary, taxes, deductions } = calculateDeductions(SalaryPaid)
 
     const payroll = await Payroll.create({
+        username:username,
         Name: fullname,
         eid: empID,
         department: department,
@@ -92,7 +93,7 @@ const updatePayrollfromUser = asyncHandler(async (req, res) => {
         throw new Error('Payroll not found')
     }
 
-    const { fullname, department, position } = req.body
+    const { username,fullname, department, position } = req.body
 
     const { SalaryPaid,mealAllow, travelAllow, BaseSalary } = calculateSalary(department, position,payroll.otHours)
 
@@ -103,6 +104,7 @@ const updatePayrollfromUser = asyncHandler(async (req, res) => {
     const updatedPayRollData = {
 
         ...req.body,
+        username:username,
         Name: fullname,
         epf: epfCalculated,
         taxes: taxes,

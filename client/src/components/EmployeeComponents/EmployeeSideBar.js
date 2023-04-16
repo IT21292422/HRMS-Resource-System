@@ -12,6 +12,7 @@ function EmployeeSideBar() {
                 <FaFileAlt class="sidebar-icon" />
                 Request Leave
             </Link>
+            <Link class="nav-link" to="/dash/emp/EmployeeViewPayroll">Payroll</Link>
         </div>
     );
 }

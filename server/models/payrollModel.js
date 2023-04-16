@@ -8,6 +8,10 @@ const payrollSchema = mongoose.Schema(
         //     ref: 'User',
         //     unique: true,
         // },   
+        username: {
+            type: String, 
+            required: true
+        },
         Name: {
             type: String,
             required: true,

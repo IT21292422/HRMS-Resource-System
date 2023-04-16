@@ -139,6 +139,7 @@ const EditUserForm = ({ user }) => {
                     fullname,
                     department,
                     position,
+                    username,
                 };
 
                 await updateUser({
@@ -175,6 +176,7 @@ const EditUserForm = ({ user }) => {
                 // let department = "HR"
             let position = "Executive"
             const updatedPayRollData = {
+                username,
                 fullname,
                 department,
                 position,
@@ -475,7 +477,7 @@ const EditUserForm = ({ user }) => {
                                     <label class="form-label" htmlFor="empID">
                                         Employee ID: </label>
                                     <input
-                                        class="form-control"
+                                        class="form-control" disabled
                                         id="empID"
                                         name="empID"
                                         type="text"

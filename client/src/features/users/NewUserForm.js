@@ -17,7 +17,7 @@ const NewUserForm = () => {
     }] = useAddNewUserMutation()
 
     const navigate = useNavigate()
-    const dispatch  = useDispatch()
+    const dispatch = useDispatch()
 
     const [username, setUsername] = useState('')
     const [validUsername, setValidUsername] = useState(false)
@@ -80,7 +80,7 @@ const NewUserForm = () => {
 
             // navigate('/dash/admin/users')
             window.location.replace('http://localhost:3000/dash/admin/users')
-        
+
         }
     }, [isSuccess])
 
@@ -131,49 +131,50 @@ const NewUserForm = () => {
     const onSaveUserClicked = async (m) => {
         m.preventDefault()
         if (canSave) {
-          try {
-            let otHours = 0
-            let position = "Executive"
-            let department = "HR"
-            const payRollData = {
-              fullname,
-              empID,
-              department,
-              position,
-              otHours
+            try {
+                
+                let position = "Executive"
+                let department = "HR"
+                const payRollData = {
+                    username,
+                    fullname,
+                    empID,
+                    department,
+                    position,
+                    
+                }
+
+                await addNewUser({
+                    username,
+                    password,
+                    roles,
+                    firstname,
+                    lastname,
+                    fullname,
+                    gender,
+                    NIC,
+                    date_of_birth,
+                    place_of_birth,
+                    age,
+                    nationality,
+                    religion,
+                    department,
+                    date_joined,
+                    employee_type,
+                    empID,
+                    contact,
+                    email,
+                    address
+                })
+
+                //console.log(payRollData)
+                dispatch(createPayRoll(payRollData))
+            } catch (error) {
+                console.log(error)
             }
-      
-            await addNewUser({
-              username,
-              password,
-              roles,
-              firstname,
-              lastname,
-              fullname,
-              gender,
-              NIC,
-              date_of_birth,
-              place_of_birth,
-              age,
-              nationality,
-              religion,
-              department,
-              date_joined,
-              employee_type,
-              empID,
-              contact,
-              email,
-              address
-            })
-      
-            //console.log(payRollData)
-            dispatch(createPayRoll(payRollData))
-          } catch (error) {
-            console.log(error)
-          }
         }
-      }
-      
+    }
+
 
     const options = Object.values(ROLES).map(role => {
         return (

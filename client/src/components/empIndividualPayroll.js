@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
 import { reset } from "../features/payroll/payrollSlice"
 
-function IndividualPayroll() {
+function EmpIndPayroll() {
     const [payroll, setpayroll] = useState({})
     const { id } = useParams();
     const navigate = useNavigate();
@@ -13,14 +13,14 @@ function IndividualPayroll() {
 
     useEffect(() => {
         if (isError) {
-            console.log(message)
+            toast.error(message)
         }
 
         return () => {
             console.log("Unloading IndividualPayRoll")
             dispatch(reset());
         };
-    }, [isError, message, navigate, dispatch]);
+    }, [isError, message,dispatch]);
 
     const { payrolls } = useSelector((state) => state.payrolls);
     const payrollToView = payrolls.find((p) => p._id === id)
@@ -95,11 +95,12 @@ function IndividualPayroll() {
                             </tr>
                         </tbody>
                     </table>
-                    <button style={{marginTop:'10px'}} class="btn btn-primary col-3" onClick={() => navigate('/dash/admin/AllPayRolls')}>Back</button>
+                    <button style={{marginTop:'10px'}} class="btn btn-primary col-3" onClick={() => navigate('/dash/emp/EmployeeViewPayroll')}>Back</button>
                 </div>
             </div>
+            
         </>
     )
 }
 
-export default IndividualPayroll
+export default EmpIndPayroll

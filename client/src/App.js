@@ -14,6 +14,8 @@ import AllPaySlips from "./components/AllPaySlips";
 import UpdatePayroll from "./components/UpdatePayroll";
 import AddPayRoll from "./components/AddPayRoll";
 import IndividualPayroll from "./components/IndividualPayroll";
+import EmpViewPayroll from "./components/employeeViewPayroll";
+import EmpIndPayroll from "./components/empIndividualPayroll";
 //zaqwan
 import Login from './features/auth/Login';
 import DashLayout from './components/DashLayout'
@@ -54,6 +56,7 @@ import UpdateRoute from "./components/Transport/UpdateRoute";
 import TransportPaymentList from "./components/Transport/TransportPaymentList";
 import UpdateTransportPayment from "./components/Transport/UpdateTransportPayment";
 import ViewRouteDetails from "./components/Transport/ViewRouteDetails";
+import EmpIndPaySlips from "./components/empIndPaySlip";
 
 function App() {
   return (
@@ -139,6 +142,9 @@ function App() {
               </Route>
               <Route path="emp" element={<EmployeePanel />}>
                 <Route path="EmployeeReqLeave" element={<EmployeeReqLeave />} />
+                <Route path="EmployeeViewPayroll" element={<EmpViewPayroll />} />
+                <Route path="EmpIndPayroll/:id" element={<EmpIndPayroll />} />
+                <Route path="EmpIndPaySlip" element={<EmpIndPaySlips />} />
               </Route>
             </Route>{/* End Dash */}
           </Route>
