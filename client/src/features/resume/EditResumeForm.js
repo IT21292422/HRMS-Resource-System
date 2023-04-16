@@ -7,6 +7,8 @@ import { storage } from "../../config/firebase"
 import { ref, uploadBytes, getDownloadURL, getStorage, deleteObject } from "firebase/storage"
 import { v4 } from "uuid"
 import axios from "axios"
+import Spinner from "../../components/Spinner"
+
 const RESUME_REGEX = /^[A-z]{3,20}$/
 
 const EditResumeForm = ({ resume }) => {
@@ -219,7 +221,8 @@ const EditResumeForm = ({ resume }) => {
                 </div>
             </div>
             <div id="loading">
-           <img src="loading.gif" alt="Loading.." />
+                {/* <img src="loading.gif" alt="Loading.." /> */}
+                <Spinner></Spinner>
             </div>
         </>
     )

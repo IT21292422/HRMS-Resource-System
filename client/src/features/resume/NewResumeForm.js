@@ -8,6 +8,7 @@ import { storage } from "../../config/firebase"
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage"
 import { v4 } from "uuid"
 import axios from "axios"
+import Spinner from "../../components/Spinner"
 
 
 const USER_REGEX = /^[A-z]{3,20}$/
@@ -361,7 +362,8 @@ const NewResumeForm = () => {
                 </div>
             </div>
             <div id="loading">
-          <img src="loading.gif" alt="Loading.." />
+                {/* <img src="loading.gif" alt="Loading.." /> */}
+                <Spinner></Spinner>
             </div>
         </>
     )
