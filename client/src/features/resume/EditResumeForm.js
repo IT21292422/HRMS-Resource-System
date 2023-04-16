@@ -68,8 +68,6 @@ const EditResumeForm = ({ resume }) => {
     }
 
     let canSave
-        canSave = [ validResumename, validPost].every(Boolean) && !isLoading
-
     canSave = [validResumename, validPost].every(Boolean) && !isLoading
 
 
@@ -81,35 +79,22 @@ const EditResumeForm = ({ resume }) => {
     const errContent = (error?.data?.message || delerror?.data?.message) ?? ''
     const [postOptions, setPostOptions] = useState([])
 
-      useEffect(() => {
-            axios.get('http://localhost:5000/jobopenings')
-                  .then(response => {
-                        const options = response.data.map(job => job.jobtitle)
-                        setPostOptions(options)
-                        document.getElementById("loading").style.display = "none";
-                  })
-                  .catch(error => console.log(error))
-      }, [])
-
-      const handlePostChange = (e) => {
-            setPost(e.target.value)
-           axios.get('http://localhost:5000/jobopenings')
-                    .then(response => {
-                            const jobOpenings = response.data;
-
-                jobOpenings.map(job => {
-                    if (job.jobtitle === e.target.value) {
-                        setRequirements(job.requirements)
-                    }
-                });
+    useEffect(() => {
+        axios.get('http://localhost:5000/jobopenings')
+            .then(response => {
+                const options = response.data.map(job => job.jobtitle)
+                setPostOptions(options)
+                document.getElementById("loading").style.display = "none";
             })
-            .catch(error => {
-                console.error(error);
-            });
-    }
-    const [fileUpload, setFileUpload] = useState()
-    const uploadFile = () => {
-        if (fileUpload == null) return;
+            .catch(error => console.log(error))
+    }, [])
+
+    const handlePostChange = (e) => {
+        setPost(e.target.value)
+        axios.get('http://localhost:5000/jobopenings')
+            .then(response => {
+                const jobOpenings = response.data;
+
                 jobOpenings.map(job => {
                     if (job.jobtitle === e.target.value) {
                         setRequirements(job.requirements)
@@ -159,75 +144,6 @@ const EditResumeForm = ({ resume }) => {
     };
 
     const content = (
-        // <>
-        //     <p className={errClass}>{errContent}</p>
-
-        //     <form className="form" onSubmit={e => e.preventDefault()}>
-        //         <div className="form__title-row">
-        //             <h2>Edit Resume</h2>
-        //             <div className="form__action-buttons">
-        //                 <button
-        //                     type="submit"
-        //                     className="icon-button"
-        //                     title="Save"
-        //                     onClick={onSaveResumeClicked}
-        //                     disabled={!canSave}
-        //                 >
-        //                     <FontAwesomeIcon icon={faSave} />
-        //                 </button>
-        //                 <button
-        //                     className="icon-button"
-        //                     title="Delete"
-        //                     onClick={onDeleteResumeClicked}
-        //                 >
-        //                     <FontAwesomeIcon icon={faTrashCan} />
-        //                 </button>
-        //             </div>
-        //         </div>
-        //         <label className="form__label" htmlFor="resumename">
-        //             Full Name: <span className="nowrap">[3-20 letters]</span></label>
-        //         <input
-        //             className={`form__input ${validResumeNameClass}`}
-        //             id="resumename"
-        //             name="resumename"
-        //             type="text"
-        //             autoComplete="off"
-        //             value={fullname}
-        //             onChange={onResumenameChanged}
-        //         />
-
-        //         <label className="form__label" htmlFor="forthepostof">
-        //             For the Post of : <span className="nowrap"></span></label>
-        //         <select
-        //         id="forthepostof"
-        //         name="forthepostof"
-        //         value={forthepostof}
-        //         onChange={handlePostChange}
-        //         >
-        //         <option value="">Select a job title</option>
-        //         {postOptions.map(option => (
-        //         <option key={option} value={option}>{option}</option>
-        //         ))}
-        //         </select>
-
-        //         <label className="form__label" htmlFor="resumess">
-        //             Resume:</label>
-        //         <input
-        //             id="resume"
-        //             name="resume"
-        //             className={`form__select ${validResumeClass}`}
-        //             type="file"
-        //             onChange={(e)=>{
-        //                 setFileUpload(e.target.files[0])
-        //             }}
-        //         />
-        //         <button  type ='button'onClick={uploadFile}>Submit Resume</button>
-        //     </form>
-        //     <div id="loading">
-        //     <img src="loading.gif" alt="Loading.." />
-        //     </div>
-        // </>
-
         <>
             <div style={{ marginTop: '90px' }} class="leave-list">
                 <div class="row justify-content-center">
@@ -311,6 +227,6 @@ const EditResumeForm = ({ resume }) => {
         </>
     )
 
-return content
+    return content
 }
 export default EditResumeForm
