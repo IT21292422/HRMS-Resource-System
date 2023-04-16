@@ -153,9 +153,9 @@ def test_model(model, tokenizer, max_length, test_data_path, requirements):
 
 #model, tokenizer, max_length = train_model(r"g:\resumepython\my_updated_dataset.csv")
 # model, tokenizer, max_length = train_model(r"g:\resumepython\parsed_resume_dataset.csv")
-with open(r'C:\\Users\\DELL\\Desktop\\Final project\\HR system - Sajeevan\\Server\\tokenizer.pickle', 'rb') as handle:
+with open(r'tokenizer.pickle', 'rb') as handle:
     tokenizer = pickle.load(handle)
-model = load_model('C:\\Users\\DELL\\Desktop\\Final project\\HR system - Sajeevan\\Server\\best_model.hdf5')
+model = load_model('best_model.hdf5')
 #model, tokenizer, max_length = train_model(r"D:\\AYU\\tutorialexcercises\django\\mern_stack_course-main\\lesson_13-backend\\resumepython\\train_data.csv")
 #resume_path = r"D:\\AYU\\tutorialexcercises\\django\\mern_stack_course-main\\lesson_13-backend\\resumepython\\my_updated_dataset.csv"
 #requirements = ["P,Healthcare Business Analyst,Healthcare Business Analyst,FL Lessard,Junior Healthcare Business Analyst,TX Bolt,TX,Assisted,Business Analysis,Data Science,Healthcare Industry,eCornell,Coursera,SQL Power BI,EDUCATION,M.S. Business Analytics University of Houston,Dallas,TX,B.S. Business Administration University at Buffalo Buﬀalo,NY,Data Visualization Able,eHealthcare Business Analyst,linkedin.com/in/carolinemadden,Miami,MADDEN"]

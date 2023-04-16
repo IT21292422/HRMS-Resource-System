@@ -35,7 +35,7 @@ const NewVacancyForm = () => {
         if (isSuccess) {
             setVacancyname('')
             setPost('')
-            navigate('/dash/admin/vacancy/search')
+            window.location.replace('http://localhost:3000/dash/admin/vacancy/search');
         }
     }, [isSuccess, navigate])
 

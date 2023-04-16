@@ -4,17 +4,18 @@ import { useNavigate } from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSave } from "@fortawesome/free-solid-svg-icons"
 import useTitle from "../../hooks/useTitle"
-import {storage} from "../../config/firebase"
-import { ref ,uploadBytes,getDownloadURL } from "firebase/storage"
-import  {v4} from "uuid"
+import { storage } from "../../config/firebase"
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage"
+import { v4 } from "uuid"
 import axios from "axios"
+import Spinner from "../../components/Spinner"
 
 
 const USER_REGEX = /^[A-z]{3,20}$/
 
 
 const NewResumeForm = () => {
-    
+
     useTitle('HRMS: New Resume')
 
     const [addNewResume, {
@@ -36,40 +37,40 @@ const NewResumeForm = () => {
     const [requirements, setRequirements] = useState([])
     const [match, setMatch] = useState('')
 
-  useEffect(() => {
-    axios.get('http://localhost:5000/jobopenings')
-      .then(response => {
-        const options = response.data.map(job => job.jobtitle)
-        setPostOptions(options)
-        document.getElementById("loading").style.display = "none";
-      })
-      .catch(error => console.log(error))
-  }, [])
+    useEffect(() => {
+        axios.get('http://localhost:5000/jobopenings')
+            .then(response => {
+                const options = response.data.map(job => job.jobtitle)
+                setPostOptions(options)
+                document.getElementById("loading").style.display = "none";
+            })
+            .catch(error => console.log(error))
+    }, [])
 
-  const handlePostChange = (e) => {
-    setPost(e.target.value)
-    axios.get('http://localhost:5000/jobopenings')
-    .then(response => {
-    const jobOpenings = response.data;
+    const handlePostChange = (e) => {
+        setPost(e.target.value)
+        axios.get('http://localhost:5000/jobopenings')
+            .then(response => {
+                const jobOpenings = response.data;
 
-    jobOpenings.map(job => {
-        if (job.jobtitle === e.target.value){
-            setRequirements(job.requirements)
-        }
-    });
-  })
-  .catch(error => {
-    console.error(error);
-  });
-  }
-  useEffect(() => {
-}, [requirements]);
+                jobOpenings.map(job => {
+                    if (job.jobtitle === e.target.value) {
+                        setRequirements(job.requirements)
+                    }
+                });
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    }
+    useEffect(() => {
+    }, [requirements]);
 
     useEffect(() => {
         setValidResumename(USER_REGEX.test(fullname))
     }, [fullname])
 
-    
+
 
 
     useEffect(() => {
@@ -90,7 +91,7 @@ const NewResumeForm = () => {
     const onSaveResumeClicked = async (e) => {
         e.preventDefault()
         if (canSave) {
-            await addNewResume({ fullname, forthepostof, resumess ,match })
+            await addNewResume({ fullname, forthepostof, resumess, match })
         }
     }
 
@@ -100,43 +101,42 @@ const NewResumeForm = () => {
     const validResumeClass = !validResume ? 'form__input--incomplete' : ''
 
 
-    const [fileUpload,setFileUpload] =useState()
-    const uploadFile=  ()  =>{
-        if (fileUpload==null) return;
+    const [fileUpload, setFileUpload] = useState()
+    const uploadFile = () => {
+        if (fileUpload == null) return;
         const extension = fileUpload.name.split(".").pop();
         if (extension.toLowerCase() !== "pdf") {
-        alert("Only PDF files are allowed.");
-        return;
+            alert("Only PDF files are allowed.");
+            return;
         }
-        const fileRef =ref(storage,`resumes/${fileUpload.name + v4()}`)
-        uploadBytes(fileRef,fileUpload).then((snapshot)=>{
-            document.getElementById("loading").style.display = "flex";
-            getDownloadURL(snapshot.ref).then((url)=>{
-            setResume(url)
-            alert("Resume Uploaded")
-            const data = { resume: url, requirements: requirements };
-            axios.post('http://localhost:5000/run-python-script',data)
-            .then((response) => {
-            console.log(response.data);
-            if (response.data === 1) {
-            alert('Congratulations! Your resume matches the requirements.');
-            setMatch("yes")
-            } else {
-            alert('Resume did not match requirements. You can still submit if you want to, else update your resume and try again.');
-            setMatch("no")
-            }
-            document.getElementById("loading").style.display = "none";
-          // TODO: Handle response data as required
-        })
-        .catch((error) => {
-          console.error(error);
-          alert("error")
-          // TODO: Handle error as required
-        });
+        const fileRef = ref(storage, `resumes/${fileUpload.name + v4()}`)
+        uploadBytes(fileRef, fileUpload).then((snapshot) => {
+            //document.getElementById("loading").style.display = "flex";
+            getDownloadURL(snapshot.ref).then((url) => {
+                setResume(url)
+                alert("Resume Uploaded")
+                const data = { resume: url, requirements: requirements };
+                axios.post('http://localhost:5000/run-python-script', data)
+                    .then((response) => {
+                        console.log(response.data);
+                        if (response.data === 1) {
+                            alert('Congratulations! Your resume matches the requirements.');
+                            setMatch("yes")
+                        } else {
+                            alert('Resume did not match requirements. You can still submit if you want to, else update your resume and try again.');
+                            setMatch("no")
+                        }
+                        // TODO: Handle response data as required
+                    })
+                    .catch((error) => {
+                        console.error(error);
+                        alert("error")
+                        // TODO: Handle error as required
+                    });
             });
-            
+
         })
-         
+
     };
 
     const content = (
@@ -202,76 +202,168 @@ const NewResumeForm = () => {
         //     </div>
         // </>
 
-        <>
-            <p class={errClass}>{error?.data?.message}</p>
+        //         <>
+        //             <p class={errClass}>{error?.data?.message}</p>
 
-            <form class="form" onSubmit={onSaveResumeClicked}>
-                <div class="form__title-row">
-                    <h2>New Resume</h2>
-                    <div class="form__action-buttons">
-                        <button
-                            type="submit"
-                            class="icon-button"
-                            title="Save"
-                            disabled={!canSave}
-                        >
-                            <FontAwesomeIcon icon={faSave} />
-                        </button>
+        //             <form class="form" onSubmit={onSaveResumeClicked}>
+        //                 <div class="form__title-row">
+        //                     <h2>New Resume</h2>
+        //                     <div class="form__action-buttons">
+        //                         <button
+        //                             type="submit"
+        //                             class="icon-button"
+        //                             title="Save"
+        //                             disabled={!canSave}
+        //                         >
+        //                             <FontAwesomeIcon icon={faSave} />
+        //                         </button>
+        //                     </div>
+        //                 </div>
+
+        //                 <div class="col-6">
+
+        //                 <label class="form-control" htmlFor="fullname">
+        //                     Full Name: </label>
+        //                 <input
+        //                     class={`form-control ${validResumeNameClass}`}
+        //                     id="fullname"
+        //                     name="fullname"
+        //                     type="text"
+        //                     autoComplete="off"
+        //                     value={fullname}
+        //                     onChange={onResumenameChanged}
+        //                 />
+        //                 </div>
+
+        //                 <div class="col-6">
+
+        //                 <label class="form-control" htmlFor="forthepostof">
+        //                     For the Post Of: </label>
+        //                 <select
+        //                 id="forthepostof"
+        //                 name="forthepostof"
+        //                 value={forthepostof}
+        //                 onChange={handlePostChange}
+        //                 >
+        //                 <option value="">Select a job title</option>
+        //                 {postOptions.map(option => (
+        //                 <option key={option} value={option}>{option}</option>
+        //                 ))}
+        //                 </select>
+
+        // </div>
+
+        // <div class="col-6">
+
+
+        //                 <label class="form-control" htmlFor="resumess">
+        //                     Resume: </label>
+        //                 <input
+        //                     class={`form-control ${validResumeClass}`}
+        //                     id="resumess"
+        //                     name="resumess"
+        //                     type="file"
+        //                     onChange={(e)=>{
+        //                         setFileUpload(e.target.files[0])
+        //                     }}
+        //                 />
+        //                 <button type="button" onClick={uploadFile}>Submit Resume</button>
+        // </div>
+        //             </form>
+        //             <div id="loading">
+        //             <img src="loading.gif" alt="Loading.." />
+        //             </div>
+        //         </>
+
+        <>
+
+            <button type="button" class="btn btn-primary col-2 " data-bs-toggle="modal" data-bs-target="#addresume">
+                New Resume
+            </button>
+            <div class="modal fade" id="addresume" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="ReqLeaveFormLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">New Resume</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form onSubmit={onSaveResumeClicked}>
+                                <div class="row">
+                                    <div class="col-6">
+
+                                        <label class="form-label" htmlFor="fullname">
+                                            Full Name: </label>
+                                        <input
+                                            class="form-control"
+                                            id="fullname"
+                                            name="fullname"
+                                            type="text"
+                                            autoComplete="off"
+                                            value={fullname}
+                                            onChange={onResumenameChanged}
+                                        />
+                                    </div>
+
+                                    <div class="col-6">
+
+                                        <label class="form-label" htmlFor="forthepostof">
+                                            For the Post Of </label>
+                                        <select
+                                            id="forthepostof"
+                                            class="form-control"
+                                            name="forthepostof"
+                                            value={forthepostof}
+                                            onChange={handlePostChange}
+                                        >
+                                            <option value="">Select a job title</option>
+                                            {postOptions.map(option => (
+                                                <option key={option} value={option}>{option}</option>
+                                            ))}
+                                        </select>
+
+                                    </div>
+
+                                    <div class="col-6">
+
+
+                                        <label class="form-label" htmlFor="resumess">
+                                            Resume: </label>
+                                        <input
+                                            class="form-control"
+                                            id="resumess"
+                                            name="resumess"
+                                            type="file"
+                                            onChange={(e) => {
+                                                setFileUpload(e.target.files[0])
+                                            }}
+                                        />
+
+                                    </div>
+                                    <div class="row justify-content-center">
+                                        <p class={errClass}>{error?.data?.message}</p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                                        <button type="button" class="btn btn-primary" onClick={uploadFile}>Submit Resume</button>
+                                        <button
+                                            type="submit"
+                                            class="btn btn-primary"
+                                            title="Save"
+                                            disabled={!canSave}
+                                        >
+                                            Save
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
-                
-                <div class="col-6">
-
-                <label class="form-control" htmlFor="fullname">
-                    Full Name: </label>
-                <input
-                    class={`form-control ${validResumeNameClass}`}
-                    id="fullname"
-                    name="fullname"
-                    type="text"
-                    autoComplete="off"
-                    value={fullname}
-                    onChange={onResumenameChanged}
-                />
-                </div>
-
-                <div class="col-6">
-
-                <label class="form-control" htmlFor="forthepostof">
-                    For the Post Of: </label>
-                <select
-                id="forthepostof"
-                name="forthepostof"
-                value={forthepostof}
-                onChange={handlePostChange}
-                >
-                <option value="">Select a job title</option>
-                {postOptions.map(option => (
-                <option key={option} value={option}>{option}</option>
-                ))}
-                </select>
-
-</div>
-
-<div class="col-6">
-
-
-                <label class="form-control" htmlFor="resumess">
-                    Resume: </label>
-                <input
-                    class={`form-control ${validResumeClass}`}
-                    id="resumess"
-                    name="resumess"
-                    type="file"
-                    onChange={(e)=>{
-                        setFileUpload(e.target.files[0])
-                    }}
-                />
-                <button type="button" onClick={uploadFile}>Submit Resume</button>
-</div>
-            </form>
+            </div>
             <div id="loading">
-            <img src="loading.gif" alt="Loading.." />
+                {/* <img src="loading.gif" alt="Loading.." /> */}
+                <Spinner></Spinner>
             </div>
         </>
     )

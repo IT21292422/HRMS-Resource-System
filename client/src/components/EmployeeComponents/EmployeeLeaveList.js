@@ -49,7 +49,7 @@ class EmployeeLeaveList extends Component {
                         <h5 class="card-header">Request Leave</h5>
                         <div class="card-body">
                             <h6 class="card-title">Employee ID : {this.props.obj.empID}</h6>
-                            <h6 class="card-title">First Name : {this.props.obj.fName}</h6>
+                            <h6 class="card-title">User Name : {this.props.obj.username}</h6>
                             <h6 class="card-title">Leave Type : {this.props.obj.leaveType}</h6>
                             <div class="row">
                                 <h6 class="card-text col-3">Reason : </h6>

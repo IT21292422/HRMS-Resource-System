@@ -5,7 +5,7 @@ const LeaveRequestSchema = new Schema({
     empID: {
         type: String
     },
-    fName: {
+    username: {
         type: String, 
         required: true
     },

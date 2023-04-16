@@ -14,8 +14,6 @@ const Resume = ({ resume }) => {
 
         <>
             <div>
-                <div class="leave-list">
-                    <div class="row justify-content-center">
                         <table className="table table-striped table-hover">
                             <thead>
                                 <tr>
@@ -54,8 +52,6 @@ const Resume = ({ resume }) => {
 
                         </table>
                     </div>
-                </div>
-            </div>
         </>
     )
 }

@@ -2,6 +2,8 @@ import { getPosts } from './ResumeLink'
 import { useState, useEffect } from 'react'
 import SearchBar from './SearchBar'
 import ListPage from './ResumeListPage'
+import NewResumeForm from './NewResumeForm'
+import Reporting from './Reporting'
 
 function ResumeSearch() {
   const [posts, setPosts] = useState([])
@@ -18,6 +20,12 @@ function ResumeSearch() {
 
   return (
     <>
+      <div class="request">
+        <div class="row justify-content-end">
+          <Reporting></Reporting>
+          <NewResumeForm></NewResumeForm>
+        </div>
+      </div>
       <div class="search">
         <div class="row justify-content-center">
           <SearchBar posts={posts} setSearchResults={setSearchResults} />

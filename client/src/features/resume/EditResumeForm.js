@@ -1,12 +1,14 @@
 import { useState, useEffect } from "react"
-import {  useUpdateResumeMutation, useDeleteResumeMutation } from "./ResumeApiSlice"
+import { useUpdateResumeMutation, useDeleteResumeMutation } from "./ResumeApiSlice"
 import { useNavigate } from "react-router-dom"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSave, faTrashCan } from "@fortawesome/free-solid-svg-icons"
-import {storage} from "../../config/firebase"
-import { ref ,uploadBytes,getDownloadURL,getStorage,deleteObject } from "firebase/storage"
-import  {v4} from "uuid"
+import { storage } from "../../config/firebase"
+import { ref, uploadBytes, getDownloadURL, getStorage, deleteObject } from "firebase/storage"
+import { v4 } from "uuid"
 import axios from "axios"
+import Spinner from "../../components/Spinner"
+
 const RESUME_REGEX = /^[A-z]{3,20}$/
 
 const EditResumeForm = ({ resume }) => {
@@ -46,7 +48,7 @@ const EditResumeForm = ({ resume }) => {
             setResumename('')
             setPost('')
             setResume('')
-            navigate('/dash/admin/resume')
+            navigate('/dash/admin/resume/search')
         }
 
     }, [isSuccess, isDelSuccess, navigate])
@@ -57,7 +59,7 @@ const EditResumeForm = ({ resume }) => {
 
     const onSaveResumeClicked = async (e) => {
         console.log(resumess)
-            await updateResume({ id: resume.id, fullname, forthepostof, resumess ,match})
+        await updateResume({ id: resume.id, fullname, forthepostof, resumess, match })
     }
 
 
@@ -68,6 +70,8 @@ const EditResumeForm = ({ resume }) => {
     let canSave
         canSave = [ validResumename, validPost].every(Boolean) && !isLoading
 
+    canSave = [validResumename, validPost].every(Boolean) && !isLoading
+
 
     const errClass = (isError || isDelError) ? "errmsg" : "offscreen"
     const validResumeNameClass = !validResumename ? 'form__input--incomplete' : ''
@@ -77,22 +81,35 @@ const EditResumeForm = ({ resume }) => {
     const errContent = (error?.data?.message || delerror?.data?.message) ?? ''
     const [postOptions, setPostOptions] = useState([])
 
-    useEffect(() => {
-        axios.get('http://localhost:5000/jobopenings')
-            .then(response => {
-                const options = response.data.map(job => job.jobtitle)
-                setPostOptions(options)
-                document.getElementById("loading").style.display = "none";
+      useEffect(() => {
+            axios.get('http://localhost:5000/jobopenings')
+                  .then(response => {
+                        const options = response.data.map(job => job.jobtitle)
+                        setPostOptions(options)
+                        document.getElementById("loading").style.display = "none";
+                  })
+                  .catch(error => console.log(error))
+      }, [])
+
+      const handlePostChange = (e) => {
+            setPost(e.target.value)
+           axios.get('http://localhost:5000/jobopenings')
+                    .then(response => {
+                            const jobOpenings = response.data;
+
+                jobOpenings.map(job => {
+                    if (job.jobtitle === e.target.value) {
+                        setRequirements(job.requirements)
+                    }
+                });
             })
-            .catch(error => console.log(error))
-    }, [])
-
-    const handlePostChange = (e) => {
-        setPost(e.target.value)
-        axios.get('http://localhost:5000/jobopenings')
-            .then(response => {
-                const jobOpenings = response.data;
-
+            .catch(error => {
+                console.error(error);
+            });
+    }
+    const [fileUpload, setFileUpload] = useState()
+    const uploadFile = () => {
+        if (fileUpload == null) return;
                 jobOpenings.map(job => {
                     if (job.jobtitle === e.target.value) {
                         setRequirements(job.requirements)
@@ -217,65 +234,80 @@ const EditResumeForm = ({ resume }) => {
                     <form onSubmit={e => e.preventDefault()}>
                         <div class="form-group">
                             <div class="row justify-content-center">
-                            <div class="col-6">
+                                <div class="col-4">
+                                    <label class="form-label" htmlFor="resumename">
+                                        Full Name: <span className="nowrap">[3-20 letters]</span></label>
+                                    <input
+                                        class="form-control"
+                                        id="resumename"
+                                        name="resumename"
+                                        type="text"
+                                        autoComplete="off"
+                                        value={fullname}
+                                        onChange={onResumenameChanged}
+                                    />
+                                </div>
+                                <div class="col-4">
+                                    <label class="form-label" htmlFor="forthepostof">
+                                        For the Post of </label>
+                                    <select
+                                        id="forthepostof"
+                                        name="forthepostof"
+                                        class="form-control"
+                                        value={forthepostof}
+                                        onChange={handlePostChange}
+                                    >
+                                        <option value="">Select a job title</option>
+                                        {postOptions.map(option => (
+                                            <option key={option} value={option}>{option}</option>
+                                        ))}
+                                    </select>
+                                </div>
+                                <div class="col-4">
+                                    <label class="form-label" htmlFor="resumess">
+                                        Resume:</label>
+                                    <input
+                                        id="resume"
+                                        name="resume"
+                                        class="form-control"
+                                        type="file"
+                                        onChange={(e) => {
+                                            setFileUpload(e.target.files[0])
+                                        }}
+                                    />
+                                </div>
 
-                                <label class="form-control" htmlFor="fullname">
-                                    Full Name: </label>
-                                <input
-                                    class={`form-control ${validResumeNameClass}`}
-                                    id="fullname"
-                                    name="fullname"
-                                    type="text"
-                                    autoComplete="off"
-                                    value={fullname}
-                                    onChange={onResumenameChanged}
-                                />
-                            </div>
-
-                            <div class="col-6">
-
-                                <label class="form-control" htmlFor="forthepostof">
-                                    For the Post Of: </label>
-                                <select
-                                    id="forthepostof"
-                                    name="forthepostof"
-                                    value={forthepostof}
-                                    onChange={handlePostChange}
-                                >
-                                    <option value="">Select a job title</option>
-                                    {postOptions.map(option => (
-                                        <option key={option} value={option}>{option}</option>
-                                    ))}
-                                </select>
-
-                            </div>
-
-                            <div class="col-6">
-
-
-                                <label class="form-control" htmlFor="resumess">
-                                    Resume: </label>
-                                <input
-                                    class={`form-control ${validResumeClass}`}
-                                    id="resumess"
-                                    name="resumess"
-                                    type="file"
-                                    onChange={(e) => {
-                                        setFileUpload(e.target.files[0])
-                                    }}
-                                />
-                                <button type="button" onClick={uploadFile}>Submit Resume</button>
-                            </div>
-                            <div class="row justify-content-center">
-                                <button style={{ marginTop: '10px' }} type="submit" class="btn btn-primary col-3">
-                                    Update PayRoll
-                                </button>
+                                <div class="row justify-content-center">
+                                    <p className={errClass}>{errContent}</p>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <button
+                                        type="submit"
+                                        class="btn btn-primary col-3"
+                                        title="Save"
+                                        onClick={onSaveResumeClicked}
+                                        disabled={!canSave}
+                                    >
+                                        Save
+                                    </button>
+                                    <button
+                                        class="btn btn-danger col-3"
+                                        title="Delete"
+                                        onClick={onDeleteResumeClicked}
+                                    >
+                                        Delete
+                                    </button>
+                                    <button type='button' class="btn btn-primary col-3" onClick={uploadFile}>Submit Resume</button>
+                                </div>
                             </div>
                         </div>
+                    </form>
                 </div>
-            </form>
-        </div>
-            </div >
+            </div>
+            <div id="loading">
+                {/* <img src="loading.gif" alt="Loading.." /> */}
+                <Spinner></Spinner>
+            </div>
         </>
     )
 
