@@ -117,7 +117,7 @@ export default function AddRoute() {
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-                    <Button  type="submit" class="btn btn-primary">Pay</Button>
+                    <Button  type="submit" class="btn btn-primary">Add</Button>
                   </div>
                 </div>
               </Form>

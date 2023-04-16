@@ -61,10 +61,12 @@ body{
     margin-top: 5px;
     text-align: justify;
     color: rgba(255, 255, 255, 0.695) !important;
+    border:  3px solid transparent !important;
 }
 
 .nav-link:hover {
     color: white !important;
+    border:  3px solid rgba(255, 255, 255, 0.695) !important;
 }
 
 .navbar {
