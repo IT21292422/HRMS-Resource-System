@@ -15,7 +15,6 @@ const USER_REGEX = /^[A-z]{3,20}$/
 
 
 const NewResumeForm = () => {
-
     useTitle('HRMS: New Resume')
 
     const [addNewResume, {
@@ -36,6 +35,7 @@ const NewResumeForm = () => {
     const [postOptions, setPostOptions] = useState([])
     const [requirements, setRequirements] = useState([])
     const [match, setMatch] = useState('')
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         axios.get('http://localhost:5000/jobopenings')
@@ -78,7 +78,7 @@ const NewResumeForm = () => {
             setResumename('')
             setPost('')
             setResume('')
-            navigate('/dash/admin/resume')
+            window.location.replace('http://localhost:3000/dash/admin/resume/search');
         }
     }, [isSuccess, navigate])
 
@@ -111,8 +111,8 @@ const NewResumeForm = () => {
         }
         const fileRef = ref(storage, `resumes/${fileUpload.name + v4()}`)
         uploadBytes(fileRef, fileUpload).then((snapshot) => {
-            //document.getElementById("loading").style.display = "flex";
             getDownloadURL(snapshot.ref).then((url) => {
+                setLoading(true)
                 setResume(url)
                 alert("Resume Uploaded")
                 const data = { resume: url, requirements: requirements };
@@ -122,9 +122,11 @@ const NewResumeForm = () => {
                         if (response.data === 1) {
                             alert('Congratulations! Your resume matches the requirements.');
                             setMatch("yes")
+                            setLoading(false)
                         } else {
                             alert('Resume did not match requirements. You can still submit if you want to, else update your resume and try again.');
                             setMatch("no")
+                            setLoading(false)
                         }
                         // TODO: Handle response data as required
                     })
@@ -133,10 +135,10 @@ const NewResumeForm = () => {
                         alert("error")
                         // TODO: Handle error as required
                     });
+
             });
-
+            
         })
-
     };
 
     const content = (
@@ -340,6 +342,7 @@ const NewResumeForm = () => {
                                         />
 
                                     </div>
+                                    {loading ? <Spinner /> : null}
                                     <div class="row justify-content-center">
                                         <p class={errClass}>{error?.data?.message}</p>
                                     </div>
@@ -360,10 +363,6 @@ const NewResumeForm = () => {
                         </div>
                     </div>
                 </div>
-            </div>
-            <div id="loading">
-                {/* <img src="loading.gif" alt="Loading.." /> */}
-                <Spinner></Spinner>
             </div>
         </>
     )

@@ -5,6 +5,7 @@ import Plot from 'react-plotly.js'
 const VehicleReport = () => {
 
     const [Vehicles, setVehicles] = useState([])
+    const [showChart, setShowChart] = useState()
 
     //Retrieve all the resources
     const retrieveVehicles = () => {
