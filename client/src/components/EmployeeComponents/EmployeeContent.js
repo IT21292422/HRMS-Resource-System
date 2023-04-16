@@ -4,6 +4,8 @@ import EmployeeReqLeave from "./EmployeeReqLeave";
 import EmpViewPayroll from "../employeeViewPayroll";
 import EmpIndPayroll from "../empIndividualPayroll";
 import EmpIndPaySlips from "../empIndPaySlip";
+import AddApplyTransport from "../Transport/AddApplyTransport";
+
 function EmployeeContent() {
     return(
         <div class="content">
@@ -13,7 +15,7 @@ function EmployeeContent() {
                     <Route path="EmployeeViewPayroll" element={<EmpViewPayroll />} />
                     <Route path="EmpIndPayroll/:id" element={<EmpIndPayroll />} />
                     <Route path="EmpIndPayslip" element={<EmpIndPaySlips />} />
-
+                    <Route path="EmployeeAddTransport" element={<AddApplyTransport />} />
                 </Route>
             </Routes>
         </div>

@@ -57,6 +57,7 @@ import TransportPaymentList from "./components/Transport/TransportPaymentList";
 import UpdateTransportPayment from "./components/Transport/UpdateTransportPayment";
 import ViewRouteDetails from "./components/Transport/ViewRouteDetails";
 import EmpIndPaySlips from "./components/empIndPaySlip";
+import AddApplyTransport from "./components/Transport/AddApplyTransport";
 
 function App() {
   return (
@@ -145,6 +146,7 @@ function App() {
                 <Route path="EmployeeViewPayroll" element={<EmpViewPayroll />} />
                 <Route path="EmpIndPayroll/:id" element={<EmpIndPayroll />} />
                 <Route path="EmpIndPaySlip" element={<EmpIndPaySlips />} />
+                <Route path="EmployeeAddTransport" element={<AddApplyTransport />} />
               </Route>
             </Route>{/* End Dash */}
           </Route>
