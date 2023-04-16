@@ -31,11 +31,18 @@ const updatePayRoll = async (Id, updatedPayrollData) => {
     return response.data;
 };
 
+const updatePayRollfromUser = async (empID, updatedPayrollData) => {
+    const response = await axios.put(API_URL +'updatefromUser/'+ empID, updatedPayrollData);
+    console.log('in service ',updatedPayrollData, "id ",empID )
+    return response.data;
+};
+
 
 const payRollService = {
     createPayRoll,
     getPayRolls,
     deletePayRoll,
     updatePayRoll,
+    updatePayRollfromUser
 }
 export default payRollService

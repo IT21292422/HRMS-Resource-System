@@ -5,7 +5,8 @@ import { useNavigate } from "react-router-dom"
 //import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 //import { faSave, faTrashCan } from "@fortawesome/free-solid-svg-icons"
 import { ROLES } from "../../config/roles"
-
+import { useDispatch } from 'react-redux'
+import { updatePayrollfromUser } from '../payroll/payrollSlice'
 
 const USER_REGEX = /^[A-z]{3,20}$/
 const PWD_REGEX = /^[A-z0-9!@#$%]{4,12}$/
@@ -28,7 +29,7 @@ const EditUserForm = ({ user }) => {
     }] = useDeleteUserMutation()
 
     const navigate = useNavigate()
-
+    const dispatch = useDispatch()
 
     const [username, setUsername] = useState(user.username)
     const [validUsername, setValidUsername] = useState(false)
@@ -131,26 +132,53 @@ const EditUserForm = ({ user }) => {
 
     const onSaveUserClicked = async (e) => {
         if (password) {
-            await updateUser({
-                id: user.id, username, password, active, roles, firstname,
-                lastname,
+            try {
+                // let department = "HR"
+                let position = "Executive"
+                const updatedPayRollData = {
+                    fullname,
+                    department,
+                    position,
+                };
+
+                await updateUser({
+                    id: user.id, username, password, active, roles, firstname,
+                    lastname,
+                    fullname,
+                    gender,
+                    NIC,
+                    date_of_birth,
+                    place_of_birth,
+                    age,
+                    nationality,
+                    religion,
+                    department,
+                    date_joined,
+                    employee_type,
+                    empID,
+                    contact,
+                    email,
+                    address
+                })
+
+                console.log(updatedPayRollData)
+                dispatch(updatePayrollfromUser({ empID, updatedPayRollData }))
+
+            } catch (error) {
+                console.log(error)
+            }
+
+
+        }
+        else {
+            try {
+                // let department = "HR"
+            let position = "Executive"
+            const updatedPayRollData = {
                 fullname,
-                gender,
-                NIC,
-                date_of_birth,
-                place_of_birth,
-                age,
-                nationality,
-                religion,
                 department,
-                date_joined,
-                employee_type,
-                empID,
-                contact,
-                email,
-                address
-            })
-        } else {
+                position,
+            };
             await updateUser({
                 id: user.id, username, roles, active, firstname,
                 lastname,
@@ -170,6 +198,11 @@ const EditUserForm = ({ user }) => {
                 email,
                 address
             })
+            console.log(updatedPayRollData)
+            dispatch(updatePayrollfromUser({ empID, updatedPayRollData }))
+            } catch (error) {
+                console.log(error)
+            }   
         }
     }
 
@@ -497,21 +530,21 @@ const EditUserForm = ({ user }) => {
                                         onChange={onAddressChanged}
                                     />
                                 </div>
-                                    <div class="col-4">
+                                <div class="col-4">
 
-                                        <label class="form-label" htmlFor="roles">
-                                            ASSIGNED ROLES:</label><br />
-                                        <select
-                                            id="roles"
-                                            name="roles"
-                                            class={`form__select `}
-                                            multiple={true}
-                                            size="3"
-                                            value={roles}
-                                            onChange={onRolesChanged}
-                                        >
-                                            {options}
-                                        </select> </div>
+                                    <label class="form-label" htmlFor="roles">
+                                        ASSIGNED ROLES:</label><br />
+                                    <select
+                                        id="roles"
+                                        name="roles"
+                                        class={`form__select `}
+                                        multiple={true}
+                                        size="3"
+                                        value={roles}
+                                        onChange={onRolesChanged}
+                                    >
+                                        {options}
+                                    </select> </div>
                                 <div class="row justify-content-center">
                                     <button style={{ marginTop: '10px' }}
                                         class="btn btn-primary col-3"

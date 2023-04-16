@@ -57,9 +57,25 @@ export const deletePayRoll = createAsyncThunk('payrolls/delete', async (id, thun
 
 export const updatePayRoll = createAsyncThunk('payrolls/update', async ({ id, updatedPayRollData }, thunkAPI) => {
   try {
-    console.log("in slice",typeof updatedPayRollData)
-    console.log('in slice',id)
+    console.log("in slice", typeof updatedPayRollData)
+    console.log('in slice', id)
     return await payRollService.updatePayRoll(id, updatedPayRollData);
+  } catch (error) {
+    const message =
+      (error.response &&
+        error.response.data &&
+        error.response.data.message) ||
+      error.message ||
+      error.toString();
+    return thunkAPI.rejectWithValue(message);
+  }
+}
+);
+export const updatePayrollfromUser = createAsyncThunk('payrolls/updatefromUser/', async ({ empID, updatedPayRollData }, thunkAPI) => {
+  try {
+    console.log("in slice", typeof updatedPayRollData)
+    console.log('in slice', empID)
+    return await payRollService.updatePayRollfromUser(empID, updatedPayRollData);
   } catch (error) {
     const message =
       (error.response &&
@@ -142,12 +158,24 @@ export const payRollSlice = createSlice({
           state.payrolls[index] = action.payload
         }
       })
-      
       .addCase(updatePayRoll.rejected, (state, action) => {
         state.isLoading = false;
         state.isError = true;
         state.message = action.payload;
-      });
+      })
+      .addCase(updatePayrollfromUser.fulfilled, (state, action) => {
+        state.isLoading = false
+        state.isSuccess = true
+        console.log(state.payrolls[0]._id);
+        console.log(action.payload._id);
+        console.log(action.payload.Name);
+
+        console.log('Updated payroll object:', action.payload);
+        const index = state.payrolls.findIndex(p => p._id === action.payload._id)
+        if (index !== -1) {
+          state.payrolls[index] = action.payload
+        }
+      })
   },
 })
 

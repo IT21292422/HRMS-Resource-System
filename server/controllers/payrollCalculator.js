@@ -1,6 +1,6 @@
 
 function calculateSalary(department, position, otHours) {
-  let Salary=0, mealAllow=0, travelAllow=0,otPayment=0,BaseSalary=0
+  let Salary = 0, mealAllow = 0, travelAllow = 0, otPayment = 0, BaseSalary = 0
 
   if (department == "Finance") {
     if (position == "Executive")
@@ -11,7 +11,7 @@ function calculateSalary(department, position, otHours) {
       BaseSalary = 75000
     else if (position == "Entry level")
       BaseSalary = 50000
-  } 
+  }
   else if (department == "IT") {
     if (position == "Executive")
       BaseSalary = 150000
@@ -21,7 +21,7 @@ function calculateSalary(department, position, otHours) {
       BaseSalary = 100000
     else if (position == "Entry level")
       BaseSalary = 75000
-  } 
+  }
   else if (department == "HR") {
     if (position == "Executive")
       BaseSalary = 100000
@@ -36,37 +36,38 @@ function calculateSalary(department, position, otHours) {
   mealAllow = BaseSalary * 0.05
   travelAllow = BaseSalary * 0.1
   const otRate = 100
-  otPayment=otRate*otHours
+  if (otHours) {
+    otPayment = otRate * otHours
+  }
+  Salary = otPayment + mealAllow + travelAllow + BaseSalary
 
-  Salary = otPayment+mealAllow+travelAllow+BaseSalary
-  
   return {
-    SalaryPaid:Salary,
-    mealAllow:mealAllow,
-    travelAllow:travelAllow,
-    OtPayment:otPayment,
-    BaseSalary:BaseSalary
+    SalaryPaid: Salary,
+    mealAllow: mealAllow,
+    travelAllow: travelAllow,
+    OtPayment: otPayment,
+    BaseSalary: BaseSalary
   }
 }
 
 
-function calculateDeductions(SalaryPaid){
-  
-  let taxes=0
+function calculateDeductions(SalaryPaid) {
 
-  if(SalaryPaid>100000)
-    taxes=SalaryPaid*0.1
+  let taxes = 0
 
-  const epf=0.08
+  if (SalaryPaid > 100000)
+    taxes = SalaryPaid * 0.1
 
-  let epfCalculated=epf*SalaryPaid
+  const epf = 0.08
 
-  let deductions = epfCalculated+taxes
+  let epfCalculated = epf * SalaryPaid
 
-  let FinalSalary = SalaryPaid-deductions
+  let deductions = epfCalculated + taxes
 
-  
-  return{
+  let FinalSalary = SalaryPaid - deductions
+
+
+  return {
     epfCalculated,
     FinalSalary,
     taxes,

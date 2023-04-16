@@ -166,7 +166,7 @@ const NewUserForm = () => {
               address
             })
       
-            console.log(payRollData)
+            //console.log(payRollData)
             dispatch(createPayRoll(payRollData))
           } catch (error) {
             console.log(error)

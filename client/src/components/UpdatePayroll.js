@@ -147,7 +147,7 @@ function UpdatePayroll() {
                                 </div>
                                 <div class="col-4">
                                     <label class="form-label">Overtime Hours</label>
-                                    <input type='text' disabled
+                                    <input type='text'
                                         class='form-control'
                                         id='otHours'
                                         name='otHours'
