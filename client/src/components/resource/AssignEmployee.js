@@ -1,6 +1,8 @@
 import React,{useState, useEffect} from 'react'
 import { Link, useNavigate,redirect , useParams } from 'react-router-dom'
 import axios from "axios"
+import { useSelector } from 'react-redux'
+import { selectCurrentToken } from '../../features/auth/authSlice'
 
 const AssignEmployee = () => {
 
@@ -11,9 +13,14 @@ const AssignEmployee = () => {
 
     const [employees,setEmployees] = useState([])
     const [employeeName,setEmployeeName] = useState("")
+    const token = useSelector(selectCurrentToken)
 
     const retrieveEmployees = () => {
-        axios.get("http://localhost:5000/users").then((res) =>{
+        axios.get("http://localhost:5000/users", {
+            headers: {
+              Authorization: `Bearer ${token}` // Set the token in the Authorization header
+            }
+          }).then((res) =>{
             setEmployees(res.data)
         })
         .catch((error) => {
