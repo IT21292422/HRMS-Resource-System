@@ -12,6 +12,17 @@ const AddResource = () => {
     const [orderedDate,setOrderDate] = useState("")
     const [imageURL,setImageURL] = useState("")
 
+    const demo = (e) => {
+        e.preventDefault()
+        setName("Headphone") 
+        setType("Device")
+        setQuantity(25) 
+        setInvoiceNo("INV2008") 
+        setSupplierName("PC House (Pvt) (Ltd)") 
+        setOrderDate("2023-04-13") 
+        setImageURL("Desktop/pics") 
+    }    
+
     const add = (e) => {
         e.preventDefault() //Like preventing page to refresh
 
@@ -104,6 +115,9 @@ const AddResource = () => {
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
                                         <button type="submit" class="btn btn-primary">Add</button>
+                                        <button style={{marginLeft:"25px"}} className="btn btn-primary" onClick={(e) => {
+                                            demo(e);
+                                        }}>Demo</button>
                                     </div>
                         </form>
                     </div>
