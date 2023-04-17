@@ -7,6 +7,7 @@ import { useLoginMutation } from './authApiSlice'
 
 import usePersist from '../../hooks/usePersist'
 import Spinner from '../../components/Spinner'
+import AddResumePublic from '../resume/AddResumePublic'
 
 const Login = () => {
     const userRef = useRef()
@@ -62,64 +63,69 @@ const Login = () => {
 
     const content = (
         <>
-        <form  onSubmit={handleSubmit}>
-            <div class="login-page">
-                <div class="row">
-                    <div class="r-login col-8">
-                        CV uploads and description
-                    </div>
-                    <div class="l-login col-4">
-                    <div>
-                        <div class="row justify-content-center">
-                            <h2 class="login-title">Login</h2>
+            <form onSubmit={handleSubmit}>
+                <div class="login-page">
+                    <div class="row">
+                        <div class="r-login col-8">
+                            <div class="row justify-content-content">
+                                <AddResumePublic></AddResumePublic>
+                            </div>
+                            <div style={{ margin: '20px 0px 0px 0px' }} class="row justify-content-content">
+                                <Link to="/viewVacancy" class="text-light">View Available Vacancies</Link>
+                            </div>
                         </div>
-                        <div class="row justify-content-center">
-                        <div style={{marginTop:'30px'}} class="col-12">
-                            <label class="form-label">Username</label>
-                            <input
-                                class="form-control"
-                                type="text"
-                                id="username"
-                                ref={userRef}
-                                value={username}
-                                onChange={handleUserInput}
-                                autoComplete="off"
-                                required
-                            />
+                        <div class="l-login col-4">
+                            <div>
+                                <div class="row justify-content-center">
+                                    <h2 class="login-title">Login</h2>
+                                </div>
+                                <div class="row justify-content-center">
+                                    <div style={{ marginTop: '30px' }} class="col-12">
+                                        <label class="form-label">Username</label>
+                                        <input
+                                            class="form-control"
+                                            type="text"
+                                            id="username"
+                                            ref={userRef}
+                                            value={username}
+                                            onChange={handleUserInput}
+                                            autoComplete="off"
+                                            required
+                                        />
+                                    </div>
+                                    <div style={{ marginTop: '30px' }} class="col-12">
+                                        <label class="form-label">Password</label>
+                                        <input
+                                            class="form-control"
+                                            type="password"
+                                            id="password"
+                                            onChange={handlePwdInput}
+                                            value={password}
+                                            required
+                                        />
+                                    </div>
+                                    <div class="form-check">
+                                        <input
+                                            class="form-check-input"
+                                            type="checkbox"
+                                            id="persist"
+                                            onChange={handleToggle}
+                                            checked={persist}
+                                        />
+                                        <label class="form-label" for="flexCheckChecked">
+                                            Trust This Device
+                                        </label>
+                                    </div>
+                                    <button style={{ marginTop: '30px' }} class="btn btn-primary col-4">Sign In</button>
+                                </div>
+                                <div style={{ marginTop: '30px' }} class="row justify-content-center">
+                                    <h5 ref={errRef} class="form-label text-danger" aria-live="assertive">{errMsg}</h5>
+                                </div>
+                            </div>
                         </div>
-                        <div style={{marginTop:'30px'}} class="col-12">
-                        <label class="form-label">Password</label>
-                        <input
-                            class="form-control"
-                            type="password"
-                            id="password"
-                            onChange={handlePwdInput}
-                            value={password}
-                            required
-                        />
-                        </div>
-                        <div class="form-check">
-                        <input
-                            class="form-check-input"
-                            type="checkbox"
-                            id="persist"
-                            onChange={handleToggle}
-                            checked={persist}
-                        />
-                            <label class="form-label" for="flexCheckChecked">
-                            Trust This Device
-                            </label>
-                        </div>
-                        <button style={{marginTop:'30px'}} class="btn btn-primary col-4">Sign In</button>
-                        </div>
-                        <div style={{marginTop:'30px'}} class="row justify-content-center">
-                            <h5 ref={errRef} class="form-label text-danger" aria-live="assertive">{errMsg}</h5>
-                        </div>
-                    </div>
                     </div>
                 </div>
-            </div>
-        </form>
+            </form>
         </>
     )
 

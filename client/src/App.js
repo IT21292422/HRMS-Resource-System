@@ -47,6 +47,7 @@ import NewVacancyForm from './features/vacancy/NewVacancyForm'
 import ResumeSearch from './features/resume/ResumeSearch'
 import VacancySearch from './features/vacancy/VacancySearch'
 import Reporting from './features/resume/Reporting'
+import VacancyListPublic from "./features/vacancy/VacancyListPublic";
 
 //transport management
 import VehicleList from "./components/Transport/VehicleList";
@@ -167,6 +168,7 @@ function App() {
       {/* </Route> */}
       <Route exact path="/readQR" element={<EntranceQR />} />
       <Route exact path="/exitQR" element={<ExitQR />} />
+      <Route exact path="/viewVacancy" element={<VacancyListPublic />} />
     </Routes >
   );
 }
