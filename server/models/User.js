@@ -104,6 +104,10 @@ const userSchema = new mongoose.Schema({
         default: "Employee"
     }],
 
+    position:{
+        type: String,
+        required: true
+    },
     active:{
         type: Boolean,
         default: true

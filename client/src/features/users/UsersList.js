@@ -143,7 +143,7 @@ const UsersList = () => {
                     {showChart && (
                       <Plot
                         data={data1}
-                        layout={layout}
+                        layout={layout1}
                       />
                     )}
                   </div>
@@ -178,6 +178,8 @@ const UsersList = () => {
                     <th scope="col">Employee Type</th>
                     <th scope="col">Department</th>
                     <th scope="col">Role</th>
+                    <th scope="col">Position</th>
+
                     <th scope="col">Edit</th>
                   </tr>
                 </thead>

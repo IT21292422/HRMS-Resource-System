@@ -112,12 +112,12 @@ function AllPayrolls() {
                       </td>
                       <td>
                         <button class="btn btn-primary" onClick={() => navigate(`/dash/admin/UpdatePayroll/${payroll._id}`)}>
-                          Update
+                          Revise
                         </button>
                       </td>
                       <td>
                         <button class="btn btn-success" onClick={() => navigate(`/dash/admin/IndividualPayroll/${payroll._id}`)}>
-                          View
+                          View Payroll
                         </button>
                       </td>
                     </tr>

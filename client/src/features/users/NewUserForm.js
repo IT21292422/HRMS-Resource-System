@@ -41,7 +41,7 @@ const NewUserForm = () => {
     const [contact, setContact] = useState('')
     const [email, setEmail] = useState('')
     const [address, setAddress] = useState('')
-
+    const [position, setPosition] = useState('')
 
 
 
@@ -77,6 +77,7 @@ const NewUserForm = () => {
             setContact('')
             setEmail('')
             setAddress('')
+            setPosition('')
 
             // navigate('/dash/admin/users')
             window.location.replace('http://localhost:3000/dash/admin/users')
@@ -113,7 +114,7 @@ const NewUserForm = () => {
     const onContactChanged = e => setContact(e.target.value)
     const onEmailChanged = e => setEmail(e.target.value)
     const onAddressChanged = e => setAddress(e.target.value)
-
+    const onPositionChanged = e => setPosition(e.target.value)
 
     const canSave = [roles.length, validUsername, validPassword].every(Boolean) && !isLoading
 
@@ -132,16 +133,15 @@ const NewUserForm = () => {
         m.preventDefault()
         if (canSave) {
             try {
-                
-                let position = "Executive"
-                let department = "HR"
+
+                //let position = "Executive"
+
                 const payRollData = {
                     username,
                     fullname,
                     empID,
                     department,
                     position,
-                    
                 }
 
                 await addNewUser({
@@ -164,7 +164,9 @@ const NewUserForm = () => {
                     empID,
                     contact,
                     email,
-                    address
+                    address,
+                    position
+
                 })
 
                 //console.log(payRollData)
@@ -317,16 +319,23 @@ const NewUserForm = () => {
 
                                         <label class="form-label" htmlFor="gender">
                                             Gender: </label>
-                                        <input
+                                        
+
+                                        <select
                                             class="form-control"
-                                            id="gender"
                                             name="gender"
-                                            type="text"
-                                            autoComplete="off"
-                                            required
+                                            id="gender"
                                             value={gender}
                                             onChange={onGenderChanged}
-                                        />
+                                            required
+                                        >
+                                            <option value="">Male</option>
+                                            <option value="HR">Female</option>
+                                            <option value="HR">Other</option>
+                                            <option value="HR">Personal</option>
+
+
+                                        </select>
                                     </div>
 
                                     <div class="col-6">
@@ -429,16 +438,39 @@ const NewUserForm = () => {
 
                                         <label class="form-label" htmlFor="department">
                                             Department: </label>
-                                        <input
+
+                                        <select
                                             class="form-control"
                                             id="department"
                                             name="department"
-                                            type="text"
-                                            autoComplete="off"
-                                            required
                                             value={department}
                                             onChange={onDepartmentChanged}
-                                        />
+                                            required
+                                        >
+                                            <option value="">Select department</option>
+                                            <option value="HR">HR</option>
+                                            <option value="Finance">Finance</option>
+                                            <option value="IT">IT</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-6">
+
+                                        <label class="form-label" htmlFor="position">
+                                            Position: </label>
+                                        
+                                        <select
+                                            className="form-control"
+                                            id="position"
+                                            name="position"
+                                            value={position}
+                                            onChange={onPositionChanged}
+                                        >
+                                            <option value="">Select position</option>
+                                            <option value="Executive">Executive/Senior</option>
+                                            <option value="Middle Management">Middle Management</option>
+                                            <option value="Intermediate">Intermediate</option>
+                                            <option value="Entry level">Entry level</option>
+                                        </select>
                                     </div>
 
                                     <div class="col-6">
@@ -461,16 +493,22 @@ const NewUserForm = () => {
 
                                         <label class="form-label" htmlFor="employee_type">
                                             Employee type: </label>
-                                        <input
+                                        <select
                                             class="form-control"
-                                            id="employee_type"
-                                            name="employee_type"
-                                            type="text"
-                                            autoComplete="off"
+                                            name="gender"
+                                            id="gender"
+                                            value={gender}
+                                            onChange={onGenderChanged}
                                             required
-                                            value={employee_type}
-                                            onChange={onEmptypeChanged}
-                                        /> </div>
+                                        >
+                                            <option value="">Select an employee type</option>
+                                            <option value="full_time">Full-time Employee</option>
+                                            <option value="part_time">Part-time Employee</option>
+                                            <option value="temporary">Temporary Employee</option>
+                                            <option value="intern">Intern</option>
+                                            
+                                        </select>
+                                    </div>
 
                                     <div class="col-6">
 

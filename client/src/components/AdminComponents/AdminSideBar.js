@@ -7,7 +7,7 @@ function AdminSideBar() {
         <div class="nav flex-column nav-pills bg-primary sidebar" id="v-pills-tab" role="tablist" aria-orientation="vertical">
             <Link class="nav-link" to="/dash/admin/users">
                 <FaUser class="sidebar-icon" />
-                Users
+                Employees
             </Link>
             <Link class="nav-link" to="/dash/admin/Attendance">
                 <FaCalendarCheck class="sidebar-icon" />
@@ -48,7 +48,7 @@ function AdminSideBar() {
             <Link class="nav-link" to="/dash/admin/TransportPaymentList">
                 <FaCreditCard class="sidebar-icon" />
                 Transport Pay
-            </Link>
+            </Link>           
         </div>
     );
 }

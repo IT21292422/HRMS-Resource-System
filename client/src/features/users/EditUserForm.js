@@ -54,6 +54,7 @@ const EditUserForm = ({ user }) => {
     const [contact, setContact] = useState(user.contact)
     const [email, setEmail] = useState(user.email)
     const [address, setAddress] = useState(user.address)
+    const [position, setPosition] = useState(user.position)
 
 
     useEffect(() => {
@@ -89,6 +90,7 @@ const EditUserForm = ({ user }) => {
             setContact('')
             setEmail('')
             setAddress('')
+            setPosition('')
 
             window.location.replace('http://localhost:3000/dash/admin/users')
         }
@@ -126,15 +128,14 @@ const EditUserForm = ({ user }) => {
     const onContactChanged = e => setContact(e.target.value)
     const onEmailChanged = e => setEmail(e.target.value)
     const onAddressChanged = e => setAddress(e.target.value)
-
+    const onPositionChanged = e => setPosition(e.target.value)
 
 
 
     const onSaveUserClicked = async (e) => {
         if (password) {
             try {
-                // let department = "HR"
-                let position = "Executive"
+
                 const updatedPayRollData = {
                     fullname,
                     department,
@@ -159,7 +160,8 @@ const EditUserForm = ({ user }) => {
                     empID,
                     contact,
                     email,
-                    address
+                    address,
+                    position
                 })
 
                 console.log(updatedPayRollData)
@@ -173,38 +175,38 @@ const EditUserForm = ({ user }) => {
         }
         else {
             try {
-                // let department = "HR"
-            let position = "Executive"
-            const updatedPayRollData = {
-                username,
-                fullname,
-                department,
-                position,
-            };
-            await updateUser({
-                id: user.id, username, roles, active, firstname,
-                lastname,
-                fullname,
-                gender,
-                NIC,
-                date_of_birth,
-                place_of_birth,
-                age,
-                nationality,
-                religion,
-                department,
-                date_joined,
-                employee_type,
-                empID,
-                contact,
-                email,
-                address
-            })
-            console.log(updatedPayRollData)
-            dispatch(updatePayrollfromUser({ empID, updatedPayRollData }))
+
+                const updatedPayRollData = {
+                    username,
+                    fullname,
+                    department,
+                    position,
+                };
+                await updateUser({
+                    id: user.id, username, roles, active, firstname,
+                    lastname,
+                    fullname,
+                    gender,
+                    NIC,
+                    date_of_birth,
+                    place_of_birth,
+                    age,
+                    nationality,
+                    religion,
+                    department,
+                    date_joined,
+                    employee_type,
+                    empID,
+                    contact,
+                    email,
+                    address,
+                    position
+                })
+                console.log(updatedPayRollData)
+                dispatch(updatePayrollfromUser({ empID, updatedPayRollData }))
             } catch (error) {
                 console.log(error)
-            }   
+            }
         }
     }
 
@@ -334,15 +336,22 @@ const EditUserForm = ({ user }) => {
 
                                     <label class="form-label" htmlFor="gender">
                                         Gender: </label>
-                                    <input
+                                    <select
                                         class="form-control"
-                                        id="gender"
                                         name="gender"
-                                        type="text"
-                                        autoComplete="off"
+                                        id="gender"
                                         value={gender}
                                         onChange={onGenderChanged}
-                                    /> </div>
+                                        required
+                                    >
+                                        <option value="">Male</option>
+                                        <option value="HR">Female</option>
+                                        <option value="HR">Other</option>
+                                        <option value="HR">Personal</option>
+
+
+                                    </select>
+                                </div>
 
                                 <div class="col-4">
 
@@ -433,15 +442,45 @@ const EditUserForm = ({ user }) => {
 
                                     <label class="form-label" htmlFor="department">
                                         Department: </label>
-                                    <input
+
+                                    <select
                                         class="form-control"
                                         id="department"
                                         name="department"
-                                        type="text"
-                                        autoComplete="off"
                                         value={department}
                                         onChange={onDepartmentChanged}
-                                    /> </div>
+                                        required
+                                    >
+                                        <option value="">Select department</option>
+                                        <option value="HR">HR</option>
+                                        <option value="Finance">Finance</option>
+                                        <option value="IT">IT</option>
+                                    </select>
+
+
+                                </div>
+
+                                <div class="col-4">
+
+                                    <label class="form-label" htmlFor="position">
+                                        Position: </label>
+
+                                    <select
+                                        className="form-control"
+                                        id="position"
+                                        name="position"
+                                        value={position}
+                                        onChange={onPositionChanged}
+                                    >
+                                        <option value="">Select position</option>
+                                        <option value="Executive">Executive/Senior</option>
+                                        <option value="Middle Management">Middle Management</option>
+                                        <option value="Intermediate">Intermediate</option>
+                                        <option value="Entry level">Entry level</option>
+                                    </select>
+                                </div>
+
+
 
                                 <div class="col-4">
 
@@ -462,15 +501,21 @@ const EditUserForm = ({ user }) => {
 
                                     <label class="form-label" htmlFor="employee_type">
                                         Employee type: </label>
-                                    <input
+                                    <select
                                         class="form-control"
-                                        id="employee_type"
-                                        name="employee_type"
-                                        type="text"
-                                        autoComplete="off"
-                                        value={employee_type}
-                                        onChange={onEmptypeChanged}
-                                    /> </div>
+                                        name="gender"
+                                        id="gender"
+                                        value={gender}
+                                        onChange={onGenderChanged}
+                                        required
+                                    >
+                                        <option value="">Select an employee type</option>
+                                        <option value="full_time">Full-time Employee</option>
+                                        <option value="part_time">Part-time Employee</option>
+                                        <option value="temporary">Temporary Employee</option>
+                                        <option value="intern">Intern</option>
+
+                                    </select> </div>
 
                                 <div class="col-4">
 

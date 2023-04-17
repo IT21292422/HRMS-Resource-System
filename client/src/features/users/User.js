@@ -26,6 +26,7 @@ const User = ({ userId }) => {
                 <td>{user.employee_type}</td>
                 <td>{user.department}</td>    
                 <td>{userRolesString}</td>
+                <td>{user.position}</td>
                           
                 <td>
                     <button
