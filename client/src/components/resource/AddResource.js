@@ -81,11 +81,11 @@ const AddResource = () => {
                             <div class="row">
                                 <div class="col-6">
                                     <label for="name" class="form-label">Name</label>
-                                    <input type="text" class="form-control" id="name" placeholder="Enter Resource Name" onChange={(e) => setName(e.target.value)}/> {/*e is event*/}
+                                    <input type="text" class="form-control" id="name" placeholder="Enter Resource Name" value={name} onChange={(e) => setName(e.target.value)}/> {/*e is event*/}
                                 </div>
                                 <div class="col-6">
                                 <label for="name" class="form-label">Resource Type</label>
-                                <select class="form-select" aria-label="Default select example" name="type" onChange={(e) => setType(e.target.value)}>
+                                <select class="form-select" aria-label="Default select example" name="type" value={type} onChange={(e) => setType(e.target.value)}>
                                     <option selected>Select Resource Type</option>
                                     <option value="Device">Device</option>
                                     <option value="Stationary">Stationary</option>      
@@ -93,23 +93,23 @@ const AddResource = () => {
                                 </div>
                                 <div class="col-6">
                                     <label for="quantity" class="form-label">Quantity</label>
-                                    <input type="text" class="form-control" id="quantity" placeholder="Enter the quantity" onChange={(e) => setQuantity(e.target.value)}/>
+                                    <input type="text" class="form-control" id="quantity" placeholder="Enter the quantity" value={quantity} onChange={(e) => setQuantity(e.target.value)}/>
                                 </div>
                                 <div class="col-6">
                                     <label for="invoiceNo" class="form-label">Invoice No</label>
-                                    <input type="text" class="form-control" id="invoiceNo" placeholder="Enter the Invoice Number" onChange={(e) => setInvoiceNo(e.target.value)}/>
+                                    <input type="text" class="form-control" id="invoiceNo" placeholder="Enter the Invoice Number" value={invoiceNo} onChange={(e) => setInvoiceNo(e.target.value)}/>
                                 </div>
                                 <div class="col-6">
                                     <label for="supplierName" class="form-label">Supplier Name</label>
-                                    <input type="text" class="form-control" id="supplierName" placeholder="Enter the Supplier Name" onChange={(e) => setSupplierName(e.target.value)}/>
+                                    <input type="text" class="form-control" id="supplierName" placeholder="Enter the Supplier Name" value={supplierName} onChange={(e) => setSupplierName(e.target.value)}/>
                                 </div>
                                 <div class="col-6">
                                     <label for="orderDate" class="form-label">Ordered Date</label>
-                                    <input type="date" class="form-control" id="orderDate" onChange={(e) => setOrderDate(e.target.value)}/>
+                                    <input type="date" class="form-control" id="orderDate" value={orderedDate} onChange={(e) => setOrderDate(e.target.value)}/>
                                 </div>
                                 <div class="col-12">
                                     <label for="imageURL" class="form-label">Image URL</label>
-                                    <input type="text" class="form-control" id="imageURL" onChange={(e) => setImageURL(e.target.value)}/>
+                                    <input type="text" class="form-control" id="imageURL" value={imageURL} onChange={(e) => setImageURL(e.target.value)}/>
                                 </div>
                             </div>
                                     <div class="modal-footer">
