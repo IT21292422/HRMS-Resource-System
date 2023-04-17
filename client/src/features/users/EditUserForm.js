@@ -585,7 +585,7 @@ const EditUserForm = ({ user }) => {
                                     <select
                                         id="roles"
                                         name="roles"
-                                        class={`form__select `}
+                                        class="form-select"
                                         // multiple={true}
                                         size="3"
                                         value={roles}
