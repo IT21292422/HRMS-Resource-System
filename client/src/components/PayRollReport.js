@@ -113,8 +113,8 @@ function PayRollReport() {
 
 
   const lay1 = {
-    height:400,
-    width: 450};
+    height:450,
+    width: '100%'};
 
   if (isLoading) {
     return <Spinner />
@@ -132,7 +132,7 @@ function PayRollReport() {
         </div>
       </div>
       <div class="modal fade" id="payrollstats" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="ReqLeaveFormLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="staticBackdropLabel">PayRoll Statistics</h5>

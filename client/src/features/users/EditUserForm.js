@@ -278,7 +278,7 @@ const EditUserForm = ({ user }) => {
                                 <div class="col-4">
 
                                     <label class="form-label" htmlFor="user-active">
-                                        ACTIVE:
+                                        Active:
                                         <input
                                             class="form-checkbox"
                                             id="user-active"
@@ -341,8 +341,9 @@ const EditUserForm = ({ user }) => {
                                         name="gender"
                                         id="gender"
                                         value={gender}
-                                        onChange={onGenderChanged}
                                         required
+                                        onChange={onGenderChanged}
+                                        
                                     >
                                         <option value="">Male</option>
                                         <option value="HR">Female</option>
@@ -503,17 +504,17 @@ const EditUserForm = ({ user }) => {
                                         Employee type: </label>
                                     <select
                                         class="form-control"
-                                        name="gender"
-                                        id="gender"
-                                        value={gender}
-                                        onChange={onGenderChanged}
+                                        name="employee_type"
+                                        id="employee_type"
+                                        value={employee_type}
+                                        onChange={onEmptypeChanged}
                                         required
                                     >
                                         <option value="">Select an employee type</option>
-                                        <option value="full_time">Full-time Employee</option>
-                                        <option value="part_time">Part-time Employee</option>
-                                        <option value="temporary">Temporary Employee</option>
-                                        <option value="intern">Intern</option>
+                                        <option value="Full-time Employee">Full-time Employee</option>
+                                        <option value="Part-time Employee">Part-time Employee</option>
+                                        <option value="Temporary Employee">Temporary Employee</option>
+                                        <option value="Intern">Intern</option>
 
                                     </select> </div>
 
@@ -580,12 +581,12 @@ const EditUserForm = ({ user }) => {
                                 <div class="col-4">
 
                                     <label class="form-label" htmlFor="roles">
-                                        ASSIGNED ROLES:</label><br />
+                                        Employee Role:</label><br />
                                     <select
                                         id="roles"
                                         name="roles"
                                         class={`form__select `}
-                                        multiple={true}
+                                        // multiple={true}
                                         size="3"
                                         value={roles}
                                         onChange={onRolesChanged}

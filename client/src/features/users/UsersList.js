@@ -125,10 +125,10 @@ const UsersList = () => {
                   Employee Statistics
                 </button>
             <div class="modal fade" id="payrollstats" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="ReqLeaveFormLabel" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel">User Statistics</h5>
+                    <h5 class="modal-title" id="staticBackdropLabel">Employee Statistics</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
@@ -174,11 +174,12 @@ const UsersList = () => {
                   <tr>
                     <th scope="col">Employee ID</th>
                     <th scope="col">Full Name</th>
-                    <th scope="col">UserName</th>
+                    <th scope="col">User Name</th>
                     <th scope="col">Employee Type</th>
                     <th scope="col">Department</th>
-                    <th scope="col">Role</th>
                     <th scope="col">Position</th>
+
+                    <th scope="col">Role</th>
 
                     <th scope="col">Edit</th>
                   </tr>

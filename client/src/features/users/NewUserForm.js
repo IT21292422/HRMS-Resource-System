@@ -5,7 +5,7 @@ import { ROLES } from "../../config/roles"
 import { useDispatch } from "react-redux"
 import { createPayRoll } from "../payroll/payrollSlice"
 const USER_REGEX = /^[A-z]{3,20}$/
-const PWD_REGEX = /^[A-z0-9!@#$%]{4,12}$/
+const PWD_REGEX = /^[A-z0-9!@#$%]{6,12}$/
 
 const NewUserForm = () => {
 
@@ -196,20 +196,25 @@ const NewUserForm = () => {
 
     const content = (
         <>
+
             <button type="button" class="btn btn-primary col-2 " data-bs-toggle="modal" data-bs-target="#adduser">
-                Add User
+                Add Employee
             </button>
             <div class="modal fade" id="adduser" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="ReqLeaveFormLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-dialog modal-dialog-centered modal-xl">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="staticBackdropLabel">User</h5>
+                            <h5 class="modal-title" id="staticBackdropLabel">Employee</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <form onSubmit={onSaveUserClicked}>
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div>
+                                    <p class = {errClass}>{error?.data?.message}</p>
+
+                                    </div>
+                                    <div class="col-4">
 
                                         <label class="form-label" htmlFor="username">
                                             Username: [3-20 letters]</label>
@@ -226,7 +231,7 @@ const NewUserForm = () => {
                                     </div>
 
 
-                                    <div class="col-6">
+                                    <div class="col-4">
 
 
                                         <label class="form-label" htmlFor="password">
@@ -244,11 +249,12 @@ const NewUserForm = () => {
                                     </div>
 
 
-                                    <div class="col-6">
+                                    <div class="col-4">
 
 
                                         <label class="form-label" htmlFor="roles">
-                                            ASSIGNED ROLES:</label>
+                                            Employee Role:</label>
+                                            <br/>
                                         <select
                                             id="roles"
                                             name="roles"
@@ -256,7 +262,7 @@ const NewUserForm = () => {
                                             multiple={true}
                                             size="3"
                                             required
-                                            value={roles}
+                                            // value={roles}
                                             onChange={onRolesChanged}
                                         >
                                             {options}
@@ -265,7 +271,7 @@ const NewUserForm = () => {
                                     </div>
 
 
-                                    <div class="col-6">
+                                    <div class="col-4">
 
                                         <label class="form-label" htmlFor="firstname">
                                             First Name: </label>
@@ -282,7 +288,7 @@ const NewUserForm = () => {
                                     </div>
 
 
-                                    <div class="col-6">
+                                    <div class="col-4">
 
                                         <label class="form-label" htmlFor="lastname">
                                             Last Name: </label>
@@ -297,7 +303,7 @@ const NewUserForm = () => {
                                             onChange={onLasttnameChanged}
                                         /> </div>
 
-                                    <div class="col-6">
+                                    <div class="col-4">
 
 
                                         <label class="form-label" htmlFor="fullname">
@@ -314,7 +320,7 @@ const NewUserForm = () => {
                                         />
                                     </div>
 
-                                    <div class="col-6">
+                                    <div class="col-4">
 
 
                                         <label class="form-label" htmlFor="gender">
@@ -338,7 +344,7 @@ const NewUserForm = () => {
                                         </select>
                                     </div>
 
-                                    <div class="col-6">
+                                    <div class="col-4">
 
 
                                         <label class="form-label" htmlFor="NIC">
@@ -356,7 +362,7 @@ const NewUserForm = () => {
                                     </div>
 
 
-                                    <div class="col-6">
+                                    <div class="col-4">
 
                                         <label class="form-label" htmlFor="date_of_birth">
                                             Date of birth: </label>
@@ -372,7 +378,7 @@ const NewUserForm = () => {
                                         />
                                     </div>
 
-                                    <div class="col-6">
+                                    <div class="col-4">
 
                                         <label class="form-label" htmlFor="place_of_birth">
                                             Place of birth: </label>
@@ -388,7 +394,7 @@ const NewUserForm = () => {
                                         />
                                     </div>
 
-                                    <div class="col-6">
+                                    <div class="col-4">
 
                                         <label class="form-label" htmlFor="age">
                                             Age: </label>
@@ -404,7 +410,7 @@ const NewUserForm = () => {
                                         />
                                     </div>
 
-                                    <div class="col-6">
+                                    <div class="col-4">
 
                                         <label class="form-label" htmlFor="nationality">
                                             Nationality: </label>
@@ -419,7 +425,7 @@ const NewUserForm = () => {
                                             onChange={onNationalityChanged}
                                         /> </div>
 
-                                    <div class="col-6">
+                                    <div class="col-4">
 
                                         <label class="form-label" htmlFor="religion">
                                             Religion: </label>
@@ -434,7 +440,7 @@ const NewUserForm = () => {
                                             onChange={onReligionChanged}
                                         /> </div>
 
-                                    <div class="col-6">
+                                    <div class="col-4">
 
                                         <label class="form-label" htmlFor="department">
                                             Department: </label>
@@ -453,7 +459,7 @@ const NewUserForm = () => {
                                             <option value="IT">IT</option>
                                         </select>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-4">
 
                                         <label class="form-label" htmlFor="position">
                                             Position: </label>
@@ -473,7 +479,7 @@ const NewUserForm = () => {
                                         </select>
                                     </div>
 
-                                    <div class="col-6">
+                                    <div class="col-4">
 
                                         <label class="form-label" htmlFor="date_joined">
                                             Date Joined: </label>
@@ -489,16 +495,16 @@ const NewUserForm = () => {
                                         />
                                     </div>
 
-                                    <div class="col-6">
+                                    <div class="col-4">
 
                                         <label class="form-label" htmlFor="employee_type">
                                             Employee type: </label>
                                         <select
                                             class="form-control"
-                                            name="gender"
-                                            id="gender"
-                                            value={gender}
-                                            onChange={onGenderChanged}
+                                            name="employee_type"
+                                            id="employee_type"
+                                            value={employee_type}
+                                            onChange={onEmptypeChanged}
                                             required
                                         >
                                             <option value="">Select an employee type</option>
@@ -510,7 +516,7 @@ const NewUserForm = () => {
                                         </select>
                                     </div>
 
-                                    <div class="col-6">
+                                    <div class="col-4">
 
                                         <label class="form-label" htmlFor="empID">
                                             Employee ID: </label>
@@ -525,7 +531,7 @@ const NewUserForm = () => {
                                             onChange={onEmpidChanged}
                                         /> </div>
 
-                                    <div class="col-6">
+                                    <div class="col-4">
 
                                         <label class="form-label" htmlFor="contact">
                                             Contact: </label>
@@ -540,7 +546,7 @@ const NewUserForm = () => {
                                             onChange={onContactChanged}
                                         /> </div>
 
-                                    <div class="col-6">
+                                    <div class="col-4">
 
 
                                         <label class="form-label" htmlFor="email">
@@ -556,7 +562,7 @@ const NewUserForm = () => {
                                             onChange={onEmailChanged}
                                         /> </div>
 
-                                    <div class="col-6">
+                                    <div class="col-4">
 
                                         <label class="form-label" htmlFor="address">
                                             Address: </label>

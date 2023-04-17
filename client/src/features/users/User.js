@@ -20,13 +20,14 @@ const User = ({ userId }) => {
         return (
             <tr className="table__row user">
 
-                <td>{user.empID}</td>
-                <td>{user.fullname}</td>  
-                <td>{user.username}</td>
-                <td>{user.employee_type}</td>
-                <td>{user.department}</td>    
-                <td>{userRolesString}</td>
-                <td>{user.position}</td>
+                <td class={cellStatus}>{user.empID}</td>
+                <td class={cellStatus}>{user.fullname}</td>  
+                <td class={cellStatus}>{user.username}</td>
+                <td class={cellStatus}>{user.employee_type}</td>
+                <td class={cellStatus}>{user.department}</td>    
+                <td class={cellStatus}>{user.position}</td>
+
+                <td class={cellStatus}>{userRolesString}</td>
                           
                 <td>
                     <button
