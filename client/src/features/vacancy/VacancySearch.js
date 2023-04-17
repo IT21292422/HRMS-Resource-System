@@ -17,23 +17,27 @@ function VacancySearch() {
 
   return (
     <>
-    <NewVacancyForm></NewVacancyForm>
+      <NewVacancyForm></NewVacancyForm>
       <div className="container">
         <div className="row justify-content-center">
           <SearchBar posts={posts} setSearchResults={setSearchResults} />
         </div>
       </div>
-      <table className="table table-striped table-hover mx-auto" style={{ borderSpacing: '0 10px' }}>
-        <thead>
-          <tr>
-            <th scope="col" className="text-center">Job Title</th>
-            <th scope="col" className="text-center">Description</th>
-            <th scope="col" className="text-center">Requirements</th>
-            <th scope="col" className="text-center">Edit</th>
-          </tr>
-        </thead>
-      </table>
-      <ListPage searchResults={searchResults} />
+      <div class="leave-list">
+        <div class="row justify-content-center">
+          <table className="table table-striped table-hover mx-auto" style={{ borderSpacing: '0 10px' }}>
+            <thead>
+              <tr>
+                <th scope="col" className="text-center">Job Title</th>
+                <th scope="col" className="text-center">Description</th>
+                <th scope="col" className="text-center">Requirements</th>
+                <th scope="col" className="text-center">Edit</th>
+              </tr>
+            </thead>
+          </table>
+          <ListPage searchResults={searchResults} />
+        </div>
+      </div>
     </>
   )
 }

@@ -31,7 +31,11 @@ function ResumeSearch() {
           <SearchBar posts={posts} setSearchResults={setSearchResults} />
         </div>
       </div>
-      <ListPage searchResults={searchResults} />
+      <div class="leave-list">
+        <div class="row justify-content-center">
+          <ListPage searchResults={searchResults} />
+        </div>
+      </div>
     </>
   )
 }

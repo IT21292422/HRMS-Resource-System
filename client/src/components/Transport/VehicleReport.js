@@ -9,7 +9,7 @@ const VehicleReport = () => {
 
     //Retrieve all the resources
     const retrieveVehicles = () => {
-        axios.get("http://localhost:3001/api/Vehicle").then((res) => {
+        axios.get("http://localhost:5000/api/Vehicle").then((res) => {
             setVehicles(res.data)
         })
             .catch((error) => {
