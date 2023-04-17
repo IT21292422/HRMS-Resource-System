@@ -9,19 +9,19 @@ const getAllAdmin = async (req, res) => {
 };
 
 const createAdmin = async (req, res) => {
-  // try {
-  //   const { email, password } = req.body;
-  //   const admin = await Admin.create({
-  //     email,
-  //     password: await hashPassword(password),
-  //     firstName,
-  //     lastName,
-  //   });
-  //   const token = createJWT(admin);
-  //   res.status(200).json({ token });
-  // } catch (err) {
-  //   res.status(500).json({ message: err.message });
-  // }
+  try {
+    const { email, password } = req.body;
+    const admin = await Admin.create({
+      email,
+      password: await hashPassword(password),
+      firstName,
+      lastName,
+    });
+    const token = createJWT(admin);
+    res.status(200).json({ token });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
 };
 
 const signInAdmin = async (req, res) => {
