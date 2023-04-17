@@ -147,6 +147,7 @@ export default function AddApplyTransport() {
                       placeholder="Enter Emp_id"
                       value={Emp_id}
                       onChange={(e) => setEmp_id(e.target.value)}
+                      required
                     />
                   </Form.Group>
                 </div>
@@ -186,6 +187,7 @@ export default function AddApplyTransport() {
                       placeholder="Enter Emp_Contact_Number"
                       value={Emp_Contact_Number}
                       onChange={(e) => setEmp_Contact_Number(e.target.value)}
+                      required
                     />
                   </Form.Group>
                 </div>

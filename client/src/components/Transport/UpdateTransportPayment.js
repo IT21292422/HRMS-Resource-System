@@ -75,7 +75,7 @@ const UpdateTransportPayment = (props) => {
                                     <input type="text" class="form-control" id="Company" placeholder="Enter Company" value={Company}
                                         onChange={(e) => {
                                             setCompany(e.target.value);
-                                        }} />
+                                        }} required />
                                 </div>
 
 
@@ -84,7 +84,7 @@ const UpdateTransportPayment = (props) => {
                                     <input type="number" class="form-control" id="Account_No" placeholder="Enter Account_No" value={Account_No}
                                         onChange={(e) => {
                                             setAccount_No(e.target.value);
-                                        }} />
+                                        }} required />
                                 </div>
 
                                 <div class="col-4">
@@ -92,7 +92,7 @@ const UpdateTransportPayment = (props) => {
                                     <input type="date" class="form-control" id="Date" placeholder="Enter Date" value={Date}
                                         onChange={(e) => {
                                             setDate(e.target.value);
-                                        }} />
+                                        }} required />
                                 </div>
 
                                 <div class="col-4">
@@ -100,7 +100,7 @@ const UpdateTransportPayment = (props) => {
                                     <input type="number" class="form-control" id="Distance" placeholder="Enter Distance" value={Distance}
                                         onChange={(e) => {
                                             setDistance(e.target.value);
-                                        }} />
+                                        }} required />
                                 </div>
 
                                 <div class="col-4">

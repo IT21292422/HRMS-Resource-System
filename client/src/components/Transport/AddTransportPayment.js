@@ -67,7 +67,7 @@ export default function AddTransportPayment() {
                     <input type="number" class="form-control" id="Account_No" placeholder="Enter Account_No"
                       onChange={(e) => {
                         setAccount_No(e.target.value);
-                      }} />
+                      }} required />
                   </div>
 
                   <div className="col-6">
@@ -75,7 +75,7 @@ export default function AddTransportPayment() {
                     <input type="date" class="form-control" id="Date" placeholder="Enter Date"
                       onChange={(e) => {
                         setDate(e.target.value);
-                      }} />
+                      }} required />
                   </div>
 
                   <div className="col-6">
@@ -83,12 +83,12 @@ export default function AddTransportPayment() {
                     <input type="number" class="form-control" id="Distance" placeholder="Enter Distance"
                       onChange={(e) => {
                         setDistance(e.target.value);
-                      }} />
+                      }} required />
                   </div>
 
                   <div className="col-6">
                     <label class="form-label" for="Total">Total</label>
-                    <input type="number" class="form-control" id="Total" value={Total} disabled />
+                    <input type="number" class="form-control" id="Total" value={Total} required disabled />
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>

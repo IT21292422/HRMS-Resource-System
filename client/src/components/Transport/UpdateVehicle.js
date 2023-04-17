@@ -80,7 +80,7 @@ const UpdateVehicle = (props) => {
                                     <input type="text" class="form-control" id="Vehicle_No" placeholder="Enter Vehicle_No" value={Vehicle_No}
                                         onChange={(e) => {
                                             setVehicle_No(e.target.value);
-                                        }} />
+                                        }} required />
                                 </div>
 
                                 <div class="col-4">
@@ -99,14 +99,14 @@ const UpdateVehicle = (props) => {
                                     <input type="text" class="form-control" id="Driver_Name" placeholder="Enter Driver_Name" value={Driver_Name}
                                         onChange={(e) => {
                                             setDriver_Name(e.target.value);
-                                        }} />
+                                        }} required />
                                 </div>
 
                                 <div class="col-4">
                                     <label class="form-label" for="Driver_Contact_No">Driver_Contact_No</label>
                                     <input type="number" class="form-control" id="Driver_Contact_No" placeholder="Enter Driver_Contact_No" value={Driver_Contact_No} onChange={(e) => {
                                         setDriver_Contact_No(e.target.value);
-                                    }} />
+                                    }} required />
                                 </div>
 
                                 <div class="col-4">
@@ -114,7 +114,7 @@ const UpdateVehicle = (props) => {
                                     <input type="text" class="form-control" id="Driver_Nic" placeholder="Enter Driver_Nic" value={Driver_Nic}
                                         onChange={(e) => {
                                             setDriver_Nic(e.target.value);
-                                        }} />
+                                        }} required />
                                 </div>
 
                                 <div class="col-4">
@@ -122,7 +122,7 @@ const UpdateVehicle = (props) => {
                                     <input type="text" class="form-control" id="Company" placeholder="Enter Company" value={Company}
                                         onChange={(e) => {
                                             setCompany(e.target.value);
-                                        }} />
+                                        }} required />
                                 </div>
 
                                 <div class="col-4">
@@ -130,7 +130,7 @@ const UpdateVehicle = (props) => {
                                     <input type="number" class="form-control" id="No_Of_Seats" placeholder="Enter No_Of_Seats" value={No_Of_Seats}
                                         onChange={(e) => {
                                             setNo_Of_Seats(e.target.value);
-                                        }} />
+                                        }} required />
                                 </div>
                                 <div  style={{marginTop:'10px'}} class="row justify-content-center">
                                     <button type="submit" class="btn btn-primary col-3">Update</button>

@@ -78,7 +78,7 @@ const UpdateRoute = (props) => {
                                     <input type="text" class="form-control" id="Route_Name" placeholder="Enter Route_Name" value={Route_Name}
                                         onChange={(e) => {
                                             setRoute_Name(e.target.value);
-                                        }} />
+                                        }} required />
                                 </div>
 
                                 <div class="col-4">
@@ -86,7 +86,7 @@ const UpdateRoute = (props) => {
                                     <input type="text" class="form-control" id="Vehicle_Type" placeholder="Enter Vehicle_Type" value={Vehicle_Type}
                                         onChange={(e) => {
                                             setVehicle_No(e.target.value);
-                                        }} />
+                                        }} required />
                                 </div>
 
 
@@ -95,7 +95,7 @@ const UpdateRoute = (props) => {
                                     <input type="text" class="form-control" id="Vehicle_No" placeholder="Enter Vehicle_No" value={Vehicle_No}
                                         onChange={(e) => {
                                             setVehicle_No(e.target.value);
-                                        }} />
+                                        }} required />
                                 </div>
 
 
@@ -104,7 +104,7 @@ const UpdateRoute = (props) => {
                                     <input type="time" class="form-control" id="Arrival_Time" placeholder="Enter Arrival_Time" value={Arrival_Time}
                                         onChange={(e) => {
                                             setArrival_Time(e.target.value);
-                                        }} />
+                                        }} required />
                                 </div>
 
 
@@ -113,7 +113,7 @@ const UpdateRoute = (props) => {
                                     <input type="text" class="form-control" id="Starting_Point" placeholder="Enter Starting_Point" value={Starting_Point}
                                         onChange={(e) => {
                                             setStarting_Point(e.target.value);
-                                        }} />
+                                        }} required />
                                 </div>
 
 
@@ -122,7 +122,7 @@ const UpdateRoute = (props) => {
                                     <input type="text" class="form-control" id="Ending_Point" placeholder="Enter Ending_Point" value={Ending_Point}
                                         onChange={(e) => {
                                             setEnding_Point(e.target.value);
-                                        }} />
+                                        }} required />
                                 </div>
 
 
@@ -131,7 +131,7 @@ const UpdateRoute = (props) => {
                                     <input type="number" class="form-control" id="Distance" placeholder="Enter Distance" value={Distance}
                                         onChange={(e) => {
                                             setDistance(e.target.value);
-                                        }} />
+                                        }} required />
                                 </div>
                             </div>
                             <div style={{marginTop:'10px'}} class="row justify-content-center">

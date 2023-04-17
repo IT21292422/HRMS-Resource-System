@@ -60,7 +60,7 @@ export default function AddRoute() {
                     <input type="text" class="form-control" id="Route_Name" placeholder="Enter Route_Name"
                       onChange={(e) => {
                         setRoute_Name(e.target.value);
-                      }} />
+                      }} required />
                   </div>
 
                   <div className="col-6">
@@ -77,7 +77,7 @@ export default function AddRoute() {
                     <input type="text" class="form-control" id="Vehicle_No" placeholder="Enter Vehicle_No"
                       onChange={(e) => {
                         setVehicle_No(e.target.value);
-                      }} />
+                      }} required />
                   </div>
 
 
@@ -86,7 +86,7 @@ export default function AddRoute() {
                     <input type="time" class="form-control" id="Arrival_Time" placeholder="Enter Arrival_Time"
                       onChange={(e) => {
                         setArrival_Time(e.target.value);
-                      }} />
+                      }} required />
                   </div>
 
 
@@ -95,7 +95,7 @@ export default function AddRoute() {
                     <input type="text" class="form-control" id="Starting_Point" placeholder="Enter Starting_Point"
                       onChange={(e) => {
                         setStarting_Point(e.target.value);
-                      }} />
+                      }} required />
                   </div>
 
 
@@ -104,7 +104,7 @@ export default function AddRoute() {
                     <input type="text" class="form-control" id="Ending_Point" placeholder="Enter Ending_Point"
                       onChange={(e) => {
                         setEnding_Point(e.target.value);
-                      }} />
+                      }} required />
                   </div>
 
 
@@ -113,7 +113,7 @@ export default function AddRoute() {
                     <input type="number" class="form-control" id="Distance" placeholder="Enter Distance"
                       onChange={(e) => {
                         setDistance(e.target.value);
-                      }} />
+                      }} required />
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
