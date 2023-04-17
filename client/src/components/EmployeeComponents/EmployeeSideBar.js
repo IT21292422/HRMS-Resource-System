@@ -18,6 +18,10 @@ function EmployeeSideBar() {
                 <FaMoneyBillAlt class="sidebar-icon" />
                 Payroll
             </Link>
+            <button class="nav-link" onClick={()=>window.location.href='http://localhost:5173/'}>
+                <FaMoneyBillAlt class="sidebar-icon" />
+                LMS
+            </button>
         </div>
     );
 }
