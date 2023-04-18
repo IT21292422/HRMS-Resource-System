@@ -107,8 +107,9 @@ const updatePayrollfromUser = asyncHandler(async (req, res) => {
 
     const { epfCalculated, FinalSalary, taxes, deductions } = calculateDeductions(SalaryPaid)
 
+    let finalSalary = FinalSalary
     if (payroll.bonus){
-        const{FinalSalary}=addBonus(FinalSalary,payroll.bonus)      
+        finalSalary=addBonus(finalSalary,payroll.bonus)      
     }
 
     const updatedPayRollData = {
@@ -121,7 +122,7 @@ const updatePayrollfromUser = asyncHandler(async (req, res) => {
         deductions: deductions,
         mealAllowance: mealAllow,
         travelAllowance: travelAllow,
-        Salary: FinalSalary,
+        Salary: finalSalary,
         BaseSalary: BaseSalary
     }
     
