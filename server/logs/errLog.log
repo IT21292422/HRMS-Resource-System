@@ -55,3 +55,5 @@ ModuleNotFoundError: No module named 'pandas'
 	POST	/run-python-script	http://localhost:3000
 20230418	13:22:05	1448195a-423f-4f10-9565-60477d1fdeda	ReferenceError: Cannot access 'FinalSalary' before initialization	PUT	/api/payrolls/updatefromUser/U0001	http://localhost:3000
 20230418	13:22:29	ba201f98-5604-4f32-b3d8-6ec71faaea31	ReferenceError: Cannot access 'FinalSalary' before initialization	PUT	/api/payrolls/updatefromUser/U0001	http://localhost:3000
+20230418	17:39:43	40add4d8-b269-4f60-956e-7ae0efd3b81b	MongoServerError: E11000 duplicate key error collection: HRM.payrolls index: eid_1 dup key: { eid: "U0001" }	POST	/api/payrolls/	http://localhost:3000
+20230418	17:39:55	9f0c09b6-8d0a-44be-a7bb-61eb80f6ce30	MongoServerError: E11000 duplicate key error collection: HRM.payrolls index: eid_1 dup key: { eid: "U0002" }	POST	/api/payrolls/	http://localhost:3000
