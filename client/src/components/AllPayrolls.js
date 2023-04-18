@@ -4,9 +4,10 @@ import { useNavigate } from "react-router-dom"
 import { getPayRolls, reset, deletePayRoll } from "../features/payroll/payrollSlice"
 import Spinner from './Spinner'
 import PayRollReport from "./PayRollReport"
+import useTitle from "../hooks/useTitle"
 //import PayrollSearchBar from "./PayrollSearchBar"
 function AllPayrolls() {
-
+  useTitle("Payrolls")
 
   const { payrolls, isLoading, isError, message } = useSelector(state => state.payrolls)
   //const [filteredPayrolls, setFilteredPayrolls] = useState(payrolls)

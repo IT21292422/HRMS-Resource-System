@@ -3,8 +3,11 @@ import { toast } from "react-toastify"
 import { useSelector, useDispatch } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
 import { reset } from "../features/payroll/payrollSlice"
+import useTitle from "../hooks/useTitle"
 
 function EmpIndPayroll() {
+    useTitle("Employee Payroll")
+
     const [payroll, setpayroll] = useState({})
     const { id } = useParams();
     const navigate = useNavigate();

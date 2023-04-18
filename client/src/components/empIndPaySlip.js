@@ -6,7 +6,11 @@ import Spinner from './Spinner'
 import PaySlipCard from "./PaySlipCard"
 // import PayrollSearchBar from "./PayrollSearchBar"
 import useAuth from "../hooks/useAuth"
+import useTitle from "../hooks/useTitle"
+
 function EmpIndPaySlips() {
+    useTitle("Employee PaySlips")
+    
     const { payrolls, isLoading, isError, message } = useSelector(state => state.payrolls)
     // const [filteredPayrolls, setFilteredPayrolls] = useState(payrolls)
 

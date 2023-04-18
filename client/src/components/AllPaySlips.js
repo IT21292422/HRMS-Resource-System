@@ -4,9 +4,12 @@ import { useSelector, useDispatch } from 'react-redux'
 import { getPayRolls, reset } from "../features/payroll/payrollSlice"
 import Spinner from './Spinner'
 import PaySlipCard from "./PaySlipCard"
+import useTitle from "../hooks/useTitle"
 // import PayrollSearchBar from "./PayrollSearchBar"
 
 function AllPaySlips() {
+  useTitle("Payslips")
+
   const { payrolls, isLoading, isError, message } = useSelector(state => state.payrolls)
   // const [filteredPayrolls, setFilteredPayrolls] = useState(payrolls)
 
