@@ -1,3 +1,4 @@
+//const employeeAttendance = require("../models/EmployeeAttendance")
 
 function calculateSalary(department, position, otHours) {
   let Salary = 0, mealAllow = 0, travelAllow = 0, otPayment = 0, BaseSalary = 0
@@ -81,8 +82,65 @@ function addBonus(FinalSalary, bonus) {
   const bonusValue = Number(bonus);
   return finalSalary + bonusValue;
 }
+
+// async function getTotalHours(empID, month) {
+
+//   month = Number(month).toString();
+//   const result = await employeeAttendance.aggregate([
+//     {
+//       $match: {
+//         empID: empID,
+//         date: { $regex: `-${month}-` }
+//       }
+//     },
+//     {
+//       $group: {
+//         _id: null,
+//         totalHours: {
+//           $sum: {
+//             $divide: [
+//               {
+//                 $add: [
+//                   {
+//                     $multiply: [{
+//                       $toInt: {
+//                         $substr:
+//                           ["$timeDifference", 0, 2]
+//                       }
+//                     }, 3600]
+//                   },
+//                   {
+//                     $multiply: [{
+//                       $toInt: {
+//                         $substr:
+//                           ["$timeDifference", 3, 2]
+//                       }
+//                     }, 60]
+//                   },
+//                   {
+//                     $toInt: { $substr: ["$timeDifference", 6, 2] }
+//                   }
+//                 ]
+//               },
+//               3600
+//             ]
+//           }
+//         },
+//         daysWorked: { $sum: 1 }
+//       }
+//     }
+//   ]);
+
+//   if (result.length === 0) {
+//     return { totalHours: 0, daysWorked: 0 };
+//   } else {
+//     return { totalHours: result[0].totalHours, daysWorked: result[0].daysWorked };
+//   }
+// }
+
 module.exports = {
   calculateSalary,
   calculateDeductions,
   addBonus
+  //getTotalHours
 }
