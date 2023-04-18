@@ -5,7 +5,6 @@ import Plot from 'react-plotly.js'
 const VehicleReport = () => {
 
     const [Vehicles, setVehicles] = useState([])
-    const [showChart, setShowChart] = useState()
 
     //Retrieve all the resources
     const retrieveVehicles = () => {
@@ -45,12 +44,12 @@ const VehicleReport = () => {
     ]
 
     const seatsLayout = {
-        title: 'Available Seats Per Vehicle Type',
+        title: 'No of Vehicles in the Transport',
         xaxis: {
             title: 'VehicleType',
         },
         yaxis: {
-            title: 'Seats',
+            title: 'No of Vehicles',
         },
         height: 400
 
@@ -91,7 +90,8 @@ const VehicleReport = () => {
                         <div class="modal-body">
 
                             <Plot data={vehicleName} layout={seatsLayout} />
-                            <Plot data={vehicles} layout={{ title: 'Available Seats', height: 400 }} />
+                            <Plot data={vehicles} layout={{ title: 'Available Seats', height: 400}} />
+
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
@@ -100,13 +100,6 @@ const VehicleReport = () => {
                 </div>
             </div>
         </>
-
-        //     <>
-        // <center>
-        //     <Plot data={vehicleName} layout={seatsLayout}/>
-        //     <Plot data={vehicles} layout={{title: 'Available Seats', height:400, width: 450}}/>
-        // </center>
-        // </>
     )
 }
 
