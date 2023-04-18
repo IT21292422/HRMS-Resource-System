@@ -55,10 +55,10 @@ function AllPayrolls() {
   // const onViewPayroll = (payrollid) => {
   //   navigate(`/IndividualPayroll/${payrollid}`);
   // }
-  const onAddPayroll = () => {
-    dispatch(reset())
-    navigate('/dash/admin/AddPayRoll')
-  }
+  // const onAddPayroll = () => {
+  //   dispatch(reset())
+  //   navigate('/dash/admin/AddPayRoll')
+  // }
 
   if (isLoading) {
     return <Spinner />
@@ -68,11 +68,11 @@ function AllPayrolls() {
     <>
       <div class="request">
         <div class="row justify-content-end">
-        <button class="btn btn-primary col-1" onClick={(onAddPayroll)}>
+          {/* <button class="btn btn-primary col-1" onClick={(onAddPayroll)}>
             Add Pay Roll
-          </button>
+          </button> */}
           <PayRollReport></PayRollReport>
-          
+
         </div>
       </div>
       <div class="search">
@@ -107,7 +107,11 @@ function AllPayrolls() {
                         <button
                           disabled={payroll.isLoading}
                           class="btn btn-danger"
-                          onClick={() => dispatch(deletePayRoll(payroll._id))}>
+                          onClick={() => {
+                            if (window.confirm("Are you sure you want to delete this payroll?")) {
+                              dispatch(deletePayRoll(payroll._id));
+                            }
+                          }}>
                           Delete
                         </button>
                       </td>

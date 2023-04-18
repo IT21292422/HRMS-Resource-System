@@ -35,10 +35,11 @@ function calculateSalary(department, position, otHours) {
 
   mealAllow = BaseSalary * 0.05
   travelAllow = BaseSalary * 0.1
-  const otRate = 100
+  const otRate = 1000
   if (otHours) {
     otPayment = otRate * otHours
   }
+
   Salary = otPayment + mealAllow + travelAllow + BaseSalary
 
   return {
@@ -75,7 +76,13 @@ function calculateDeductions(SalaryPaid) {
   }
 }
 
+function addBonus(FinalSalary, bonus) {
+  const finalSalary = Number(FinalSalary);
+  const bonusValue = Number(bonus);
+  return finalSalary + bonusValue;
+}
 module.exports = {
   calculateSalary,
-  calculateDeductions
+  calculateDeductions,
+  addBonus
 }

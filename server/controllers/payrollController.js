@@ -1,6 +1,6 @@
 const asyncHandler = require('express-async-handler')
 const Payroll = require('../models/payrollModel')
-const { calculateSalary, calculateDeductions, getTotalHoursWorked } = require('../controllers/payrollCalculator')
+const { calculateSalary, calculateDeductions, addBonus } = require('../controllers/payrollCalculator')
 //@desc Get payrolls
 //@route GET/ api/payrolls
 //@access Private
@@ -51,11 +51,16 @@ const updatePayroll = asyncHandler(async (req, res) => {
 
     const payroll = await Payroll.findById(req.params.id)
 
-    const { department, position, otHours } = req.body
+    const { department, position, otHours,bonus} = req.body
 
     const { SalaryPaid,OtPayment, mealAllow, travelAllow, BaseSalary } = calculateSalary(department, position, otHours)
 
     const { epfCalculated, FinalSalary, taxes, deductions } = calculateDeductions(SalaryPaid)
+
+    let finalSalary=FinalSalary
+    if (bonus){
+        finalSalary=addBonus(finalSalary,bonus)      
+    }
 
     if (!payroll) {
         res.status(400)
@@ -70,10 +75,13 @@ const updatePayroll = asyncHandler(async (req, res) => {
         mealAllowance: mealAllow,
         travelAllowance: travelAllow,
         otPaid: OtPayment,
-        Salary: FinalSalary,
+        Salary: finalSalary,
         BaseSalary: BaseSalary
     }
-
+    
+    if (bonus) {
+        updatedPayRollData.$set = { bonus: bonus };
+    }
     const updatedPayroll = await Payroll.findByIdAndUpdate(req.params.id, updatedPayRollData, {
         new: true,
     })
@@ -99,7 +107,9 @@ const updatePayrollfromUser = asyncHandler(async (req, res) => {
 
     const { epfCalculated, FinalSalary, taxes, deductions } = calculateDeductions(SalaryPaid)
 
-    
+    if (payroll.bonus){
+        const{FinalSalary}=addBonus(FinalSalary,payroll.bonus)      
+    }
 
     const updatedPayRollData = {
 
@@ -114,7 +124,7 @@ const updatePayrollfromUser = asyncHandler(async (req, res) => {
         Salary: FinalSalary,
         BaseSalary: BaseSalary
     }
-
+    
     const updatedPayroll = await Payroll.findOneAndUpdate({ eid: req.params.empID }, updatedPayRollData, {
         new: true,
     })

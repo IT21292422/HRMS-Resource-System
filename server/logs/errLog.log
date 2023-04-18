@@ -53,3 +53,5 @@ Traceback (most recent call last):
     import pandas as pd
 ModuleNotFoundError: No module named 'pandas'
 	POST	/run-python-script	http://localhost:3000
+20230418	13:22:05	1448195a-423f-4f10-9565-60477d1fdeda	ReferenceError: Cannot access 'FinalSalary' before initialization	PUT	/api/payrolls/updatefromUser/U0001	http://localhost:3000
+20230418	13:22:29	ba201f98-5604-4f32-b3d8-6ec71faaea31	ReferenceError: Cannot access 'FinalSalary' before initialization	PUT	/api/payrolls/updatefromUser/U0001	http://localhost:3000
