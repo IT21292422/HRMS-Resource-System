@@ -56,6 +56,9 @@ function EmpIndPaySlips() {
                             <PaySlipCard key={payroll._id} payroll={payroll} />
                         ))}
                     </div>
+                    <button style={{ marginTop: '10px' }} class="btn btn-primary col-1" onClick={() => navigate('/dash/emp/EmployeeViewPayroll')}>
+                        Back
+                    </button>
                 </div>) : (<h3>No payslips</h3>)}
 
 
