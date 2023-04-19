@@ -65,7 +65,7 @@ const ResourceReport = () => {
     const empChart = [
         {
             labels: name,
-            values: [1,2,3],
+            values: empAssigned,
             hole: .4,
             type: "pie"
         }
