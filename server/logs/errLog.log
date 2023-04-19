@@ -61,3 +61,4 @@ ModuleNotFoundError: No module named 'pandas'
 20230419	16:50:21	e64b1daf-2ee6-4b26-9a72-1f96b16d2004	MongoServerError: E11000 duplicate key error collection: HRM.payrolls index: eid_1 dup key: { eid: "U0001" }	POST	/api/payrolls/	http://localhost:3000
 20230419	16:51:34	0d905a27-0ae6-4025-bdfc-62a3c1c95511	MongoServerError: Plan executor error during findAndModify :: caused by :: E11000 duplicate key error collection: HRM.payrolls index: Name_1 dup key: { Name: "personal updated" }	PUT	/api/payrolls/updatefromUser/U0008	http://localhost:3000
 20230419	16:54:09	ea08ff92-712e-4a15-ae0d-f76f69d7ced0	Error: Payroll not found	PUT	/api/payrolls/updatefromUser/test2	http://localhost:3000
+20230419	19:34:07	655ae3f5-09e7-40e5-8693-ca7a340ec82d	MongoServerError: E11000 duplicate key error collection: HRM.payrolls index: eid_1 dup key: { eid: "U0001" }	POST	/api/payrolls/	http://localhost:3000

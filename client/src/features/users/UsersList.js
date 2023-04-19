@@ -78,14 +78,14 @@ const UsersList = () => {
     ]
 
     const layout = {
-      title: 'Number of Users per Department',
+      title: 'Number of Employees per Department',
       height: 400,
       width: 450,
       xaxis: {
         title: 'Department'
       },
       yaxis: {
-        title: 'Number of Users'
+        title: 'Number of Employees'
       }
     }
 
