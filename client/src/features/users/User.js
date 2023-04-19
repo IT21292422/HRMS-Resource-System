@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import { useDeleteUserMutation } from './usersApiSlice'
 import { useSelector } from 'react-redux'
 import { selectUserById } from './usersApiSlice'
+import {  useDispatch } from 'react-redux'
 
 
 
@@ -15,6 +16,8 @@ const User = ({ userId }) => {
     }] = useDeleteUserMutation()
 
     const navigate = useNavigate()
+    const dispatch = useDispatch()
+
 
     if (user) {
         const handleEdit = () => navigate(`/dash/admin/users/${userId}`)
@@ -52,12 +55,15 @@ const User = ({ userId }) => {
                 <td>
                     <button
                         class="btn btn-danger"
-                        onClick={onDeleteUserClicked}
+                        onClick={()=> {
+                            if(window.confirm("Are you sure you want to delete this employee?")){
+        
+                             dispatch(onDeleteUserClicked)       }
+                        }}
                     >
                         Delete Employee
                     </button>
                 </td>
-
 
 
 

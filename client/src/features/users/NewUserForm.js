@@ -516,9 +516,7 @@ const NewUserForm = () => {
                                             <option value="">Select department</option>
                                             <option value="HR Department">HR Department</option>
                                             <option value="IT Department">IT Department</option>
-                                            <option value="Accounting Department">Accounting Department</option>
-                                            <option value="Tax Department">Tax Department</option>
-                                            <option value="Audit Department">Audit Department</option>
+
                                             <option value="Finance Department">Finance Department</option>
                                         </select>
                                     </div>
