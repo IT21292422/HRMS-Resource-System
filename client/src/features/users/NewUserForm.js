@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux"
 import { createPayRoll } from "../payroll/payrollSlice"
 
 const USER_REGEX = /^[A-z]{3,20}$/
-const PWD_REGEX = /^[A-z0-9!@#$%]{6,12}$/
+const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+=])(?=.{6,}).*/
 const NIC_REGEX = /^(?:\d{12}|\d{9}[a-zA-Z])$/
 const NUMBER_REGEX = /^\d{10}$/
 const EMPID_REGEX = /^[A-Z]\d{4}$/
