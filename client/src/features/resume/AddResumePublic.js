@@ -13,7 +13,7 @@ const USER_REGEX = /^[A-z]{3,20}$/
 
 
 const AddResumePublic = () => {
-    useTitle('HRMS: New Resume')
+    useTitle(' New Resume')
 
     const [addNewResume, {
         isLoading,

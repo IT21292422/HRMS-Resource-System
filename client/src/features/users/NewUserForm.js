@@ -335,10 +335,10 @@ const NewUserForm = () => {
                                             onChange={onGenderChanged}
                                             required
                                         >
-                                            <option value="">Male</option>
-                                            <option value="HR">Female</option>
-                                            <option value="HR">Other</option>
-                                            <option value="HR">Personal</option>
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                            <option value="Other">Other</option>
+                                            <option value="Personal">Personal</option>
 
 
                                         </select>
@@ -508,10 +508,10 @@ const NewUserForm = () => {
                                             required
                                         >
                                             <option value="">Select an employee type</option>
-                                            <option value="full_time">Full-time Employee</option>
-                                            <option value="part_time">Part-time Employee</option>
-                                            <option value="temporary">Temporary Employee</option>
-                                            <option value="intern">Intern</option>
+                                            <option value="Full time">Full-time Employee</option>
+                                            <option value="Part time">Part-time Employee</option>
+                                            <option value="Temporary">Temporary Employee</option>
+                                            <option value="Intern">Intern</option>
                                             
                                         </select>
                                     </div>

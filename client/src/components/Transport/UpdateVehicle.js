@@ -3,11 +3,12 @@ import { Link, useParams, withRouter } from 'react-router-dom';
 import axios from "axios"
 
 import 'bootstrap/dist/css/bootstrap.min.css';
+import useTitle from '../../hooks/useTitle';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
 const UpdateVehicle = (props) => {
-
+    useTitle("Update Vehicle");
     //To get the id from URL
     const { id } = useParams()
 

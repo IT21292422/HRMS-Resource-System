@@ -1,6 +1,6 @@
 const asyncHandler = require('express-async-handler')
 const Payroll = require('../models/payrollModel')
-const { calculateSalary, calculateDeductions, getTotalHoursWorked } = require('../controllers/payrollCalculator')
+const { calculateSalary, calculateDeductions, addBonus, getTotalHours } = require('../controllers/payrollCalculator')
 //@desc Get payrolls
 //@route GET/ api/payrolls
 //@access Private
@@ -14,7 +14,7 @@ const getPayrolls = asyncHandler(async (req, res) => {
 //@route POST/ api/payrolls
 //@access Private
 const setPayroll = asyncHandler(async (req, res) => {
-    const {username,fullname, empID, department, position} = req.body
+    const { username, fullname, empID, department, position } = req.body
 
     if (!fullname || !empID || !department || !position) {
         res.status(400)
@@ -25,7 +25,7 @@ const setPayroll = asyncHandler(async (req, res) => {
     const { epfCalculated, FinalSalary, taxes, deductions } = calculateDeductions(SalaryPaid)
 
     const payroll = await Payroll.create({
-        username:username,
+        username: username,
         Name: fullname,
         eid: empID,
         department: department,
@@ -51,11 +51,16 @@ const updatePayroll = asyncHandler(async (req, res) => {
 
     const payroll = await Payroll.findById(req.params.id)
 
-    const { department, position, otHours } = req.body
+    const { department, position, otHours, bonus } = req.body
 
-    const { SalaryPaid,OtPayment, mealAllow, travelAllow, BaseSalary } = calculateSalary(department, position, otHours)
+    const { SalaryPaid, OtPayment, mealAllow, travelAllow, BaseSalary } = calculateSalary(department, position, otHours)
 
     const { epfCalculated, FinalSalary, taxes, deductions } = calculateDeductions(SalaryPaid)
+
+    let finalSalary = FinalSalary
+    if (bonus) {
+        finalSalary = addBonus(finalSalary, bonus)
+    }
 
     if (!payroll) {
         res.status(400)
@@ -70,10 +75,13 @@ const updatePayroll = asyncHandler(async (req, res) => {
         mealAllowance: mealAllow,
         travelAllowance: travelAllow,
         otPaid: OtPayment,
-        Salary: FinalSalary,
+        Salary: finalSalary,
         BaseSalary: BaseSalary
     }
 
+    if (bonus) {
+        updatedPayRollData.$set = { bonus: bonus };
+    }
     const updatedPayroll = await Payroll.findByIdAndUpdate(req.params.id, updatedPayRollData, {
         new: true,
     })
@@ -87,31 +95,34 @@ const updatePayrollfromUser = asyncHandler(async (req, res) => {
     const payroll = await Payroll.findOne({ eid: req.params.empID })
     // console.log(req.params.empID)
     // console.log(req.body.fullname)
-    
+
     if (!payroll) {
         res.status(400)
         throw new Error('Payroll not found')
     }
 
-    const { username,fullname, department, position } = req.body
+    const { username, fullname, department, position } = req.body
 
-    const { SalaryPaid,mealAllow, travelAllow, BaseSalary } = calculateSalary(department, position,payroll.otHours)
+    const { SalaryPaid, mealAllow, travelAllow, BaseSalary } = calculateSalary(department, position, payroll.otHours)
 
     const { epfCalculated, FinalSalary, taxes, deductions } = calculateDeductions(SalaryPaid)
 
-    
+    let finalSalary = FinalSalary
+    if (payroll.bonus) {
+        finalSalary = addBonus(finalSalary, payroll.bonus)
+    }
 
     const updatedPayRollData = {
 
         ...req.body,
-        username:username,
+        username: username,
         Name: fullname,
         epf: epfCalculated,
         taxes: taxes,
         deductions: deductions,
         mealAllowance: mealAllow,
         travelAllowance: travelAllow,
-        Salary: FinalSalary,
+        Salary: finalSalary,
         BaseSalary: BaseSalary
     }
 
@@ -154,6 +165,18 @@ const searchpayrolls = asyncHandler(async (req, res) => {
     }
 })
 
+
+// const setOT = asyncHandler(async (req, res) => {
+//     const empID = "http://emp111";
+//     const month = "04";
+//     try {
+//       const totalHours = await getTotalHours(empID, month);
+//       res.json(totalHours );
+//     } catch (error) {
+//       res.status(500).json({ error: error.message });
+//     }
+//   });
+
 module.exports = {
     getPayrolls,
     setPayroll,
@@ -161,4 +184,5 @@ module.exports = {
     deletePayroll,
     searchpayrolls,
     updatePayrollfromUser
+    //setOT
 }

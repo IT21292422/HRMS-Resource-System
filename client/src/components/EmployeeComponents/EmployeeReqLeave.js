@@ -3,8 +3,10 @@ import axios from "axios";
 import EmployeeReqLeaveForm from "./EmployeeReqLeaveForm";
 import EmployeeLeaveList from "./EmployeeLeaveList";
 import useAuth from '../../hooks/useAuth';
+import useTitle from '../../hooks/useTitle';
 
 const EmployeeReqLeave = () => {
+    useTitle("Employee Leave Request");
 
     const [empLeaveData, setEmpReqList] = useState([])
     const { username, status } = useAuth()
