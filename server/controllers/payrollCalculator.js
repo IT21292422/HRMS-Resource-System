@@ -3,7 +3,7 @@
 function calculateSalary(department, position, otHours) {
   let Salary = 0, mealAllow = 0, travelAllow = 0, otPayment = 0, BaseSalary = 0
 
-  if (department == "Finance") {
+  if (department == "Finance Department") {
     if (position == "Executive")
       BaseSalary = 125000
     else if (position == "Intermediate")
@@ -13,7 +13,7 @@ function calculateSalary(department, position, otHours) {
     else if (position == "Entry level")
       BaseSalary = 50000
   }
-  else if (department == "IT") {
+  else if (department == "IT Department") {
     if (position == "Executive")
       BaseSalary = 150000
     else if (position == "Intermediate")
@@ -23,7 +23,7 @@ function calculateSalary(department, position, otHours) {
     else if (position == "Entry level")
       BaseSalary = 75000
   }
-  else if (department == "HR") {
+  else if (department == "HR Department") {
     if (position == "Executive")
       BaseSalary = 100000
     else if (position == "Intermediate")
