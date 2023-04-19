@@ -8,11 +8,8 @@ import { useLoginMutation } from './authApiSlice'
 import usePersist from '../../hooks/usePersist'
 import Spinner from '../../components/Spinner'
 import AddResumePublic from '../resume/AddResumePublic'
-import useTitle from '../../hooks/useTitle'
 
 const Login = () => {
-    useTitle("Login")
-    
     const userRef = useRef()
     const errRef = useRef()
     const [username, setUsername] = useState('')

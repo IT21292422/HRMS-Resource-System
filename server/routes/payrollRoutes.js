@@ -7,7 +7,6 @@ const {
     deletePayroll,
     searchpayrolls,
     updatePayrollfromUser
-    //setOT
 } = require('../controllers/payrollController')
 
 router.get('/',getPayrolls)
@@ -16,6 +15,5 @@ router.put('/:id',updatePayroll)
 router.delete('/:id',deletePayroll)
 router.get('/search',searchpayrolls)
 router.put('/updatefromUser/:empID',updatePayrollfromUser)
-//router.get('/getOT',setOT)
 
 module.exports = router

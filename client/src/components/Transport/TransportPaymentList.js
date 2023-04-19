@@ -3,10 +3,8 @@ import axois from "axios";
 import { Link} from 'react-router-dom';
 import TransportPaymentCard from './TransportPaymentCard'
 import AddTransportPayment from './AddTransportPayment';
-import useTitle from '../../hooks/useTitle';
 
 export default function  TransportPaymentList(){
-    useTitle("Transport Payment");
 
 const [TransportPayments, setTransportPayments] = useState([]);
 const[Keyword, setKeyword] = useState('')

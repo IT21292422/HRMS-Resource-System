@@ -4,10 +4,9 @@ import { useNavigate } from "react-router-dom"
 import { getPayRolls, reset, deletePayRoll } from "../features/payroll/payrollSlice"
 import Spinner from './Spinner'
 import PayRollReport from "./PayRollReport"
-import useTitle from "../hooks/useTitle"
 //import PayrollSearchBar from "./PayrollSearchBar"
 function AllPayrolls() {
-  useTitle("Payrolls")
+
 
   const { payrolls, isLoading, isError, message } = useSelector(state => state.payrolls)
   //const [filteredPayrolls, setFilteredPayrolls] = useState(payrolls)
@@ -55,10 +54,10 @@ function AllPayrolls() {
   // const onViewPayroll = (payrollid) => {
   //   navigate(`/IndividualPayroll/${payrollid}`);
   // }
-  // const onAddPayroll = () => {
-  //   dispatch(reset())
-  //   navigate('/dash/admin/AddPayRoll')
-  // }
+  const onAddPayroll = () => {
+    dispatch(reset())
+    navigate('/dash/admin/AddPayRoll')
+  }
 
   if (isLoading) {
     return <Spinner />
@@ -68,11 +67,11 @@ function AllPayrolls() {
     <>
       <div class="request">
         <div class="row justify-content-end">
-          {/* <button class="btn btn-primary col-1" onClick={(onAddPayroll)}>
+        <button class="btn btn-primary col-1" onClick={(onAddPayroll)}>
             Add Pay Roll
-          </button> */}
+          </button>
           <PayRollReport></PayRollReport>
-
+          
         </div>
       </div>
       <div class="search">
@@ -107,11 +106,7 @@ function AllPayrolls() {
                         <button
                           disabled={payroll.isLoading}
                           class="btn btn-danger"
-                          onClick={() => {
-                            if (window.confirm("Are you sure you want to delete this payroll?")) {
-                              dispatch(deletePayRoll(payroll._id));
-                            }
-                          }}>
+                          onClick={() => dispatch(deletePayRoll(payroll._id))}>
                           Delete
                         </button>
                       </td>

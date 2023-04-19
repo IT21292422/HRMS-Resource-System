@@ -4,10 +4,9 @@ import User from './User'
 import Plot from 'react-plotly.js';
 import Spinner from '../../components/Spinner';
 import NewUserForm from './NewUserForm';
-import useTitle from '../../hooks/useTitle';
 
 const UsersList = () => {
-  useTitle("Employees")
+
   const {
     data: users,
     isLoading,

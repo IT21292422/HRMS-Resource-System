@@ -1,22 +1,19 @@
 import { useEffect, useState } from "react"
 import { useSelector, useDispatch } from 'react-redux'
-import { useNavigate } from "react-router-dom"
+//import { useNavigate } from "react-router-dom"
 import { getPayRolls, reset } from "../features/payroll/payrollSlice"
 import Spinner from './Spinner'
 import PaySlipCard from "./PaySlipCard"
-import useTitle from "../hooks/useTitle"
 // import PayrollSearchBar from "./PayrollSearchBar"
 
 function AllPaySlips() {
-  useTitle("Payslips")
-
   const { payrolls, isLoading, isError, message } = useSelector(state => state.payrolls)
   // const [filteredPayrolls, setFilteredPayrolls] = useState(payrolls)
 
   const [Keyword, setKeyword] = useState('')
 
   const dispatch = useDispatch()
-  const navigate = useNavigate()
+  //const navigate = useNavigate()
 
   useEffect(() => {
     if (isError) {
@@ -74,9 +71,6 @@ function AllPaySlips() {
                 <PaySlipCard key={payroll._id} payroll={payroll} />
               ))}
             </div>
-            <button style={{ marginTop: '10px' }} class="btn btn-primary col-1" onClick={() => navigate('/dash/admin/AllPayRolls')}>
-                        Back
-                    </button>
           </div>) : (<h3>No payslips</h3>)}
     </>
   )

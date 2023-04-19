@@ -3,10 +3,8 @@ import { useSelector, useDispatch } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
 import { toast } from "react-toastify"
 import { updatePayRoll, reset } from "../features/payroll/payrollSlice"
-import useTitle from "../hooks/useTitle"
 
 function UpdatePayroll() {
-    useTitle("Edit Payrolls")
     const [formData, setFormData] = useState({
         // Name: "",
         // eid: "",
@@ -72,7 +70,7 @@ function UpdatePayroll() {
 
     return (
         <>
-            <div style={{ marginTop: '90px' }} class="leave-list">
+            <div style={{marginTop:'90px'}} class="leave-list">
                 <div class="row justify-content-center">
                     <form onSubmit={handleSubmit}>
                         <div class="form-group">
@@ -100,14 +98,28 @@ function UpdatePayroll() {
                                         onChange={handleInputChange}
                                     />
                                 </div>
-
+                                {/* <input type='text'
+                            class='form-control'
+                            id='department'
+                            name='deaprtment'
+                            value={formData.department}
+                            disabled
+                            onChange={handleInputChange}
+                        />
+                        <input type='text'
+                            class='form-control'
+                            id='position'
+                            name='position'
+                            value={formData.position}
+                            disabled
+                            onChange={handleInputChange}
+                        /> */}
                                 <div class="col-4">
                                     <label class="form-label">Department</label>
                                     <select
                                         class="form-control"
                                         id='department'
                                         name='department'
-                                        disabled
                                         value={formData.department}
                                         onChange={handleInputChange}
                                     >
@@ -123,7 +135,6 @@ function UpdatePayroll() {
                                         class="form-control"
                                         id='position'
                                         name='position'
-                                        disabled
                                         value={formData.position}
                                         onChange={handleInputChange}
                                     >
@@ -161,16 +172,6 @@ function UpdatePayroll() {
                                         id='travelAllowance'
                                         name='travelAllowance'
                                         value={formData.travelAllowance}
-                                        onChange={handleInputChange}
-                                    />
-                                </div>
-                                <div class="col-4">
-                                    <label class="form-label">Bonus</label>
-                                    <input type='text'
-                                        class='form-control'
-                                        id='bonus'
-                                        name='bonus'
-                                        value={formData.bonus}
                                         onChange={handleInputChange}
                                     />
                                 </div>
@@ -236,11 +237,8 @@ function UpdatePayroll() {
                                     />
                                 </div>
                                 <div class="row justify-content-center">
-                                    <button style={{ marginTop: '10px' }} type="submit" class="btn btn-primary col-2">
-                                        Revise PayRoll
-                                    </button>
-                                    <button style={{ marginTop: '10px' }} class="btn btn-danger col-2" onClick={() => navigate('/dash/admin/AllPayRolls')}>
-                                        Back
+                                    <button style={{marginTop:'10px'}} type="submit" class="btn btn-primary col-3">
+                                        Update PayRoll
                                     </button>
                                 </div>
                             </div>

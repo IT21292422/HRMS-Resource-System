@@ -8,7 +8,6 @@ class AdminReqLeave extends Component {
         this.state = {
             empLeaveData: []
         }
-        document.title = 'Leave Request';
     }
 
     componentDidMount() {

@@ -8,7 +8,7 @@ import useTitle from "../../hooks/useTitle"
 const USER_REGEX = /^[A-z]{3,20}$/
 
 const NewVacancyForm = () => {
-    useTitle('Vacancy')
+    useTitle('techNotes: New Vacancy')
 
     const [addNewVacancy, {
         isLoading,

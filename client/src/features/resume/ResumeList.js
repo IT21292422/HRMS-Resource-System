@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { useNavigate } from 'react-router-dom'
 
 const ResumesList = () => {
-    useTitle(' Resumes List')
+    useTitle('HRMS: Resumes List')
 
     const navigate = useNavigate()
     const {
