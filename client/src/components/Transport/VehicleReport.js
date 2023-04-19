@@ -77,7 +77,7 @@ const VehicleReport = () => {
 
     return (
         <>
-            <button type="button" onClick={() => setShowChart(!showChart)} class="btn btn-primary col-2 " data-bs-toggle="modal" data-bs-target="#payrollstats">
+            <button type="button" class="btn btn-primary col-2 " data-bs-toggle="modal" data-bs-target="#payrollstats">
                 Vehicle Report
             </button>
             <div class="modal fade" id="payrollstats" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="ReqLeaveFormLabel" aria-hidden="true">
