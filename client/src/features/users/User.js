@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom'
-
+import { useDeleteUserMutation } from './usersApiSlice'
 import { useSelector } from 'react-redux'
 import { selectUserById } from './usersApiSlice'
 
@@ -8,14 +8,24 @@ import { selectUserById } from './usersApiSlice'
 const User = ({ userId }) => {
     const user = useSelector(state => selectUserById(state, userId))
 
+    const [deleteUser, {
+        isSuccess: isDelSuccess,
+        isError: isDelError,
+        error: delerror
+    }] = useDeleteUserMutation()
+
     const navigate = useNavigate()
 
     if (user) {
         const handleEdit = () => navigate(`/dash/admin/users/${userId}`)
 
+        const onDeleteUserClicked = async () => {
+            await deleteUser({ id: user.id })
+        }
+
         const userRolesString = user.roles.toString().replaceAll(',', ', ')
 
-        const cellStatus = user.active ? '' : 'table-warning'
+        const cellStatus = user.active ? '' : 'table-danger'
 
         return (
             <tr className="table__row user">
@@ -34,9 +44,23 @@ const User = ({ userId }) => {
                         class="btn btn-primary"
                         onClick={handleEdit}
                     >
-                        Edit
+                        Review
                     </button>
                 </td>
+
+                
+                <td>
+                    <button
+                        class="btn btn-danger"
+                        onClick={onDeleteUserClicked}
+                    >
+                        Delete Employee
+                    </button>
+                </td>
+
+
+
+
             </tr>
         )
 

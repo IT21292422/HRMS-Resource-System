@@ -133,8 +133,18 @@ body{
     margin-top: 15px;
 }
 
+
+.search-z {
+    margin-top: 50px;
+}
+
+
 .search-bar {
     width: 300px !important;
+}
+
+.search-bar-z {
+    width: 600px !important;
 }
 
 .QR-scanner-position {
@@ -193,3 +203,9 @@ body{
     justify-content: center;
     align-items: center;
 }
+
+
+.form__input--incomplete {
+    border: 1px solid red;
+    outline: 1px solid red;
+  }

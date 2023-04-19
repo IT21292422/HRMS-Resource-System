@@ -4,8 +4,12 @@ import { useNavigate } from "react-router-dom"
 import { ROLES } from "../../config/roles"
 import { useDispatch } from "react-redux"
 import { createPayRoll } from "../payroll/payrollSlice"
+
 const USER_REGEX = /^[A-z]{3,20}$/
 const PWD_REGEX = /^[A-z0-9!@#$%]{6,12}$/
+const NIC_REGEX = /^(?:\d{12}|\d{9}[a-zA-Z])$/
+const NUMBER_REGEX = /^\d{10}$/
+const EMPID_REGEX = /^[A-Z]\d{4}$/
 
 const NewUserForm = () => {
 
@@ -29,6 +33,7 @@ const NewUserForm = () => {
     const [fullname, setFullname] = useState('')
     const [gender, setGender] = useState('')
     const [NIC, setNic] = useState('')
+    const [validNIC, setValidNIC] = useState(false)
     const [date_of_birth, setDob] = useState('')
     const [place_of_birth, setPob] = useState('')
     const [age, setAge] = useState('')
@@ -38,7 +43,9 @@ const NewUserForm = () => {
     const [date_joined, setDatejoin] = useState('')
     const [employee_type, setEmptype] = useState('')
     const [empID, setEmpid] = useState('')
+    const [validEmpID, setValidEmpID] = useState(false)
     const [contact, setContact] = useState('')
+    const [validContact, setValidContact] = useState(false)
     const [email, setEmail] = useState('')
     const [address, setAddress] = useState('')
     const [position, setPosition] = useState('')
@@ -54,6 +61,18 @@ const NewUserForm = () => {
     useEffect(() => {
         setValidPassword(PWD_REGEX.test(password))
     }, [password])
+
+    useEffect(() => {
+        setValidNIC(NIC_REGEX.test(NIC))
+    }, [NIC])
+
+    useEffect(() => {
+        setValidContact(NUMBER_REGEX.test(contact))
+    }, [contact])
+
+    useEffect(() => {
+        setValidEmpID(EMPID_REGEX.test(empID))
+    }, [empID])
 
     useEffect(() => {
         if (isSuccess) {
@@ -116,7 +135,7 @@ const NewUserForm = () => {
     const onAddressChanged = e => setAddress(e.target.value)
     const onPositionChanged = e => setPosition(e.target.value)
 
-    const canSave = [roles.length, validUsername, validPassword].every(Boolean) && !isLoading
+    const canSave = [roles.length, validUsername, validPassword, validPassword, validNIC].every(Boolean) && !isLoading
 
     // const onSaveUserClicked = async (e) => {
     //     e.preventDefault()
@@ -191,7 +210,10 @@ const NewUserForm = () => {
     const errClass = isError ? "errmsg" : "offscreen"
     const validUserClass = !validUsername ? 'form__input--incomplete' : ''
     const validPwdClass = !validPassword ? 'form__input--incomplete' : ''
-    const validRolesClass = !Boolean(roles.length) ? 'form__input--incomplete' : ''
+    const validNICClass = !validNIC ? 'form__input--incomplete' : ''
+    const validContactClass = !validContact ? 'form__input--incomplete' : ''
+    const validEmpIDClass = !validEmpID ? 'form__input--incomplete' : ''
+    // const validRolesClass = !Boolean(roles.length) ? 'form__input--incomplete' : ''
 
 
     const content = (
@@ -211,65 +233,9 @@ const NewUserForm = () => {
                             <form onSubmit={onSaveUserClicked}>
                                 <div class="row">
                                     <div>
-                                    <p class = {errClass}>{error?.data?.message}</p>
+                                        <h5><u>Employee Personal Information</u></h5>
 
                                     </div>
-                                    <div class="col-4">
-
-                                        <label class="form-label" htmlFor="username">
-                                            Username: [3-20 letters]</label>
-                                        <input type="text"
-                                            class="form-control"
-                                            id="username"
-                                            name="username"
-
-                                            autoComplete="off"
-                                            required
-                                            value={username}
-                                            onChange={onUsernameChanged} />
-
-                                    </div>
-
-
-                                    <div class="col-4">
-
-
-                                        <label class="form-label" htmlFor="password">
-                                            Password: </label>
-                                        <input
-                                            class="form-control"
-                                            id="password"
-                                            name="password"
-                                            type="password"
-                                            required
-                                            value={password}
-                                            onChange={onPasswordChanged}
-                                        />
-
-                                    </div>
-
-
-                                    <div class="col-4">
-
-
-                                        <label class="form-label" htmlFor="roles">
-                                            Employee Role:</label>
-                                            <br/>
-                                        <select
-                                            id="roles"
-                                            name="roles"
-                                            class="form-select"
-                                            multiple={true}
-                                            size="3"
-                                            required
-                                            // value={roles}
-                                            onChange={onRolesChanged}
-                                        >
-                                            {options}
-                                        </select>
-
-                                    </div>
-
 
                                     <div class="col-4">
 
@@ -281,9 +247,11 @@ const NewUserForm = () => {
                                             name="firstname"
                                             type="text"
                                             autoComplete="off"
+                                            placeholder="Enter employee first name"
                                             required
                                             value={firstname}
                                             onChange={onFirstnameChanged}
+
                                         />
                                     </div>
 
@@ -297,6 +265,8 @@ const NewUserForm = () => {
                                             id="lastname"
                                             name="lastname"
                                             type="text"
+                                            placeholder="Enter employee last name"
+
                                             autoComplete="off"
                                             required
                                             value={lastname}
@@ -313,6 +283,8 @@ const NewUserForm = () => {
                                             id="fullname"
                                             name="fullname"
                                             type="text"
+                                            placeholder="Enter employee full name"
+
                                             autoComplete="off"
                                             required
                                             value={fullname}
@@ -325,7 +297,7 @@ const NewUserForm = () => {
 
                                         <label class="form-label" htmlFor="gender">
                                             Gender: </label>
-                                        
+
 
                                         <select
                                             class="form-control"
@@ -335,6 +307,8 @@ const NewUserForm = () => {
                                             onChange={onGenderChanged}
                                             required
                                         >
+
+                                            <option value="">Select gender</option>
                                             <option value="Male">Male</option>
                                             <option value="Female">Female</option>
                                             <option value="Other">Other</option>
@@ -350,11 +324,14 @@ const NewUserForm = () => {
                                         <label class="form-label" htmlFor="NIC">
                                             NIC: </label>
                                         <input
-                                            class="form-control"
+                                            class={`form-control ${validNICClass}`}
+
                                             id="NIC"
                                             name="NIC"
-                                            type="number"
+                                            type="text"
                                             autoComplete="off"
+                                            placeholder="Enter valid NIC"
+
                                             required
                                             value={NIC}
                                             onChange={onNicChanged}
@@ -387,6 +364,7 @@ const NewUserForm = () => {
                                             id="place_of_birth"
                                             name="place_of_birth"
                                             type="text"
+                                            placeholder="Enter place of birth"
                                             autoComplete="off"
                                             required
                                             value={place_of_birth}
@@ -402,7 +380,8 @@ const NewUserForm = () => {
                                             class="form-control"
                                             id="age"
                                             name="age"
-                                            type="numbe"
+                                            type="number"
+                                            placeholder="Enter the age"
                                             autoComplete="off"
                                             required
                                             value={age}
@@ -419,6 +398,7 @@ const NewUserForm = () => {
                                             id="nationality"
                                             name="nationality"
                                             type="text"
+                                            placeholder="Enter the nationality"
                                             autoComplete="off"
                                             required
                                             value={nationality}
@@ -434,11 +414,91 @@ const NewUserForm = () => {
                                             id="religion"
                                             name="religion"
                                             type="text"
+                                            placeholder="Enter employee religion"
                                             autoComplete="off"
                                             required
                                             value={religion}
                                             onChange={onReligionChanged}
                                         /> </div>
+
+                                    <div class="col-4">
+
+                                        <label class="form-label" htmlFor="contact">
+                                            Contact: </label>
+                                        <input
+                                            class={`form-control ${validContactClass}`}
+
+                                            id="contact"
+                                            name="contact"
+                                            type="tel"
+                                            placeholder="Enter contact number of employee"
+                                            autoComplete="off"
+                                            required
+                                            value={contact}
+                                            onChange={onContactChanged}
+                                        /> </div>
+
+                                    <div class="col-4">
+
+
+                                        <label class="form-label" htmlFor="email">
+                                            Email: </label>
+                                        <input
+                                            class="form-control"
+                                            id="email"
+                                            name="email"
+                                            type="email"
+                                            placeholder="Employee company email"
+                                            autoComplete="off"
+                                            required
+                                            value={email}
+                                            onChange={onEmailChanged}
+                                        /> </div>
+
+                                    <div class="col-4">
+
+                                        <label class="form-label" htmlFor="address">
+                                            Permanent Address: </label>
+                                        <input
+                                            class="form-control"
+                                            id="address"
+                                            name="address"
+                                            placeholder="Enter employee permanent address"
+                                            type="text"
+                                            autoComplete="off"
+                                            required
+                                            value={address}
+                                            onChange={onAddressChanged}
+                                        /></div>
+
+                                    <div>
+
+                                        <div>
+                                            <br />
+
+                                        </div>
+
+                                        <h5><u>Employment Details</u></h5>
+
+                                    </div>
+
+                                    <div class="col-4">
+
+                                        <label class="form-label" htmlFor="empID">
+                                            Employee ID: </label>
+                                        <input
+                                            class={`form-control ${validEmpIDClass}`}
+
+                                            id="empID"
+                                            name="empID"
+                                            type="text"
+                                            autoComplete="off"
+                                            placeholder="Character followed by 4 digits"
+                                            required
+                                            value={empID}
+                                            onChange={onEmpidChanged}
+                                        /> </div>
+
 
                                     <div class="col-4">
 
@@ -454,16 +514,21 @@ const NewUserForm = () => {
                                             required
                                         >
                                             <option value="">Select department</option>
-                                            <option value="HR">HR</option>
-                                            <option value="Finance">Finance</option>
-                                            <option value="IT">IT</option>
+                                            <option value="HR Department">HR Department</option>
+                                            <option value="IT Department">IT Department</option>
+                                            <option value="Accounting Department">Accounting Department</option>
+                                            <option value="Tax Department">Tax Department</option>
+                                            <option value="Audit Department">Audit Department</option>
+                                            <option value="Finance Department">Finance Department</option>
                                         </select>
                                     </div>
+
+
                                     <div class="col-4">
 
                                         <label class="form-label" htmlFor="position">
                                             Position: </label>
-                                        
+
                                         <select
                                             className="form-control"
                                             id="position"
@@ -508,78 +573,98 @@ const NewUserForm = () => {
                                             required
                                         >
                                             <option value="">Select an employee type</option>
-                                            <option value="Full time">Full-time Employee</option>
-                                            <option value="Part time">Part-time Employee</option>
-                                            <option value="Temporary">Temporary Employee</option>
+                                            <option value="Full-time Employee">Full-time Employee</option>
+                                            <option value="Part-time Employee">Part-time Employee</option>
+                                            <option value="Temporary Employee">Temporary Employee</option>
                                             <option value="Intern">Intern</option>
-                                            
                                         </select>
                                     </div>
+                                    <div>
+                                        <br />
 
-                                    <div class="col-4">
-
-                                        <label class="form-label" htmlFor="empID">
-                                            Employee ID: </label>
-                                        <input
-                                            class="form-control"
-                                            id="empID"
-                                            name="empID"
-                                            type="text"
-                                            autoComplete="off"
-                                            required
-                                            value={empID}
-                                            onChange={onEmpidChanged}
-                                        /> </div>
-
-                                    <div class="col-4">
-
-                                        <label class="form-label" htmlFor="contact">
-                                            Contact: </label>
-                                        <input
-                                            class="form-control"
-                                            id="contact"
-                                            name="contact"
-                                            type="number"
-                                            autoComplete="off"
-                                            required
-                                            value={contact}
-                                            onChange={onContactChanged}
-                                        /> </div>
-
-                                    <div class="col-4">
-
-
-                                        <label class="form-label" htmlFor="email">
-                                            Email: </label>
-                                        <input
-                                            class="form-control"
-                                            id="email"
-                                            name="email"
-                                            type="email"
-                                            autoComplete="off"
-                                            required
-                                            value={email}
-                                            onChange={onEmailChanged}
-                                        /> </div>
-
-                                    <div class="col-4">
-
-                                        <label class="form-label" htmlFor="address">
-                                            Address: </label>
-                                        <input
-                                            class="form-control"
-                                            id="address"
-                                            name="address"
-                                            type="text"
-                                            autoComplete="off"
-                                            required
-                                            value={address}
-                                            onChange={onAddressChanged}
-                                        /></div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-                                        <button type="submit" class="btn btn-primary">Add User</button>
                                     </div>
+                                    <div>
+                                        <h5><u>Employee Login Credentials</u></h5>
+
+                                    </div>
+
+
+
+
+
+                                    <div class="col-4">
+
+                                        <label class="form-label" htmlFor="username">
+                                            Username:</label>
+                                        <input type="text"
+                                            // class="form-control" 
+                                            class={`form-control ${validUserClass}`}
+                                            id="username"
+                                            name="username"
+                                            placeholder="Create a username with 3 to 20 letters"
+                                            autoComplete="off"
+                                            required
+                                            value={username}
+                                            onChange={onUsernameChanged} />
+
+                                    </div>
+
+
+
+                                    <div class="col-4">
+
+
+                                        <label class="form-label" htmlFor="password">
+                                            Password: </label>
+                                        <input
+                                            class={`form-control ${validPwdClass}`}
+                                            id="password"
+                                            name="password"
+                                            type="password"
+                                            placeholder="Must contain 6-12 letters and special characters"
+                                            required
+                                            value={password}
+                                            onChange={onPasswordChanged}
+                                        />
+
+                                    </div>
+
+
+                                    <div class="col-4">
+
+
+                                        <label class="form-label" htmlFor="roles">
+                                            Employee Role:</label>
+                                        <br />
+                                        <select
+                                            id="roles"
+                                            name="roles"
+                                            class={`form__select `}
+                                            multiple={true}
+                                            size="3"
+                                            required
+                                            value={roles}
+                                            onChange={onRolesChanged}
+                                        >
+                                            {options}
+                                        </select>
+
+                                    </div>
+
+                                    <div class="modal-footer">
+
+
+
+                                        <p class={`form-label ${error ? 'text-danger' : ''}`} aria-live="assertive">
+                                            {error?.data?.message}
+                                        </p>
+                                        <button type="submit" class="btn btn-primary">Add Employee</button>
+
+                                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                                    </div>
+
+
+
                                 </div>
                             </form>
                         </div>

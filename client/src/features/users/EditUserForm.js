@@ -11,11 +11,16 @@ import useTitle from '../../hooks/useTitle'
 
 const USER_REGEX = /^[A-z]{3,20}$/
 const PWD_REGEX = /^[A-z0-9!@#$%]{4,12}$/
+const NIC_REGEX = /^(?:\d{12}|\d{9}[a-zA-Z])$/
+const NUMBER_REGEX = /^\d{10}$/
 
 
 
 const EditUserForm = ({ user }) => {
     useTitle("Edit Employee")
+
+    const handleCancel = () => navigate(`/dash/admin/users`)
+
 
     const [updateUser, {
         isLoading,
@@ -44,6 +49,7 @@ const EditUserForm = ({ user }) => {
     const [fullname, setFullname] = useState(user.fullname)
     const [gender, setGender] = useState(user.gender)
     const [NIC, setNic] = useState(user.NIC)
+    const [validNIC, setValidNIC] = useState(false)
     const [date_of_birth, setDob] = useState(user.date_of_birth)
     const [place_of_birth, setPob] = useState(user.place_of_birth)
     const [age, setAge] = useState(user.age)
@@ -54,6 +60,7 @@ const EditUserForm = ({ user }) => {
     const [employee_type, setEmptype] = useState(user.employee_type)
     const [empID, setEmpid] = useState(user.empID)
     const [contact, setContact] = useState(user.contact)
+    const [validContact, setValidContact] = useState(false)
     const [email, setEmail] = useState(user.email)
     const [address, setAddress] = useState(user.address)
     const [position, setPosition] = useState(user.position)
@@ -66,6 +73,14 @@ const EditUserForm = ({ user }) => {
     useEffect(() => {
         setValidPassword(PWD_REGEX.test(password))
     }, [password])
+
+    useEffect(() => {
+        setValidNIC(NIC_REGEX.test(NIC))
+    }, [NIC])
+
+    useEffect(() => {
+        setValidContact(NUMBER_REGEX.test(contact))
+    }, [contact])
 
 
     useEffect(() => {
@@ -228,15 +243,17 @@ const EditUserForm = ({ user }) => {
 
     let canSave
     if (password) {
-        canSave = [roles.length, validUsername, validPassword].every(Boolean) && !isLoading
+        canSave = [roles.length, validUsername, validPassword, validContact, validNIC].every(Boolean) && !isLoading
     } else {
-        canSave = [roles.length, validUsername].every(Boolean) && !isLoading
+        canSave = [roles.length, validUsername, validContact, validNIC].every(Boolean) && !isLoading
     }
 
-    const errClass = (isError || isDelError) ? "errmsg" : "offscreen"
+    // const errClass = (isError || isDelError) ? "errmsg" : "offscreen"
     const validUserClass = !validUsername ? 'form__input--incomplete' : ''
     const validPwdClass = password && !validPassword ? 'form__input--incomplete' : ''
-    const validRolesClass = !Boolean(roles.length) ? 'form__input--incomplete' : ''
+    const validNICClass = !validNIC ? 'form__input--incomplete' : ''
+    const validContactClass = !validContact ? 'form__input--incomplete' : ''
+    // const validRolesClass = !Boolean(roles.length) ? 'form__input--incomplete' : ''
 
     const errContent = (error?.data?.message || delerror?.data?.message) ?? ''
 
@@ -245,51 +262,17 @@ const EditUserForm = ({ user }) => {
             <div style={{ marginTop: '40px' }} class="leave-list">
                 <div class="row justify-content-center">
                     <form onSubmit={e => e.preventDefault()}>
+                        <div>
+                            <h2>View and Edit Employee Details</h2>
+                            <br />
+                        </div>
                         <div class="form-group">
-                            <div class="row justify-content-center">
-                                <div class="col-4">
+                            <div class="row">
 
-                                    <label class="form-label" htmlFor="username">
-                                        Username: [3-20 letters]</label>
-                                    <input
-                                        class="form-control"
-                                        id="username"
-                                        name="username"
-                                        type="text"
-                                        autoComplete="off"
-                                        value={username}
-                                        onChange={onUsernameChanged}
-                                    />
+                                <div>
+                                    <h5><u>Employee Personal Information</u></h5>
+
                                 </div>
-
-                                <div class="col-4">
-
-
-                                    <label class="form-label" htmlFor="password">
-                                        Password: </label>
-                                    <input
-                                        class="form-control"
-                                        id="password"
-                                        name="password"
-                                        type="password"
-                                        value={password}
-                                        onChange={onPasswordChanged}
-                                    />
-                                </div>
-
-                                <div class="col-4">
-
-                                    <label class="form-label" htmlFor="user-active">
-                                        Active:
-                                        <input
-                                            class="form-checkbox"
-                                            id="user-active"
-                                            name="user-active"
-                                            type="checkbox"
-                                            checked={active}
-                                            onChange={onActiveChanged}
-                                        />
-                                    </label> </div>
 
                                 <div class="col-4">
 
@@ -345,12 +328,12 @@ const EditUserForm = ({ user }) => {
                                         value={gender}
                                         required
                                         onChange={onGenderChanged}
-                                        
+
                                     >
                                         <option value="Male">Male</option>
-                                            <option value="Female">Female</option>
-                                            <option value="Other">Other</option>
-                                            <option value="Personal">Personal</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Other">Other</option>
+                                        <option value="Personal">Personal</option>
 
 
                                     </select>
@@ -361,7 +344,7 @@ const EditUserForm = ({ user }) => {
                                     <label class="form-label" htmlFor="NIC">
                                         NIC: </label>
                                     <input
-                                        class="form-control"
+                                        class={`form-control ${validNICClass}`}
                                         id="NIC"
                                         name="NIC"
                                         type="text"
@@ -443,6 +426,77 @@ const EditUserForm = ({ user }) => {
 
                                 <div class="col-4">
 
+                                    <label class="form-label" htmlFor="contact">
+                                        Contact: </label>
+                                    <input
+                                        class={`form-control ${validContactClass}`}
+
+                                        id="contact"
+                                        name="contact"
+                                        type="text"
+                                        autoComplete="off"
+                                        value={contact}
+                                        onChange={onContactChanged}
+                                    /> </div>
+
+                                <div class="col-4">
+
+
+                                    <label class="form-label" htmlFor="email">
+                                        Email: </label>
+                                    <input
+                                        class="form-control"
+                                        id="email"
+                                        name="email"
+                                        type="text"
+                                        autoComplete="off"
+                                        value={email}
+                                        onChange={onEmailChanged}
+                                    />
+
+                                </div>
+
+                                <div class="col-4">
+                                    <label class="form-label" htmlFor="address">
+                                        Address: </label>
+                                    <input
+                                        class="form-control"
+                                        id="address"
+                                        name="address"
+                                        type="text"
+                                        autoComplete="off"
+                                        value={address}
+                                        onChange={onAddressChanged}
+                                    />
+                                </div>
+
+                                <div>
+
+                                    <div>
+                                        <br />
+
+                                    </div>
+
+                                    <h5><u>Employment Details</u></h5>
+
+                                </div>
+
+                                <div class="col-4">
+
+                                    <label class="form-label" htmlFor="empID">
+                                        Employee ID: </label>
+                                    <input
+                                        class="form-control" disabled
+                                        id="empID"
+                                        name="empID"
+                                        type="text"
+                                        autoComplete="off"
+                                        value={empID}
+                                        onChange={onEmpidChanged}
+                                    /> </div>
+
+                                <div class="col-4">
+
                                     <label class="form-label" htmlFor="department">
                                         Department: </label>
 
@@ -455,9 +509,16 @@ const EditUserForm = ({ user }) => {
                                         required
                                     >
                                         <option value="">Select department</option>
-                                        <option value="HR">HR</option>
-                                        <option value="Finance">Finance</option>
-                                        <option value="IT">IT</option>
+                                        <option value="HR Department">HR Department</option>
+                                        <option value="IT Department">IT Department</option>
+                                        <option value="Accounting Department">Accounting Department</option>
+                                        <option value="Tax Department">Tax Department</option>
+                                        <option value="Audit Department">Audit Department</option>
+                                        <option value="Finance Department">Finance Department</option>
+
+
+
+
                                     </select>
 
 
@@ -520,66 +581,49 @@ const EditUserForm = ({ user }) => {
 
                                     </select> </div>
 
-                                <div class="col-4">
+                                <div>
+                                    <br />
 
-                                    <label class="form-label" htmlFor="empID">
-                                        Employee ID: </label>
-                                    <input
-                                        class="form-control" disabled
-                                        id="empID"
-                                        name="empID"
-                                        type="text"
-                                        autoComplete="off"
-                                        value={empID}
-                                        onChange={onEmpidChanged}
-                                    /> </div>
-
-                                <div class="col-4">
-
-                                    <label class="form-label" htmlFor="contact">
-                                        Contact: </label>
-                                    <input
-                                        class="form-control"
-                                        id="contact"
-                                        name="contact"
-                                        type="text"
-                                        autoComplete="off"
-                                        value={contact}
-                                        onChange={onContactChanged}
-                                    /> </div>
-
-                                <div class="col-4">
-
-
-                                    <label class="form-label" htmlFor="email">
-                                        Email: </label>
-                                    <input
-                                        class="form-control"
-                                        id="email"
-                                        name="email"
-                                        type="text"
-                                        autoComplete="off"
-                                        value={email}
-                                        onChange={onEmailChanged}
-                                    />
+                                </div>
+                                <div>
+                                    <h5><u>Employee Login Credentials</u></h5>
 
                                 </div>
 
+
+
+                                <div class="col-4">
+
+                                    <label class="form-label" htmlFor="username">
+                                        Username: [3-20 letters]</label>
+                                    <input
+                                        class={`form-control ${validUserClass}`}
+
+                                        id="username" disabled
+                                        name="username"
+                                        type="text"
+                                        autoComplete="off"
+                                        value={username}
+                                        onChange={onUsernameChanged}
+                                    />
+                                </div>
+
                                 <div class="col-4">
 
 
-                                    <label class="form-label" htmlFor="address">
-                                        Address: </label>
+                                    <label class="form-label" htmlFor="password">
+                                        Password: </label>
                                     <input
-                                        class="form-control"
-                                        id="address"
-                                        name="address"
-                                        type="text"
-                                        autoComplete="off"
-                                        value={address}
-                                        onChange={onAddressChanged}
+                                        class={`form-control ${validPwdClass}`}
+
+                                        id="password"
+                                        name="password"
+                                        type="password"
+                                        value={password}
+                                        onChange={onPasswordChanged}
                                     />
                                 </div>
+
                                 <div class="col-4">
 
                                     <label class="form-label" htmlFor="roles">
@@ -587,7 +631,7 @@ const EditUserForm = ({ user }) => {
                                     <select
                                         id="roles"
                                         name="roles"
-                                        class="form-select"
+                                        class={`form__select `}
                                         // multiple={true}
                                         size="3"
                                         value={roles}
@@ -595,6 +639,27 @@ const EditUserForm = ({ user }) => {
                                     >
                                         {options}
                                     </select> </div>
+
+                                <div>
+                                    <h4>Do you need to revoke employee access to system? </h4>
+
+                                    <label class="form-label" htmlFor="user-active">
+                                        Employee Active:
+                                        <input
+                                            class="form-checkbox"
+                                            id="user-active"
+                                            name="user-active"
+                                            type="checkbox"
+                                            checked={active}
+                                            onChange={onActiveChanged}
+                                        />
+                                    </label>
+
+                                </div>
+
+
+
+
                                 <div class="row justify-content-center">
                                     <button style={{ marginTop: '10px' }}
                                         class="btn btn-primary col-3"
@@ -602,14 +667,14 @@ const EditUserForm = ({ user }) => {
                                         onClick={onSaveUserClicked}
                                         disabled={!canSave}
                                     >
-                                        Update
+                                        Update Employee
                                     </button>
                                     <button style={{ marginTop: '10px' }}
                                         class="btn btn-danger col-3"
-                                        title="Delete"
-                                        onClick={onDeleteUserClicked}
+                                        title="Cancel"
+                                        onClick={handleCancel}
                                     >
-                                        Delete
+                                        Cancel
                                     </button>
                                 </div>
                             </div>

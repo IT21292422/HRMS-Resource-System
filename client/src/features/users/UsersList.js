@@ -156,13 +156,13 @@ const UsersList = () => {
             </div>
           </div>
         </div>
-        <div class="search">
+        <div class="search-z">
           <div class="row justify-content-center">
             <input
-              class="form-control search-bar"
+              class="form-control search-bar-z"
               type="text"
               id="search"
-              placeholder='Search users'
+              placeholder='Search Employee using Employee ID, Full Name, Employee type'
               onChange={(e) => setSearch(e.target.value)}
             />
           </div>
@@ -182,7 +182,7 @@ const UsersList = () => {
 
                     <th scope="col">Role</th>
 
-                    <th scope="col">Edit</th>
+                    <th scope="col">Action</th>
                   </tr>
                 </thead>
                 <tbody>
