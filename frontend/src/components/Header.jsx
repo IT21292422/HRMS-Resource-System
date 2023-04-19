@@ -7,7 +7,7 @@ const Header = () => {
     <AppBar
       component="nav"
       position="fixed"
-      sx={{ backgroundColor: "#1769aa"}}
+      sx={{ backgroundColor: "#1769aa" }}
       style={{ zIndex: 1201 }}
     >
       <Stack
@@ -33,7 +33,7 @@ const Header = () => {
             component={Link}
             sx={{
               color: "#fff",
-              borderRadius: "0.1rem"
+              borderRadius: "0.1rem",
             }}
             to="/learning/courses"
           >
@@ -45,7 +45,7 @@ const Header = () => {
             component={Link}
             sx={{
               color: "#fff",
-              borderRadius: "0.1rem"
+              borderRadius: "0.1rem",
             }}
             to="/learning/workshops"
           >
@@ -57,7 +57,7 @@ const Header = () => {
             component={Link}
             sx={{
               color: "#fff",
-              borderRadius: "0.1rem"
+              borderRadius: "0.1rem",
             }}
             to="/learning/dashboard/ongoing"
           >

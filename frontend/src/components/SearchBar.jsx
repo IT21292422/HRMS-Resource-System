@@ -15,7 +15,8 @@ const SearchBar = (props) => {
       sx={{
         display: "flex",
         justifyContent: "center",
-        backgroundColor: "#add8e6",
+        // backgroundColor: "#add8e6",
+        backgroundColor: "#037ac4",
         width: "min-width",
       }}
     >

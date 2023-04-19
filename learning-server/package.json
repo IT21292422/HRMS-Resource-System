@@ -8,11 +8,12 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon index.mjs",
     "client": "npm start --prefix ../frontend",
-    "dev":"concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@fontsource/roboto": "^4.5.8",
     "bcrypt": "^5.1.0",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",

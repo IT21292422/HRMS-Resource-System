@@ -6,6 +6,11 @@ import {
   Chip,
   Button,
   Typography,
+  FormControlLabel,
+  FormLabel,
+  FormGroup,
+  Checkbox,
+  FormHelperText,
 } from "@mui/material";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import updateCourse from "../../utils/updateCourse";
@@ -16,18 +21,37 @@ const CourseForm = (props) => {
 
   const [notification, setNotification] = useState(false);
 
-  const [data, setData] = useState({
+  const [data, setFields] = useState({
     ...formData,
   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  console.log(data.required);
 
-    setData((prev) => {
-      return {
-        ...prev,
-        [name]: value,
-      };
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+
+    setFields((prev) => {
+      if (type === "checkbox") {
+        const required = [...prev.required];
+
+        if (checked) {
+          required.push(name);
+        } else {
+          const index = required.indexOf(name);
+          if (index !== -1) {
+            required.splice(index, 1);
+          }
+        }
+        return {
+          ...prev,
+          required,
+        };
+      } else {
+        return {
+          ...prev,
+          [name]: value,
+        };
+      }
     });
   };
 
@@ -65,7 +89,17 @@ const CourseForm = (props) => {
 
   return (
     <Box noValidate autoComplete="off">
-      <Typography variant="h4">Update Form</Typography>
+      <Typography
+        variant="h4"
+        sx={{
+          fontSize: "2rem",
+          color: "#1769aa",
+          fontWeight: "500",
+          marginBottom: "25px",
+        }}
+      >
+        Update Course
+      </Typography>
       <form onSubmit={updateSubmit}>
         <FormControl
           sx={{
@@ -80,7 +114,6 @@ const CourseForm = (props) => {
             onChange={handleChange}
             required
             label="Course Name"
-            error
             value={data.cname}
           />
 
@@ -93,10 +126,9 @@ const CourseForm = (props) => {
             value={data.description}
             rows={6}
             multiline
-            error
           />
 
-          <CloudinaryUploadWidget />
+          <CloudinaryUploadWidget setFields={setFields} />
 
           <Box>
             <TextField
@@ -106,7 +138,6 @@ const CourseForm = (props) => {
               helperText="Incorrect entry."
               onChange={handleChange}
               fullWidth
-              error
             />
             <>
               {tags.map((tag, index) => (
@@ -119,6 +150,48 @@ const CourseForm = (props) => {
             </>
           </Box>
 
+          <Box>
+            <FormLabel component="legend">
+              Select Which Department Of Employees This Course For
+            </FormLabel>
+            <FormGroup>
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    onChange={handleChange}
+                    checked={data.required.includes("HR")}
+                    name="HR"
+                  />
+                }
+                label="HR Departemnet"
+                style={{ color: "black" }}
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    onChange={handleChange}
+                    checked={data.required.includes("IT")}
+                    name="IT"
+                  />
+                }
+                label="IT Support"
+                style={{ color: "black" }}
+              />
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    onChange={handleChange}
+                    checked={data.required.includes("LAW")}
+                    name="LAW"
+                  />
+                }
+                label="LAW Department"
+                style={{ color: "black" }}
+              />
+            </FormGroup>
+            <FormHelperText>select one or more</FormHelperText>
+          </Box>
+
           <TextField
             name="ETC"
             required
@@ -127,7 +200,6 @@ const CourseForm = (props) => {
             helperText="string only"
             sx={{ width: "200px" }}
             value={data.ETC}
-            error
           />
           <Button variant="contained" color="primary" type="submit">
             Update
