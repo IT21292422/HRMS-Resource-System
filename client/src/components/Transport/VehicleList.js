@@ -4,8 +4,10 @@ import { Link } from 'react-router-dom';
 import VehicleCard from './VehicleCard'
 import AddVehicle from './AddVehicle';
 import VehicleReport from './VehicleReport';
+import useTitle from '../../hooks/useTitle';
 
 export default function VehicleList() {
+    useTitle("Vehicle");
 
     const [Vehicles, setVehicles] = useState([]);
     const [Keyword, setKeyword] = useState('')

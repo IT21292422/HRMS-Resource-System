@@ -3,8 +3,10 @@ import axois from "axios";
 import { Link } from 'react-router-dom';
 import RouteCard from './RouteCard'
 import AddRoute from './AddRoute';
+import useTitle from '../../hooks/useTitle';
 
 export default function RouteList() {
+    useTitle("Route");
 
     const [Routes, setRoutes] = useState([]);
     const [Keyword, setKeyword] = useState('')

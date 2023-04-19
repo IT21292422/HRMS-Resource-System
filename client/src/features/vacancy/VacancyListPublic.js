@@ -4,8 +4,11 @@ import { useNavigate, Link } from 'react-router-dom'
 import SearchBar from './SearchBar'
 import NewVacancyForm from './NewVacancyForm'
 import ListPage from './VacancyRecordPublic'
+import useTitle from '../../hooks/useTitle'
 
 function VacancyListPublic() {
+    useTitle("Available Vacancies")
+
     const [posts, setPosts] = useState([])
     const [searchResults, setSearchResults] = useState([])
 

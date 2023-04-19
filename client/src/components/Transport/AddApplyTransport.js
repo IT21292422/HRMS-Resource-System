@@ -4,8 +4,11 @@ import RouteName from "./AddRoute";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import useTitle from "../../hooks/useTitle";
 
 export default function AddApplyTransport() {
+  useTitle("Transport");
+
   const [Emp_id, setEmp_id] = useState("");
   const [routesName, setRoutesName] = useState("");
   const [Vehicle_Type, setVehicle_Type] = useState("");

@@ -3,8 +3,11 @@ import { toast } from "react-toastify"
 import { useSelector, useDispatch } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
 import { reset } from "../features/payroll/payrollSlice"
+import useTitle from "../hooks/useTitle"
 
 function EmpIndPayroll() {
+    useTitle("Employee Payroll")
+
     const [payroll, setpayroll] = useState({})
     const { id } = useParams();
     const navigate = useNavigate();
@@ -20,7 +23,7 @@ function EmpIndPayroll() {
             console.log("Unloading IndividualPayRoll")
             dispatch(reset());
         };
-    }, [isError, message,dispatch]);
+    }, [isError, message, dispatch]);
 
     const { payrolls } = useSelector((state) => state.payrolls);
     const payrollToView = payrolls.find((p) => p._id === id)
@@ -32,7 +35,7 @@ function EmpIndPayroll() {
 
     return (
         <>
-        
+
             <div class="leave-list">
                 <div class="row justify-content-center">
                     <table class='table table-striped table-hover' style={{ margin: "auto", width: "100%" }}>
@@ -66,6 +69,10 @@ function EmpIndPayroll() {
                                 <td>{payroll.BaseSalary}</td>
                             </tr>
                             <tr>
+                                <th>Bonus   :</th>
+                                <td>{payroll.bonus}</td>
+                            </tr>
+                            <tr>
                                 <th>Meal Allowance   :</th>
                                 <td>{payroll.mealAllowance}</td>
                             </tr>
@@ -95,10 +102,12 @@ function EmpIndPayroll() {
                             </tr>
                         </tbody>
                     </table>
-                    <button style={{marginTop:'10px'}} class="btn btn-primary col-3" onClick={() => navigate('/dash/emp/EmployeeViewPayroll')}>Back</button>
+                    <button style={{ marginTop: '10px' }} class="btn btn-primary col-3" onClick={() => navigate('/dash/emp/EmployeeViewPayroll')}>
+                        Back
+                    </button>
                 </div>
             </div>
-            
+
         </>
     )
 }

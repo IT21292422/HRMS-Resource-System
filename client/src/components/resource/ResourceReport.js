@@ -58,8 +58,7 @@ const ResourceReport = () => {
         yaxis: {
             title: 'Quantity',
         },
-        height: 400,
-        width: 450
+        height: 400
 
     }
 
@@ -80,7 +79,7 @@ const ResourceReport = () => {
                     Resource Statistics
                 </button>
                 <div class="modal fade" id="payrollstats" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="ReqLeaveFormLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-dialog modal-dialog-centered modal-lg">
                         <div class="modal-content">
                             <div class="modal-header">
                                 <h5 class="modal-title" id="staticBackdropLabel">Resource Statistics</h5>
@@ -88,7 +87,7 @@ const ResourceReport = () => {
                             </div>
                             <div class="modal-body">
                                 <Plot data={quantityData} layout={quantityLayout} />
-                                <Plot data={empChart} layout={{ title: 'Employees Assigned to a Resource', height:400, width: 450}} />
+                                <Plot data={empChart} layout={{ title: 'Employees Assigned to a Resource', height:400}} />
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>

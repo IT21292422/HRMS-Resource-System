@@ -47,7 +47,7 @@ const Reporting = () => {
     //             type: 'pie',
     //           },
     //         ]}
-    //         layout={{ width: 450, height: 400, title: 'Job Openings by Title' }}
+    //         layout={{ height: 400, title: 'Job Openings by Title' }}
     //       />
 
     //       <h1>Resume Matches</h1>
@@ -59,7 +59,7 @@ const Reporting = () => {
     //             type: 'pie',
     //           },
     //         ]}
-    //         layout={{ width: 450, height: 400, title: 'Resume Matches' }}
+    //         layout={{ height: 400, title: 'Resume Matches' }}
     //       />
     //     </div>
     //     <div>
@@ -72,7 +72,7 @@ const Reporting = () => {
     //               type: 'pie',
     //             },
     //           ]}
-    //           layout={{ width: 450, height: 400, title: 'Resumes per Job' }}
+    //           layout={{ height: 400, title: 'Resumes per Job' }}
     //         />
     //       </div>
     // </>
@@ -83,7 +83,7 @@ const Reporting = () => {
         Resume Statistics
       </button>
       <div class="modal fade" id="resumeroport" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="ReqLeaveFormLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" id="staticBackdropLabel">Resume Statistics</h5>
@@ -100,7 +100,7 @@ const Reporting = () => {
                     type: 'pie',
                   },
                 ]}
-                layout={{ width: 450, height: 400, title: 'Job Openings by Title' }}
+                layout={{ height: 400, title: 'Job Openings by Title' }}
               />
 
               <h1>Resume Matches</h1>
@@ -112,7 +112,7 @@ const Reporting = () => {
                     type: 'pie',
                   },
                 ]}
-                layout={{ width: 450, height: 400, title: 'Resume Matches' }}
+                layout={{ height: 400, title: 'Resume Matches' }}
               />
             </div>
             <div>
@@ -125,7 +125,7 @@ const Reporting = () => {
                     type: 'pie',
                   },
                 ]}
-                layout={{ width: 450, height: 400, title: 'Resumes per Job' }}
+                layout={{ height: 400, title: 'Resumes per Job' }}
               />
             </div>
           </div>

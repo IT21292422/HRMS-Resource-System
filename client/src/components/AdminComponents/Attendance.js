@@ -12,6 +12,7 @@ class Attendance extends Component {
         this.state = {
             attendanceData: []
         }
+        document.title = 'Attendance';
     }
 
     componentDidMount() {

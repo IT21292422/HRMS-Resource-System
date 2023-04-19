@@ -4,9 +4,10 @@ import { useNavigate } from "react-router-dom"
 import { getPayRolls, reset, deletePayRoll } from "../features/payroll/payrollSlice"
 import Spinner from './Spinner'
 import useAuth from "../hooks/useAuth"
+import useTitle from "../hooks/useTitle"
 
 function EmpViewPayroll() {
-
+  useTitle("View Employee Payroll")
 
   const { payrolls, isLoading, isError, message } = useSelector(state => state.payrolls)
   const { username } = useAuth()

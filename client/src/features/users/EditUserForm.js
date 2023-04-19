@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom"
 import { ROLES } from "../../config/roles"
 import { useDispatch } from 'react-redux'
 import { updatePayrollfromUser } from '../payroll/payrollSlice'
+import useTitle from '../../hooks/useTitle'
 
 const USER_REGEX = /^[A-z]{3,20}$/
 const PWD_REGEX = /^[A-z0-9!@#$%]{4,12}$/
@@ -14,6 +15,7 @@ const PWD_REGEX = /^[A-z0-9!@#$%]{4,12}$/
 
 
 const EditUserForm = ({ user }) => {
+    useTitle("Edit Employee")
 
     const [updateUser, {
         isLoading,
@@ -345,10 +347,10 @@ const EditUserForm = ({ user }) => {
                                         onChange={onGenderChanged}
                                         
                                     >
-                                        <option value="">Male</option>
-                                        <option value="HR">Female</option>
-                                        <option value="HR">Other</option>
-                                        <option value="HR">Personal</option>
+                                        <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                            <option value="Other">Other</option>
+                                            <option value="Personal">Personal</option>
 
 
                                     </select>

@@ -5,7 +5,7 @@ import PulseLoader from 'react-spinners/PulseLoader'
 import useTitle from '../../hooks/useTitle'
 
 const EditResume = () => {
-    useTitle('techNotes: Edit Resume')
+    useTitle(' Edit Resume')
 
     const { id } = useParams()
 

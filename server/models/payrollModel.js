@@ -65,6 +65,10 @@ const payrollSchema = mongoose.Schema(
             type:Number,
             required:true
 
+        },
+        bonus:{
+            type:Number,
+            required:false
         }
         // isDeleted:{
         //     type:Boolean,

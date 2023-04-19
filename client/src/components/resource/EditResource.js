@@ -1,8 +1,10 @@
 import React,{useState, useEffect} from 'react'
 import { useParams } from 'react-router-dom';
 import axios from "axios"
+import useTitle from '../../hooks/useTitle';
 
 const EditResource = (props) => {
+    useTitle("Edit Resources")
     //To get the id from URL
     const {id} = useParams()
     

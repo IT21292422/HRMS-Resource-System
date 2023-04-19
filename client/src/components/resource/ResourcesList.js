@@ -4,9 +4,11 @@ import { Link } from 'react-router-dom'
 import axios from "axios"
 import AddResource from './AddResource'
 import ResourceReport from './ResourceReport'
+import useTitle from '../../hooks/useTitle'
 
 const ResourcesList = () => {
-
+    useTitle("Resources")
+    
     const [resources, setResources] = useState([])
     const [Keyword, setKeyword] = useState('')
 
