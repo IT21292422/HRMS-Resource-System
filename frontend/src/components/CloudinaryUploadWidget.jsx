@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { Box, Button } from "@mui/material";
 
 const CloudinaryUploadWidget = (props) => {
-  const { setImage, setFields } = props;
+  const { setFields } = props;
 
   const cloudinaryRef = useRef();
   const widgetRef = useRef();

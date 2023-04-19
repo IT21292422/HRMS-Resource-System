@@ -9,64 +9,47 @@ import UserTable from "../userTable";
 import {
   Box,
   ListItem,
+  Chip,
   ListItemText,
   Typography,
   IconButton,
   ListItemAvatar,
   Avatar,
+  Divider,
   CardActionArea,
   Card,
   Button,
 } from "@mui/material";
+import Collapse from "@mui/material/Collapse";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import SchoolIcon from "@mui/icons-material/School";
+import { Stack } from "@mui/system";
 
 const ManageCourse = () => {
   const { id } = useParams();
 
   const [form, setForm] = useState(false);
-  // const [formData, setFormData] = useState({});
+  const username = localStorage.getItem("username");
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-
-    // setFormData((prev) => {
-    //   return {
-    //     ...prev,
-    //     [name]: value,
-    //   };
-    // });
-  };
-
-  const { data, isLoading } = useQuery(["details", id, "admin"], fetchCourse, {
-    onError: (error) => {
-      console.log(`Error Occured ${error}`);
-    },
-    onSuccess: (data) => {
-      console.log("Course Successfully Load");
-      // const { cid, img, cname, description, ETC, skills } = data;
-
-      // setFormData({
-      //   cid,
-      //   img,
-      //   cname,
-      //   description,
-      //   ETC,
-      //   skills,
-      // });
-    },
-  });
+  const { data, isLoading } = useQuery(
+    ["details", id, "admin", username],
+    fetchCourse,
+    {
+      onError: (error) => {
+        console.log(`Error Occured ${error}`);
+      },
+      onSuccess: (data) => {
+        console.log("Course Successfully Load");
+      },
+    }
+  );
 
   const mutation = useMutation(deleteModule);
 
   const handleModuleDelete = async (cid, mid) => {
-    const moduleObj = {
-      cid,
-      mid,
-    };
-
+    const moduleObj = { cid, mid };
     try {
       console.log(cid, mid);
       const result = await mutation.mutateAsync(moduleObj);
@@ -88,6 +71,7 @@ const ManageCourse = () => {
     deptCounts,
     enrollers,
     skills,
+    required,
     createdAt,
     updatedAt,
     modules,
@@ -96,25 +80,56 @@ const ManageCourse = () => {
 
   const lessons =
     modules &&
-    modules.map((lesson) => {
+    modules.map((lesson, index) => {
       const { _id, header } = lesson;
       return (
-        <ListItem
-          sx={{ width: "400px", color: "black", backgroundColor: "#d2e8f9" }}
+        <Box
+          key={_id}
+          sx={{
+            width: "250px",
+            padding: "1rem",
+            boxShadow:
+              "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px",
+          }}
         >
-          <ListItemAvatar>
-            <Avatar>
-              <SchoolIcon />
-            </Avatar>
-          </ListItemAvatar>
-          <ListItemText primary={header} secondary="Secondary text" />
-          <IconButton aria-label="edit" onClick={() => handleUpdateModule(_id)}>
-            <EditIcon />
-          </IconButton>
-          <IconButton edge="end" aria-label="delete">
-            <DeleteIcon onClick={() => handleModuleDelete(id, _id)} />
-          </IconButton>
-        </ListItem>
+          <Box>
+            <Typography variant="h6" sx={{ color: "#037ac4" }}>
+              {`${header.slice(0, 22)}`}
+            </Typography>
+          </Box>
+          <Divider />
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              gap: "6px",
+              padding: "10px 0",
+            }}
+          >
+            <SchoolIcon sx={{ color: "#038de2" }} />
+            <Typography sx={{ color: "#1e1e1e" }} variant="subtitle2">
+              {`lesson ${index + 1}`}
+            </Typography>
+          </Box>
+          <Box sx={{ display: "flex", gap: "1rem", alignItems: "center" }}>
+            <Button
+              variant="outlined"
+              size="small"
+              onClick={() => handleUpdateModule(_id)}
+              endIcon={<EditIcon />}
+            >
+              Edit
+            </Button>
+            <Button
+              variant="contained"
+              onClick={() => handleModuleDelete(id, _id)}
+              size="small"
+              endIcon={<DeleteIcon />}
+            >
+              Delete
+            </Button>
+          </Box>
+        </Box>
       );
     });
 
@@ -131,33 +146,126 @@ const ManageCourse = () => {
 
   return (
     <Box sx={{ backgroundColor: "#ffff" }}>
-      <Box p={10} sx={{ display: "flex", backgroundColor: "#1D9BF0" }}>
+      <Box
+        p={8}
+        pt={12}
+        pb={5}
+        sx={{
+          minHeight: "40vh",
+          display: "flex",
+          gap: "2rem",
+          background: "rgb(3,122,196)",
+          background:
+            "linear-gradient(180deg, rgba(3,122,196,1) 25%, rgba(84,174,203,1) 88%)",
+          boxShadow:
+            "rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px",
+        }}
+      >
         <Box
           sx={{
             display: "flex",
+            flexDirection: "column",
+            gap: "1rem",
           }}
         >
+          <img
+            style={{
+              maxWidth: "350px",
+              maxHeight: "200px",
+              boxShadow:
+                "rgba(0, 0, 0, 0.15) 0px 15px 25px, rgba(0, 0, 0, 0.05) 0px 5px 10px",
+            }}
+            src={img}
+          />
+
+          <Box
+            sx={{ marginTop: "auto", display: "flex", flexDirection: "column" }}
+          >
+            <Typography
+              variant="subtitle2"
+              sx={{ color: "#ffff", marginBottom: "4px" }}
+            >
+              Skill Tags
+            </Typography>
+            <Box>
+              {skills.map((skill) => (
+                <Chip
+                  key={skill}
+                  label={skill}
+                  style={{
+                    marginRight: "8px",
+                    fontWeight: 600,
+                    color: "#343434",
+                    backgroundColor: "#DBD7D2",
+                    border: "1px solid #353839",
+                  }}
+                />
+              ))}
+            </Box>
+          </Box>
+        </Box>
+
+        <Box sx={{ flexGrow: 4, color: "#ffff" }}>
           <Box
             sx={{
               display: "flex",
-              justifyContent: "center",
-              width: "400px",
-              height: "200px",
-              flexGrow: 1,
+              height: "100%",
+              flexDirection: "column",
+              alignItems: "space-between",
+              justifyContent: "space-between",
             }}
           >
-            <img src={img} />
+            <Typography
+              variant="h1"
+              sx={{ fontWeight: "600", fontSize: "2.5rem" }}
+            >
+              {`${cname}-(${cid})`}
+            </Typography>
+
+            <Typography
+              sx={{ minHeight: "4rem", colro: "#cbcbcb", maxHeight: "4rem" }}
+            >
+              {description.slice(0, 180) + "..."}
+            </Typography>
+
+            <Box
+              sx={{
+                display: "flex",
+                gap: "30px",
+                colorr: "#d1d1d1",
+              }}
+            >
+              <Typography sx={{ fontSize: "1.2rem", fontWeight: "600" }}>
+                No Of Modules: {modules.length}
+              </Typography>
+              <Typography sx={{ fontSize: "1.2rem", fontWeight: "600" }}>
+                Time To Complete: {ETC}
+              </Typography>
+              <Typography sx={{ fontSize: "1.2rem", fontWeight: "600" }}>
+                Created At: {createdAt.slice(0, 10)}
+              </Typography>
+            </Box>
+
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: "1rem",
+              }}
+            >
+              <Button
+                sx={{ width: "180px" }}
+                variant="contained"
+                onClick={() => setForm((prev) => !prev)}
+              >
+                Update Course
+              </Button>
+
+              <Button variant="contained" sx={{ width: "100px" }}>
+                Visit
+              </Button>
+            </Box>
           </Box>
-        </Box>
-        <Box sx={{ flexGrow: 4, color: "#fff" }}>
-          <Typography
-            variant="h5"
-            sx={{ fontWeight: "600" }}
-          >{`${cname}-(${cid})`}</Typography>
-
-          <Typography>{description}</Typography>
-
-          <Button onClick={() => setForm((prev) => !prev)}>Edt</Button>
         </Box>
       </Box>
 
@@ -171,45 +279,95 @@ const ManageCourse = () => {
           }}
         >
           <CourseForm
-            formData={{ cid, img, cname, description, ETC, skills }}
+            formData={{ cid, img, cname, description, ETC, skills, required }}
           />
         </Box>
       )}
 
-      <Box sx={{ margin: "2rem" }}>
-        <Card
-          sx={{
-            width: "300px",
-            height: "180px",
-            backgroundColor: "#E8F3FD",
-            borderRadius: "5px",
-            display: "flex",
-            alignItems: "center",
-            color: "black",
-          }}
-        >
-          <CardActionArea
+      <Box sx={{ padding: "2rem 4rem", backgroundColor: "#f2f2f2" }}>
+        <Box sx={{ display: "flex", gap: "1rem" }}>
+          <Card
             sx={{
-              color: "#595959",
               width: "300px",
-              height: "300px",
+              height: "200px",
+              color: "#ffff",
+              borderRadius: "0",
+              background: "rgb(15,90,168)",
+              background:
+                "linear-gradient(127deg, rgba(15,90,168,1) 18%, rgba(3,146,196,1) 82%)",
               display: "flex",
-              flexDirection: "column",
               alignItems: "center",
             }}
-            onClick={handleCreateModule}
           >
-            <Typography variant="h6">Add New Module</Typography>
-            <Box>
-              <AddCircleOutlineIcon size="large" />
+            <CardActionArea
+              sx={{
+                width: "300px",
+                height: "300px",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+              onClick={handleCreateModule}
+            >
+              <Typography sx={{ fontWeight: "500", fontSize: "1.5rem" }}>
+                Create New Module
+              </Typography>
+              <Box>
+                <AddCircleOutlineIcon size="large" />
+              </Box>
+            </CardActionArea>
+          </Card>
+          <Box
+            sx={{
+              flexGrow: 1,
+              padding: "1.2rem",
+              background: "rgb(10,108,131)",
+              background:
+                "linear-gradient(127deg, rgba(10,108,131,1) 32%, rgba(84,124,203,1) 93%)",
+            }}
+          >
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                height: "100%",
+                justifyContent: "space-evenly",
+              }}
+            >
+              <Typography
+                sx={{ fontWeight: "500", color: "#ffff", fontSize: "1.5rem" }}
+              >
+                Insights
+              </Typography>
+              <Typography
+                sx={{ fontSize: "1.8rem", fontWeight: "500", color: "#ffff" }}
+              >
+                {enrollers.length < 20 &&
+                  `More enrollments can be expected in future`}
+                {enrollers.length > 20 &&
+                  `Employees are interested in this course`}
+              </Typography>
+              <Box sx={{ display: "flex", gap: "3rem" }}>
+                <Typography
+                  sx={{ fontWeight: "500", color: "#ffff", fontSize: "1.2rem" }}
+                >
+                  No Of Modules {modules.length}
+                </Typography>
+                <Typography
+                  sx={{ fontWeight: "500", color: "#ffff", fontSize: "1.2rem" }}
+                >
+                  No Of Enrollments {enrollers.length}
+                </Typography>
+              </Box>
             </Box>
-          </CardActionArea>
-        </Card>
+          </Box>
+        </Box>
       </Box>
 
-      <Box sx={{ margin: "2rem" }}>
+      <Box sx={{ padding: "2rem", backgroundColor: "#f2f2f2" }}>
         <Typography
-          mb={2}
+          mt={2}
+          mb={5}
           sx={{
             color: "#595959",
             fontSize: "1.2rem",
@@ -217,13 +375,18 @@ const ManageCourse = () => {
             textAlign: "center",
           }}
         >
-          Modules
+          Active Modules
         </Typography>
         {modules && (
           <Box
             sx={{
               display: "grid",
-              gridTemplateColumns: "repeat(3, 1fr)",
+              gridTemplateColumns: {
+                sm: "repeat(1, 1fr)",
+                md: "repeat(2, 1fr)",
+                lg: "repeat(4, 1fr)",
+                xl: "repeat(5, 1fr)",
+              },
               alignItems: "center",
               justifyItems: "center",
               rowGap: "5px",

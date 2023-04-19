@@ -37,11 +37,12 @@ const CoursePage = () => {
   console.log(username);
 
   const { data, isLoading } = useQuery(
-    ["details", id, "employee"],
+    ["details", id, "employee", username],
     fetchCourse,
     {
       onSuccess: (data) => {
         console.log("course successfully load");
+        setEnroll(data.isEnrolled);
       },
       onError: (error) => {
         console.log(`Error Occured ${error}`);
@@ -53,16 +54,8 @@ const CoursePage = () => {
     return <h1>Loading....</h1>;
   }
 
-  const {
-    cid,
-    description,
-    cname,
-    enrollers,
-    skills,
-    updatedAt,
-    ETC,
-    createdAt,
-  } = data;
+  const { cid, description, cname, skills, updatedAt, ETC, createdAt } = data;
+  console.log(data);
 
   const skiilSet = skills.map((skill) => (
     <span
@@ -109,7 +102,10 @@ const CoursePage = () => {
           <Typography variant="h3" fontWeight="500">
             {cname} ({cid})
           </Typography>
-          <Typography variant="body2">{description}</Typography>
+          <Typography variant="body2">{`${description.slice(
+            0,
+            500
+          )}...`}</Typography>
           <Stack
             pt={3}
             pb={3}

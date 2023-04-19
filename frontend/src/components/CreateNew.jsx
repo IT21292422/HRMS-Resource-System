@@ -4,6 +4,7 @@ import {
   FormControl,
   TextField,
   MenuItem,
+  Typography,
   Chip,
   FormGroup,
   FormLabel,
@@ -138,6 +139,17 @@ const CreateNew = () => {
       {notification.type && (
         <AlertBox type={notification.type} message={notification.message} />
       )}
+      <Typography
+        variant="h4"
+        sx={{
+          fontSize: "2rem",
+          color: "#1769aa",
+          fontWeight: "500",
+          marginBottom: "25px",
+        }}
+      >
+        Create New Course
+      </Typography>
       <form onSubmit={handleSubmit}>
         <FormControl
           sx={{

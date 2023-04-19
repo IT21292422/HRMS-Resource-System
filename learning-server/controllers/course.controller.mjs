@@ -25,7 +25,7 @@ const enrolledToCourse = async (req, res) => {
 
     if (departments.some((dep) => dep.equals(department))) {
       await Course.findOneAndUpdate(
-        { _id: course._id },
+        { _id: course._id, enrollers: { $ne: employee._id } },
         {
           $addToSet: { enrollers: employee._id },
           $inc: { [`deptCounts.${departmentName}`]: 1 },
@@ -146,6 +146,9 @@ const createCourse = async (req, res) => {
 const getCourseByID = async (req, res) => {
   try {
     const { id, type } = req.params;
+    const { username } = req.query;
+
+    let isEnrolled = false;
 
     if (type === "employee") {
       const course = await Course.findOne({ cid: id })
@@ -157,7 +160,30 @@ const getCourseByID = async (req, res) => {
         return res.status(404).json({ message: "Not Found" });
       }
 
-      return res.status(200).json(course);
+      const required = [];
+
+      for (const dept in course.requireTo) {
+        const result = await Department.findOne(
+          {
+            _id: course.requireTo[dept],
+          },
+          { dname: 1 }
+        );
+        required.push(result);
+      }
+
+      if (username) {
+        const { enrolled } = await Employee.findOne({ username: username });
+        const enrollSet = new Set(
+          enrolled.map((course) => course.courseId.toString())
+        );
+
+        isEnrolled = enrollSet.has(course._id.toString());
+      }
+
+      return res
+        .status(200)
+        .json({ ...course.toObject(), required, isEnrolled });
     } else if (type === "admin") {
       const course = await Course.findOne({ cid: id })
         .populate("modules")
@@ -168,7 +194,34 @@ const getCourseByID = async (req, res) => {
       if (!course) {
         return res.status(404).json({ message: "Not Found" });
       }
-      return res.status(200).json(course);
+
+      const required = [];
+
+      for (const dept in course.requireTo) {
+        const result = await Department.findOne(
+          {
+            _id: course.requireTo[dept],
+          },
+          { did: 1, _id: 0 }
+        );
+
+        required.push(result.did);
+      }
+
+      console.log(required);
+
+      if (username) {
+        const { enrolled } = await Employee.findOne({ username: username });
+        const enrollSet = new Set(
+          enrolled.map((course) => course.courseId.toString())
+        );
+
+        isEnrolled = enrollSet.has(course._id.toString());
+      }
+
+      return res
+        .status(200)
+        .json({ ...course.toObject(), required, isEnrolled });
     }
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -177,14 +230,28 @@ const getCourseByID = async (req, res) => {
 
 const updateCourseByID = async (req, res) => {
   try {
-    const { cid, ...updateData } = req.body;
+    const { cid, required, ...updateData } = req.body;
+    const require = [];
+    const getDeptObj = async (dept) => {
+      const id = await Department.findOne({ did: dept }, { _id: 1 });
+      return id;
+    };
 
-    const result = await Course.findOneAndUpdate({ cid: cid }, updateData);
+    for (const dept in required) {
+      const result = await getDeptObj(required[dept]);
+      require.push(result);
+    }
 
-    console.log(result);
+    console.log(require);
+
+    const result = await Course.findOneAndUpdate(
+      { cid: cid },
+      { ...updateData, requireTo: require }
+    );
+
     res.status(200).json({ message: "course updated successfully" });
   } catch (err) {
-    res.ststus(500).json({ message: err.message });
+    res.status(500).json({ message: err.message });
   }
 };
 
