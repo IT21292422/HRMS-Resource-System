@@ -58,7 +58,7 @@ class Attendance extends Component {
                     <div class="row justify-content-end">
                         <GenerateAttendanceReport></GenerateAttendanceReport>
                         <CreateEmpQR></CreateEmpQR>
-                        {/* <ViewSuspiciousLeaveRecord></ViewSuspiciousLeaveRecord> */}
+                        <ViewSuspiciousLeaveRecord></ViewSuspiciousLeaveRecord>
                     </div>
                 </div>
                 <div class="search">
