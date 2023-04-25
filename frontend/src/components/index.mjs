@@ -31,3 +31,4 @@ export { default as Status } from "./Status";
 export { default as AlertBox } from "./AlertBox";
 export { default as Editor } from "./Editor";
 export { default as CourseForm } from "./CourseForm";
+export { default as DialogBox } from "./DialogBox";

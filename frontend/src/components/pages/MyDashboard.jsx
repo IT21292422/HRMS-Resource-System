@@ -20,35 +20,28 @@ const username = localStorage.getItem("username");
 const firstName = localStorage.getItem("firstName");
 const lastName = localStorage.getItem("lastName");
 
-console.log(username);
-
 const MyDashboard = () => {
-  const [inside, setInside] = useState({
-    enrolled: [],
-    completed: [],
-  });
-  const { isLoading, data } = useQuery(["inside", username], fetchEmployee, {
-    onError: (error) => {
-      console.log("error fetching courses", error);
-    },
-    onSuccess: (data) => {
-      console.log("courses loaded succesfully", data);
-
-      const { department, enrolled, completed } = data;
-
-      setInside({
-        enrolled,
-        completed,
-      });
-    },
-  });
-
-  console.log(data);
-
   const { type } = useParams();
   const navigate = useNavigate();
 
   const [page, setPage] = useState(type);
+
+  // const [inside, setInside] = useState({
+  //   enrolled: [],
+  //   completed: [],
+  // });
+
+  const { isLoading, data } = useQuery(["inside", username], fetchEmployee, {
+    onError: (error) => {
+      console.log("error fetching courses", error);
+    },
+  });
+
+  if (isLoading) {
+    return <h1>Loading</h1>;
+  }
+
+  const { enrolled } = data;
 
   const handlePage = (page) => {
     console.log(page);
@@ -183,7 +176,7 @@ const MyDashboard = () => {
 
         <Box p={10}>
           {console.log(page == "ongoing")}
-          {page == "ongoing" && <Ongoing content={inside.enrolled} />}
+          {page == "ongoing" && <Ongoing content={enrolled} />}
           {page == "required" && <Required />}
           {page == "completed" && <Completed />}
           {page == "stats" && <Stats />}

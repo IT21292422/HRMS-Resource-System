@@ -20,9 +20,6 @@ const enrolledToCourse = async (req, res) => {
     const departmentName = employee.department.did;
     const departments = course.requireTo;
 
-    console.log(department, departments);
-    // console.log(departments.some((dep) => dep.equals(department))
-
     if (departments.some((dep) => dep.equals(department))) {
       await Course.findOneAndUpdate(
         { _id: course._id, enrollers: { $ne: employee._id } },
@@ -48,19 +45,15 @@ const enrolledToCourse = async (req, res) => {
       );
 
       await session.commitTransaction();
-      console.log("end");
-
-      return res
-        .status(200)
-        .json({ message: "you successfully enrolled to the course" });
+      return res.status(200).json({ message: "Successfully Enrolled" });
     } else {
       await session.abortTransaction();
-      return res
-        .status(500)
-        .json({ message: "you are not allowed to enrolled this course" });
+      return res.status(500).json({ message: "Not Allowed" });
     }
   } catch (err) {
     res.status(500).json({ message: err.message });
+  } finally {
+    session.endSession();
   }
 };
 

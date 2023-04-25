@@ -87,8 +87,6 @@ const updateModuelProg = async (req, res) => {
       },
     };
 
-    console.log(filter);
-
     const result = await Employee.findOneAndUpdate(
       filter,
       {
@@ -181,8 +179,6 @@ const getModuleByID = async (req, res) => {
       return res.status(404).json({ message: "Not Found" });
     }
 
-    // console.log(module);
-
     res.status(200).json(module);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -208,8 +204,6 @@ const updateModuleByID = async (req, res) => {
 };
 
 const deleteModuleByID = async (req, res) => {
-  console.log(req.body);
-  console.log(req.params);
   const { cid, mid } = req.body;
 
   const session = await mongoose.startSession();
@@ -233,12 +227,12 @@ const deleteModuleByID = async (req, res) => {
 
     if (update.acknowledged) {
       await session.commitTransaction();
-      return res
-        .status(200)
-        .json({ message: `${cid}:${mid} Succcessfully Deleted` });
+      return res.status(200).json({ message: `Successfully Deleted` });
     }
   } catch (err) {
     res.status(500).json({ message: err.message });
+  } finally {
+    session.endSession();
   }
 };
 

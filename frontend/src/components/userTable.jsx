@@ -10,6 +10,7 @@ const userTable = (props) => {
   const [status, setStatus] = useState({
     left: mCount,
     complete: 0,
+    width: 0,
   });
 
   const [display, setDisplay] = useState(false);
@@ -21,7 +22,7 @@ const userTable = (props) => {
     {
       field: "button",
       headerName: "Button",
-      width: 85,
+      width: 80,
       renderCell: (params) => (
         <Button onClick={() => handleClick(params.row.completed)}>Check</Button>
       ),
@@ -56,7 +57,7 @@ const userTable = (props) => {
       <Box sx={{ width: "50vw" }}>
         {display && <DoughnutChart status={status} />}
       </Box>
-      <Box sx={{ height: 300, maxWidth: "fitContent" }}>
+      <Box sx={{ height: 300, maxWidth: "50vw" }}>
         <DataGrid rows={rows} columns={columns} />
       </Box>
     </Box>

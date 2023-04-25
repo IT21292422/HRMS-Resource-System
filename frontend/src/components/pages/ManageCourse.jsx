@@ -4,17 +4,12 @@ import { useQuery, useMutation } from "@tanstack/react-query";
 import fetchCourse from "../../../utils/fetchCourse";
 import deleteModule from "../../../utils/deleteModule";
 import BarChart from "../BarChart";
-import { CourseForm } from "../index.mjs";
+import { CourseForm, DialogBox } from "../index.mjs";
 import UserTable from "../userTable";
 import {
   Box,
-  ListItem,
   Chip,
-  ListItemText,
   Typography,
-  IconButton,
-  ListItemAvatar,
-  Avatar,
   Divider,
   CardActionArea,
   Card,
@@ -31,6 +26,13 @@ const ManageCourse = () => {
   const { id } = useParams();
 
   const [form, setForm] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [notification, setNotification] = useState({
+    success: false,
+    title: "",
+    message: "",
+  });
+
   const username = localStorage.getItem("username");
 
   const { data, isLoading } = useQuery(
@@ -46,7 +48,29 @@ const ManageCourse = () => {
     }
   );
 
-  const mutation = useMutation(deleteModule);
+  const mutation = useMutation(deleteModule, {
+    onSuccess: (data) => {
+      setNotification((prev) => ({
+        success: true,
+        title: data.message,
+        message: `Module is successfully deleted`,
+      }));
+      setOpen(true);
+      queryClient.invalidateQueries(["details", id, "admin", username]);
+    },
+    onError: (error) => {
+      setOpen(true);
+      setNotification((prev) => ({
+        ...prev,
+        title: error.message,
+        message: "Module deletion failed",
+      }));
+    },
+  });
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   const handleModuleDelete = async (cid, mid) => {
     const moduleObj = { cid, mid };
@@ -92,6 +116,14 @@ const ManageCourse = () => {
               "rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px",
           }}
         >
+          {open && (
+            <DialogBox
+              open={open}
+              handleClose={handleClose}
+              title={notification.title}
+              message={notification.message}
+            />
+          )}
           <Box>
             <Typography variant="h6" sx={{ color: "#037ac4" }}>
               {`${header.slice(0, 22)}`}
@@ -193,6 +225,7 @@ const ManageCourse = () => {
                   key={skill}
                   label={skill}
                   style={{
+                    marginBottom: "10x",
                     marginRight: "8px",
                     fontWeight: 600,
                     color: "#343434",
@@ -225,7 +258,7 @@ const ManageCourse = () => {
             <Typography
               sx={{ minHeight: "4rem", colro: "#cbcbcb", maxHeight: "4rem" }}
             >
-              {description.slice(0, 180) + "..."}
+              {description.slice(0, 200) + "..."}
             </Typography>
 
             <Box

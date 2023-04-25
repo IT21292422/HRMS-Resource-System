@@ -4,10 +4,15 @@ import { CourseInfoCard } from "./index.mjs";
 
 const Ongoing = (props) => {
   const { content } = props;
-  console.log(content);
 
   const ongoing = content.map((course) => (
-    <CourseInfoCard key={course._id} cname={course.cname} />
+    <CourseInfoCard
+      key={course._id}
+      completedCount={course.completedModules.length}
+      moduleCount={course.courseId.modules.length}
+      cname={course.courseId.cname}
+      img={course.courseId.img}
+    />
   ));
   return <Stack gap={5}>{ongoing}</Stack>;
 };
