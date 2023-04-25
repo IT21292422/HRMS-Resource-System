@@ -8,8 +8,6 @@ const signUpEmployee = async (req, res) => {
   const { username, password, department, role, firstName, lastName } =
     req.body;
 
-  // return res.status(200).json({ message: `${req.body}` });
-
   try {
     const employee = Employee.create({
       username,
@@ -19,8 +17,6 @@ const signUpEmployee = async (req, res) => {
       firstName,
       lastName,
     });
-
-    // console.log(employee);
 
     const token = createJWT(employee);
     res.status(200).json({ token, employee });
@@ -79,11 +75,13 @@ const getEmployeeByID = async (req, res) => {
   try {
     const employee = await Employee.findOne({ username: id })
       .populate("department")
-      .populate("enrolled");
+      .populate("enrolled.courseId");
 
     if (!employee) {
       return res.status(404).json({ message: "Not Found" });
     }
+
+    console.log(employee);
 
     res.status(200).json(employee);
   } catch (err) {

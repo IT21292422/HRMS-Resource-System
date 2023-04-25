@@ -11,14 +11,15 @@ import {
 import { Stack } from "@mui/system";
 
 const CourseInfoCard = (props) => {
-  const { cname } = props;
+  const { cname, img, moduleCount, completedCount } = props;
+
+  console.log(moduleCount);
+  console.log(completedCount);
+  const rate = Math.round(((completedCount + 1) / moduleCount) * 100);
+  console.log(rate);
   return (
     <Card sx={{ display: "flex", width: "800px" }}>
-      <CardMedia
-        component="img"
-        sx={{ width: 150 }}
-        image="https://d3njjcbhbojbot.cloudfront.net/api/utilities/v1/imageproxy/https://coursera-course-photos.s3.amazonaws.com/19/554c8d156a477690c6f0b81733c11c/intoduction-to-statistics_XFDS112.jpg"
-      />
+      <CardMedia component="img" sx={{ width: 150 }} image={img} />
       <Box sx={{ width: "100%" }}>
         <CardContent>
           <Box sx={{ display: "flex" }}>
@@ -44,7 +45,10 @@ const CourseInfoCard = (props) => {
 
                 <Box>
                   <Typography>Complete</Typography>
-                  <LinearProgress variant="determinate" />
+                  <LinearProgress
+                    variant="determinate"
+                    value={rate ? rate : 0}
+                  />
                 </Box>
               </Stack>
             </Box>
