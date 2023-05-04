@@ -59,7 +59,7 @@ function PaySlipCard({ payroll }) {
                                     Gross Salary
                                 </th>
                                 <td align="right">
-                                    {payroll.travelAllowance + payroll.BaseSalary + payroll.mealAllowance + payroll.otPaid}
+                                    {payroll.travelAllowance + payroll.BaseSalary + payroll.mealAllowance + payroll.otPaid+payroll.bonus}
                                 </td>
                             </tr >
                             <tr>
