@@ -25,9 +25,13 @@ class EmployeeReqLeaveForm extends Component {
         this.setState({empID:event.target.value});
 
         var errorMessage = document.getElementById("errMsgEmpID");
-        
-        if(this.state.empID.length < 2) {
-            errorMessage.innerHTML = "The minimum length of employee id should be 3";
+        if(this.state.empID[0] != "U"){
+            errorMessage.innerHTML = "Employee Id should start with U";
+            this.setState({errorEmpID: false});
+        }
+        else
+        if(this.state.empID.length < 4) {
+            errorMessage.innerHTML = "The minimum length of employee id should be 5";
             this.setState({errorEmpID: false});
         }
         else {
