@@ -17,10 +17,14 @@ const ResourceCard = (props) => {
       console.log(error.response.data)
   })
 }
+ var reLevel = 10
+ if(quantity<=reLevel){
+  var msg = "table-danger"
+ }
 
   return (
     <>  
-    <tr>
+    <tr class={msg}>
     <td>  <Link to={{pathname:`/dash/admin/resource/${id}`}} class="btn btn-outline-primary">{name}  </Link>  </td>
   
     <td>    {type}    </td> 
