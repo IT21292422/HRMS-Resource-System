@@ -73,6 +73,21 @@ const EditResource = (props) => {
         
     }
 
+    const myWidget = window.cloudinary.createUploadWidget(
+        {
+            cloudName: "dhzgmok7k",
+            uploadPreset: "k5ufwo6f",
+        },
+        (error, result) => {
+            if (!error && result && result.event === "success") {
+                console.log("Done! Here is the image info: ", result.info);
+                document.getElementById("uploadedimage").setAttribute("src", result.info.url);
+                console.log(result.info.url)
+                setImageURL(result.info.url);
+            }
+        }
+    )
+
         return (
             <div style={{marginTop:'100px'}} class="leave-list">
                 <div class="row justify-content-center">
@@ -109,7 +124,10 @@ const EditResource = (props) => {
                                 </div>
                                 <div class="col-6">
                                     <label for="imageURL" class="form-label">Image URL</label>
-                                    <input type="text" class="form-control" id="imageURL" value={imageURL} onChange={(e) => setImageURL(e.target.value)}/>
+                                    <button type="button" style={{ margin: "25px" }} className="btn btn-primary" onClick={(e) => {
+                                            myWidget.open();
+                                        }}>Upload Image</button>
+                                        <img id="uploadedimage" src={imageURL} height={150}/>
                                 </div>
                                 <div class="row justify-content-center">
                                     <button type="submit" style={{marginTop:'10px'}} class="col-3 btn btn-primary">Update</button>

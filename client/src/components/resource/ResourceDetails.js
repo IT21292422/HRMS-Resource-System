@@ -107,8 +107,8 @@ const ResourceDetails = (props) => {
           <td>  {orderedDate} </td>
         </tr>
         <tr>
-          <th>Image URL</th>
-          <td>  {imageURL} </td>
+          <th>Image</th>
+          <td>  <div><img src={imageURL} height={200} alt="resource image"/> </div> </td>
         </tr>
      
         </tbody>      

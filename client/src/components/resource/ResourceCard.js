@@ -17,10 +17,14 @@ const ResourceCard = (props) => {
       console.log(error.response.data)
   })
 }
+ var reLevel = 10
+ if(quantity<=reLevel){
+  var msg = "table-danger"
+ }
 
   return (
     <>  
-    <tr>
+    <tr class={msg}>
     <td>  <Link to={{pathname:`/dash/admin/resource/${id}`}} class="btn btn-outline-primary">{name}  </Link>  </td>
   
     <td>    {type}    </td> 
@@ -28,7 +32,7 @@ const ResourceCard = (props) => {
     <td>    {invoiceNo}   </td>
     <td>    {supplierName}    </td>
     <td>    {orderedDate} </td>
-    <td>    {imageURL} </td>
+    <td>    <div><img src={imageURL} height={150}/> </div> </td>
     <td>    
       <Link to={{ pathname: `/dash/admin/editResource/${id}`}} >
       <button type="button" class="btn btn-primary">Edit</button> 

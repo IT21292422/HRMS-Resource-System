@@ -36,23 +36,6 @@ const ResourcesList = () => {
         return name.includes(keyword) || type.includes(keyword) || invoiceNo.includes(keyword) || supplierName.includes(keyword)
     })
 
-    const filterResourceTypeDevice = resources.filter((resource) => resource.type === "Device")
-    console.log(filterResourceTypeDevice)
-    const filterResourceTypeStationary = resources.filter((resource) => resource.type === "Stationary")
-    console.log(filterResourceTypeStationary)
-
-    const renderFilterResourceTypeDevice = filterResourceTypeDevice.map((resources) => {
-        return (
-            <ResourceCard resources={resources} />
-        )
-    })
-
-    const renderFilterResourceTypeStationary = filterResourceTypeStationary.map((resources) => {
-        return (
-            <ResourceCard resources={resources} />
-        )
-    })
-
     const renderResourcesList = filteredResources.map((resources) => {
         return (
             <ResourceCard resources={resources} />
@@ -111,7 +94,7 @@ const ResourcesList = () => {
                             <th>Invoice No</th>
                             <th>Supplier Name</th>
                             <th>Ordered Date</th>
-                            <th>Image URL</th>
+                            <th>Image</th>
                             <th></th>
                             <th></th>
                         </tr>

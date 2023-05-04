@@ -52,24 +52,28 @@ const AssignEmployee = () => {
     
 
     const assign = (e) => {
-        e.preventDefault() //Like preventing page to refresh
-        var updatedQuantity = quantity - 1
-        const employee = {
-            updatedQuantity,
-            employeeName
-        }
-
-        console.log(employeeName)
+        if(quantity==0){
+            alert("Insufficient Stock Available")
+        }else{
+            e.preventDefault() //Like preventing page to refresh
+            var updatedQuantity = quantity - 1
+            const employee = {
+                updatedQuantity,
+                employeeName
+            }
     
-            axios.put(`http://localhost:5000/api/resources/assignEmployee/${id}`,employee).then(() =>{
-                console.log(employee)
-            alert("Employee assigned Successfully")      
-            //To go back to Resources List after submitting the form
-            window.location.replace(`/dash/admin/resource/${id}`)
-            })
-            .catch((error) => {
-             console.log(error)
-             })
+            console.log(employeeName)
+        
+                axios.put(`http://localhost:5000/api/resources/assignEmployee/${id}`,employee).then(() =>{
+                    console.log(employee)
+                alert("Employee assigned Successfully")      
+                //To go back to Resources List after submitting the form
+                window.location.replace(`/dash/admin/resource/${id}`)
+                })
+                .catch((error) => {
+                 console.log(error)
+                 })
+        }
             
     } 
 
