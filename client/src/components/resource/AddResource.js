@@ -123,14 +123,17 @@ const AddResource = () => {
                                         <input type="date" class="form-control" id="orderDate" value={orderedDate} onChange={(e) => setOrderDate(e.target.value)} />
                                     </div>
                                     <div class="col-12">
+                                        <br/>
                                         <label for="imageURL" class="form-label">Image</label>
                                         <button type="button" style={{ margin: "25px" }} className="btn btn-primary" onClick={(e) => {
                                             myWidget.open();
                                         }}>Upload Image</button>
-                                        <img id="uploadedimage" height={150} />
-                                    </div>
+                                        <img id="uploadedimage" src={imageURL} height={100} />
+                                        <br/>
+                                    </div>                        
                                 </div>
                                 <div class="modal-footer">
+                                <br/>
                                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
                                     <button type="submit" class="btn btn-primary">Add</button>
                                     <button style={{ marginLeft: "25px" }} className="btn btn-primary" onClick={(e) => {
