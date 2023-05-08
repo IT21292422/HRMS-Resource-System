@@ -57,7 +57,7 @@ export default function AddVehicle() {
                 <div class="row">
                   <div class="col-6">
                     <label class="form-label" for="Vehicle_No">Vehicle_No</label>
-                    <input type="text" class="form-control" id="Vehicle_No" placeholder="Enter Vehicle_No"
+                    <input type="text" class="form-control" id="Vehicle_No" placeholder="Enter Vehicle_No"  pattern="[A-Z]{2}-[A-Z]{2}-\d{4}"
                       onChange={(e) => {
                         setVehicle_No(e.target.value);
                       }} />
