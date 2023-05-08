@@ -51,7 +51,7 @@ body{
     position: fixed;
     bottom: 0px;
     left: 0px;
-    padding-top: 20px;
+    padding-top: 0px;
     -webkit-box-shadow: 9px 4px 12px -8px rgba(74, 74, 74, 1);
     -moz-box-shadow: 9px 4px 12px -8px rgba(74, 74, 74, 1);
     box-shadow: 9px 4px 12px -8px rgba(74, 74, 74, 1);

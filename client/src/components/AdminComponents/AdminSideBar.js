@@ -48,6 +48,10 @@ function AdminSideBar() {
             <Link class="nav-link" to="/dash/admin/TransportPaymentList">
                 <FaCreditCard class="sidebar-icon" />
                 Transport Pay
+            </Link>
+            <Link class="nav-link" to="/dash/emp">
+                <FaBook class="sidebar-icon" />
+                Employee Dash
             </Link>           
         </div>
     );
