@@ -148,6 +148,33 @@ const NewUserForm = () => {
     //     }
     // }
 
+    function demo(e) {
+        e.preventDefault();
+
+        setUsername('Saman')
+        setPassword('MichaelJordan123#')
+        setRoles(["Manager"])
+        setFirstname('Saman')
+        setLastname('Arachige')
+        setFullname('Saman Arachige')
+        setGender('Male')
+        setNic('200105536987')
+        setDob('1992-03-21')
+        setPob('Colombo')
+        setAge('25')
+        setNationality('Sri Lankan')
+        setReligion('Christian')
+        setDepartment('Finance Department')
+        setDatejoin('2008-03-21')
+        setEmptype('Full-time Employee')
+        setEmpid('U8899')
+        setContact('0765263654')
+        setEmail('saman@gmail.com')
+        setAddress('27/89,Vihara Mawatha, Wellawatte')
+        setPosition('Middle Management')
+
+    }
+
     const onSaveUserClicked = async (m) => {
         m.preventDefault()
         if (canSave) {
@@ -226,14 +253,31 @@ const NewUserForm = () => {
                 <div class="modal-dialog modal-dialog-centered modal-xl">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="staticBackdropLabel">Employee</h5>
+                            <h5 class="modal-title" id="staticBackdropLabel">Employee Form</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <form onSubmit={onSaveUserClicked}>
+
+                           
                                 <div class="row">
+
+                                <div>
+                                        
+                                        <button class="btn btn-primary" onClick={(e) => {
+                                            demo(e);
+                                        }}>Add demo employee details</button>
+
+                                        <br/>
+                                        <br/>
+                                    
+                                </div>
+
+
+
                                     <div>
                                         <h5><u>Employee Personal Information</u></h5>
+
 
                                     </div>
 
@@ -638,7 +682,7 @@ const NewUserForm = () => {
                                             id="roles"
                                             name="roles"
                                             class={`form__select `}
-                                            multiple={true}
+                                            // multiple={true}
                                             size="3"
                                             required
                                             value={roles}
