@@ -26,11 +26,6 @@ const MyDashboard = () => {
 
   const [page, setPage] = useState(type);
 
-  // const [inside, setInside] = useState({
-  //   enrolled: [],
-  //   completed: [],
-  // });
-
   const { isLoading, data } = useQuery(["inside", username], fetchEmployee, {
     onError: (error) => {
       console.log("error fetching courses", error);
