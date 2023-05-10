@@ -113,11 +113,10 @@ const ResourceDetails = (props) => {
      
         </tbody>      
     </table>
-    <h3>Assigned Employees</h3>
     <table class="table">
       <thead>
         <tr>
-        <th>Employees Assigned</th>
+        <th><h3>Assigned Employees</h3></th>
         <th></th>
         </tr>
       </thead>
