@@ -15,6 +15,17 @@ export default function AddVehicle() {
   const [Company, setCompany] = useState("");
   const [No_Of_Seats, setNo_Of_Seats] = useState();
 
+  const demo = (e) => {
+    e.preventDefault()
+    setVehicle_No("WP-KF-15543")
+    setVehicle_Type("Van")
+    setDriver_Name("Maran Kumar")
+    setDriver_Contact_No("0723533871")
+    setDriver_Nic("200202105412")
+    setCompany("Maran Tours and Travels")
+    setNo_Of_Seats("10")
+  }
+
   function sendData(e) {
     e.preventDefault();
 
@@ -56,8 +67,8 @@ export default function AddVehicle() {
               <form onSubmit={sendData}>
                 <div class="row">
                   <div class="col-6">
-                    <label class="form-label" for="Vehicle_No">Vehicle_No</label>
-                    <input type="text" class="form-control" id="Vehicle_No" placeholder="Enter Vehicle_No"  pattern="[A-Z]{2}-[A-Z]{2}-\d{4}"
+                    <label class="form-label" for="Vehicle_No">Vehicle No</label>
+                    <input type="text" class="form-control" id="Vehicle_No" value = {Vehicle_No} placeholder="Enter Vehicle_No"  pattern="[A-Z]{2}-[A-Z]{2}-\d{4}"
                       onChange={(e) => {
                         setVehicle_No(e.target.value);
                       }} />
@@ -65,8 +76,8 @@ export default function AddVehicle() {
 
 
                   <div class="col-6">
-                    <label class="form-label" for="Vehicle_Type">Vehicle_Type</label>
-                    <select class="form-select" id="Vehicle_Type" name="Vehicle_Type" onChange={(e) => setVehicle_Type(e.target.value)}>
+                    <label class="form-label" for="Vehicle_Type">Vehicle Type</label>
+                    <select class="form-select" id="Vehicle_Type" name="Vehicle_Type" value={Vehicle_Type} onChange={(e) => setVehicle_Type(e.target.value)}>
                       <option selected>Select Vehicle Type</option>
                       <option value="Bus">Bus</option>
                       <option value="Van">Van</option>
@@ -74,24 +85,24 @@ export default function AddVehicle() {
                   </div>
 
                   <div class="col-6">
-                    <label class="form-label" for="Driver_Name">Driver_Name</label>
-                    <input type="text" class="form-control" id="Driver_Name" placeholder="Enter Driver_Name"
+                    <label class="form-label" for="Driver_Name">Driver Name</label>
+                    <input type="text" class="form-control" id="Driver_Name" value={Driver_Name} placeholder="Enter Driver_Name"
                       onChange={(e) => {
                         setDriver_Name(e.target.value);
                       }} required />
                   </div>
 
                   <div class="col-6">
-                    <label class="form-label" for="Driver_Contact_No">Driver_Contact_No</label>
-                    <input type="number" class="form-control" id="Driver_Contact_No" placeholder="Enter Driver_Contact_No"
+                    <label class="form-label" for="Driver_Contact_No">Driver Contact No</label>
+                    <input type="number" class="form-control" id="Driver_Contact_No" value={Driver_Contact_No} placeholder="Enter Driver_Contact_No"
                       onChange={(e) => {
                         setDriver_Contact_No(e.target.value);
                       }} required />
                   </div>
 
                   <div class="col-6">
-                    <label class="form-label" for="Driver_Nic">Driver_Nic</label>
-                    <input type="text" class="form-control" id="Driver_Nic" placeholder="Enter Driver_Nic"
+                    <label class="form-label" for="Driver_Nic">Driver Nic</label>
+                    <input type="text" class="form-control" id="Driver_Nic" value={Driver_Nic} placeholder="Enter Driver_Nic"
                       onChange={(e) => {
                         setDriver_Nic(e.target.value);
                       }} required />
@@ -99,21 +110,24 @@ export default function AddVehicle() {
 
                   <div class="col-6">
                     <label class="form-label" for="Company">Company</label>
-                    <input type="text" class="form-control" id="Company" placeholder="Enter Company"
+                    <input type="text" class="form-control" id="Company" value={Company} placeholder="Enter Company"
                       onChange={(e) => {
                         setCompany(e.target.value);
                       }} required />
                   </div>
 
                   <div class="col-6">
-                    <label class="form-label" for="No_Of_Seats">No_Of_Seats</label>
-                    <input type="number" class="form-control" id="No_Of_Seats" placeholder="Enter No_Of_Seats"
+                    <label class="form-label" for="No_Of_Seats">No Of Seats</label>
+                    <input type="number" class="form-control" id="No_Of_Seats" value={No_Of_Seats} placeholder="Enter No_Of_Seats"
                       onChange={(e) => {
                         setNo_Of_Seats(e.target.value);
                       }} required />
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                     <button style={{ margin: "25px" }} className="btn btn-primary" onClick={(e) => {
+                                        demo(e);
+                                    }}>Demo</button>
                     <Button type="submit" class="btn btn-primary">Submit</Button>
                   </div>
                 </div>

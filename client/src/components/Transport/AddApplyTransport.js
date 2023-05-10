@@ -15,6 +15,14 @@ export default function AddApplyTransport() {
   const [Emp_Contact_Number, setEmp_Contact_Number] = useState("");
   const [Routes, setRoutes] = useState([]);
 
+  const demo = (e) => {
+    e.preventDefault()
+    setEmp_id("U0012")
+    setRoutesName("Rajagiriya Route")
+    setVehicle_Type("Van")
+    setEmp_Contact_Number("0761139871")
+  }
+
   useEffect(() => {
     function getRoutes() {
       axios
@@ -160,6 +168,7 @@ export default function AddApplyTransport() {
                     <Form.Label>Route Name</Form.Label>
                     <Form.Select
                       defaultValue=""
+                      value={routesName}
                       onChange={(e) => setRoutesName(e.target.value)}
                     >
                       <option value="" disabled>Select Routes</option>
@@ -173,6 +182,7 @@ export default function AddApplyTransport() {
                     <Form.Label>Vehicle Type</Form.Label>
                     <Form.Select
                       defaultValue=""
+                      value={Vehicle_Type}
                       onChange={(e) => setVehicle_Type(e.target.value)}
                     >
                       <option value="" disabled>Select Vehicle Type</option>
@@ -195,6 +205,9 @@ export default function AddApplyTransport() {
                   </Form.Group>
                 </div>
                 <div class="row justify-content-center">
+                <button style={{ marginTop: '10px' }} class="btn btn-primary col-2" onClick={(e) => {
+                                        demo(e);
+                                    }}>Demo</button>
                   <button style={{ marginTop: '10px' }}type="submit" class="btn btn-primary col-2">
                     Submit
                   </button>

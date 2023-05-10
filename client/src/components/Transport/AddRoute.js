@@ -15,6 +15,16 @@ export default function AddRoute() {
   const [Ending_Point, setEnding_Point] = useState("");
   const [Distance, setDistance] = useState();
 
+  const demo = (e) => {
+    e.preventDefault()
+    setRoute_Name("Moratuwa Route")
+    setVehicle_Type("Van")
+    setVehicle_No("WP-KF-15543")
+    setArrival_Time("16:20")
+    setStarting_Point("Company")
+    setEnding_Point("Moratuwa")
+    setDistance(20)
+  }
 
   function sendData(e) {
     e.preventDefault();
@@ -57,7 +67,7 @@ export default function AddRoute() {
                 <div class="row">
                   <div className="col-6">
                     <label class="form-label" for="Route_Name">Route_Name</label>
-                    <input type="text" class="form-control" id="Route_Name" placeholder="Enter Route_Name"
+                    <input type="text" class="form-control" value={Route_Name} id="Route_Name" placeholder="Enter Route_Name"
                       onChange={(e) => {
                         setRoute_Name(e.target.value);
                       }} required />
@@ -65,7 +75,7 @@ export default function AddRoute() {
 
                   <div className="col-6">
                     <label class="form-label" for="Vehicle_Type">Vehicle_Type</label>
-                    <select class="form-select" id="Vehicle_Type" name="Vehicle_Type" onChange={(e) => setVehicle_Type(e.target.value)}>
+                    <select class="form-select" id="Vehicle_Type" value={Vehicle_Type} name="Vehicle_Type" onChange={(e) => setVehicle_Type(e.target.value)}>
                       <option selected>Select Vehicle Type</option>
                       <option value="Bus">Bus</option>
                       <option value="Van">Van</option>
@@ -74,7 +84,7 @@ export default function AddRoute() {
 
                   <div className="col-6">
                     <label class="form-label" for="Vehicle_No">Vehicle_No</label>
-                    <input type="text" class="form-control" id="Vehicle_No" placeholder="Enter Vehicle_No"
+                    <input type="text" class="form-control" id="Vehicle_No" value={Vehicle_No} placeholder="Enter Vehicle_No"
                       onChange={(e) => {
                         setVehicle_No(e.target.value);
                       }} required />
@@ -83,7 +93,7 @@ export default function AddRoute() {
 
                   <div className="col-6">
                     <label class="form-label" for="Arrival_Time">Arrival_Time</label>
-                    <input type="time" class="form-control" id="Arrival_Time" placeholder="Enter Arrival_Time"
+                    <input type="time" class="form-control" id="Arrival_Time" value={Arrival_Time} placeholder="Enter Arrival_Time"
                       onChange={(e) => {
                         setArrival_Time(e.target.value);
                       }} required />
@@ -92,7 +102,7 @@ export default function AddRoute() {
 
                   <div className="col-6">
                     <label class="form-label" for="Starting_Point">Starting_Point</label>
-                    <input type="text" class="form-control" id="Starting_Point" placeholder="Enter Starting_Point"
+                    <input type="text" class="form-control" id="Starting_Point" value={Starting_Point} placeholder="Enter Starting_Point"
                       onChange={(e) => {
                         setStarting_Point(e.target.value);
                       }} required />
@@ -101,7 +111,7 @@ export default function AddRoute() {
 
                   <div className="col-6">
                     <label class="form-label" for="Ending_Point">Ending_Point</label>
-                    <input type="text" class="form-control" id="Ending_Point" placeholder="Enter Ending_Point"
+                    <input type="text" class="form-control" id="Ending_Point" value={Ending_Point} placeholder="Enter Ending_Point"
                       onChange={(e) => {
                         setEnding_Point(e.target.value);
                       }} required />
@@ -110,13 +120,16 @@ export default function AddRoute() {
 
                   <div className="col-6">
                     <label class="form-label" for="Distance">Distance</label>
-                    <input type="number" class="form-control" id="Distance" placeholder="Enter Distance"
+                    <input type="number" class="form-control" id="Distance" value={Distance} placeholder="Enter Distance"
                       onChange={(e) => {
                         setDistance(e.target.value);
                       }} required />
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                    <button style={{ margin: "25px" }} className="btn btn-primary" onClick={(e) => {
+                                        demo(e);
+                                    }}>Demo</button>
                     <Button  type="submit" class="btn btn-primary">Submit</Button>
                   </div>
                 </div>
